@@ -44,3 +44,7 @@
 [data-theme="dark"] .logoutButton {
   color: (--ifm-color-primary);
 }
+
+.footer {
+  background-color: #1e1e1e;
+}
