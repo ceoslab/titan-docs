@@ -27,13 +27,13 @@ Explore a documentação para encontrar guias detalhados, exemplos práticos e r
 
 ### Principais funcionalidades
 
-#### Autenticação
+#### [Autenticação](/docs/autenticacao.md)
 
 Esta seção da documentação é dedicada a orientá-lo no processo de autenticação no Titan CaaS. Garantimos que sua experiência seja suave e segura, permitindo que você se concentre no desenvolvimento de soluções financeiras inovadoras.
 
-#### Operação
+#### [Operação](/category/-operação/)
 
-- **Criação de operação:** A funcionalidade de criação de operação permite que você importe novas operações de maneira intuitiva, fornecendo todos os recursos necessários para configurar parâmetros, definir etapas e iniciar processos operacionais de forma eficiente;
-- **Documentos da operação:** Incorporação de documentação em uma operação específica, fornecendo anexos informativos para aprofundar a compreensão das pessoas ou empresas envolvidas na operação, juntamente com suas particularidades.
+- [**Criação de operação:**](/docs/operacao/criacao.md) A funcionalidade de criação de operação permite que você importe novas operações de maneira intuitiva, fornecendo todos os recursos necessários para configurar parâmetros, definir etapas e iniciar processos operacionais de forma eficiente;
+- [**Documentos da operação:**](/docs/operacao/documentos.md) Incorporação de documentação em uma operação específica, fornecendo anexos informativos para aprofundar a compreensão das pessoas ou empresas envolvidas na operação, juntamente com suas particularidades.
 
 Estes recursos visam tornar a experiência de gerenciamento de operações no Titan CaaS mais intuitiva, ágil e adaptável às demandas específicas da sua operação financeira.
