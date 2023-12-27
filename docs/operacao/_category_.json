@@ -1,8 +1,8 @@
 {
-  "label": "Operação",
+  "label": "💳 Operação",
   "position": 3,
   "link": {
     "type": "generated-index",
-    "description": "Operações"
+    "description": "Dentro do ecossistema do Titan CaaS, o termo Operações representa uma abordagem estratégica e unificada para a originação de solicitações de crédito, empréstimos e atividades correlatas. Cada operação encapsula o processo completo, desde a submissão inicial até a avaliação final, oferecendo uma visão integrada e eficiente de todo o ciclo de vida da transação financeira. Ao utilizar operações, as instituições financeiras podem otimizar e personalizar suas práticas, garantindo uma análise de crédito mais aprimorada e eficaz, enquanto proporcionam uma experiência ágil e transparente para seus clientes. Este conceito central no Titan CaaS destaca a importância de uma abordagem holística e eficiente para a gestão e execução de todas as etapas envolvidas na concessão de crédito."
   }
 }

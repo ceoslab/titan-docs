@@ -3,7 +3,7 @@ slug: /introducao
 sidebar_position: 1
 ---
 
-# Introdução
+# 📃 Introdução
 
 ## Bem-vindo(a) à documentação do Titan CaaS! 🦉
 
@@ -27,8 +27,13 @@ Explore a documentação para encontrar guias detalhados, exemplos práticos e r
 
 ### Principais funcionalidades
 
-- **Criação de operação:** A funcionalidade de criação de operação permite que você importe novas operações de maneira intuitiva, fornecendo todos os recursos necessários para configurar parâmetros, definir etapas e iniciar processos operacionais de forma eficiente.
-- **Atualização de operação:** Mantenha suas operações sempre atualizadas com as mudanças feitas por quaisquer um dos lados gerenciais. A funcionalidade de atualização de operação permite ajustar e modificar operações existentes, garantindo flexibilidade e adaptabilidade às necessidades em constante evolução do seu cenário operacional.
-- **Vinculo de operação:** Integre operações de forma coesa e eficiente por meio da funcionalidade de vínculo de operação. Estabeleça conexões entre aplicações de crédito, proporcionando uma visão holística e facilitando o gerenciamento conjunto.
+#### Autenticação
+
+Esta seção da documentação é dedicada a orientá-lo no processo de autenticação no Titan CaaS. Garantimos que sua experiência seja suave e segura, permitindo que você se concentre no desenvolvimento de soluções financeiras inovadoras.
+
+#### Operação
+
+- **Criação de operação:** A funcionalidade de criação de operação permite que você importe novas operações de maneira intuitiva, fornecendo todos os recursos necessários para configurar parâmetros, definir etapas e iniciar processos operacionais de forma eficiente;
+- **Documentos da operação:** Incorporação de documentação em uma operação específica, fornecendo anexos informativos para aprofundar a compreensão das pessoas ou empresas envolvidas na operação, juntamente com suas particularidades.
 
 Estes recursos visam tornar a experiência de gerenciamento de operações no Titan CaaS mais intuitiva, ágil e adaptável às demandas específicas da sua operação financeira.

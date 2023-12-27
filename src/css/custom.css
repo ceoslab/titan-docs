@@ -33,6 +33,10 @@
   filter: invert(1);
 }
 
+.navbar__brand {
+  margin-right: 0;
+}
+
 .logoutButton {
   color: (--ifm-color-primary);
 }
