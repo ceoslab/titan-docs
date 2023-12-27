@@ -1,5 +1,5 @@
 ---
-slug: /introducao
+slug: /
 sidebar_position: 1
 ---
 
