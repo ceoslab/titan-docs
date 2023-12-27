@@ -32,3 +32,11 @@
 [data-theme="dark"] .navbar__logo img {
   filter: invert(1);
 }
+
+.logoutButton {
+  color: (--ifm-color-primary);
+}
+
+[data-theme="dark"] .logoutButton {
+  color: (--ifm-color-primary);
+}
