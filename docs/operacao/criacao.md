@@ -10,6 +10,131 @@ Essa funcionalidade essencial permite que as instituições financeiras iniciem 
 
 Ao utilizar a criação de operação, as organizações podem adaptar estrategicamente as operações às necessidades variáveis, garantindo uma análise de crédito precisa e eficiente. Esse recurso no Titan CaaS não apenas simplifica o início de novas operações de crédito, mas também proporciona flexibilidade crucial para ajustar dinamicamente as operações em resposta às mudanças no ambiente financeiro.
 
+:::info Documentos
+
+Para inclusão de documentos em uma operação, consulte a página [Documentação](/operacao/documentos).
+
+:::
+
+## Operação
+
 | Campo | Correspondência | Descrição |
 | ----- | ----- | ----- |
-| Número da operação  | ```id-operation``` | Descrição de teste |
+| Produto | ```product``` | Produto da operação |
+| Empresa originadora | ```company-origin``` | Empresa originadora da operação |
+
+## Cliente tomador
+
+### Pessoa física
+
+| Campo | Correspondência | Descrição |
+| ----- | ----- | ----- |
+| Nome completo | ```id-client``` | Nome completo do cliente tomador |
+| CPF | ```cpf-client``` | CPF do cliente tomador |
+| Data de nascimento | ```birthdate-client``` | Data de nascimento do cliente tomador |
+
+### Pessoa jurídica
+
+| Campo | Correspondência | Descrição |
+| ----- | ----- | ----- |
+| Razão social | ```id-client``` | Razão social do cliente tomador |
+| CNPJ | ```cnpj-client``` | CNPJ do cliente tomador |
+| Data da constituição | ```created-company-client``` | Data da constituição do cliente tomador |
+
+## Avalista(s)
+
+### Pessoa física
+
+| Campo | Correspondência | Descrição |
+| ----- | ----- | ----- |
+| Nome completo | ```id-guarantor``` | Nome completo do avalista |
+| CPF | ```cpf-guarantor``` | CPF do avalista |
+| Data de nascimento | ```birthdate-guarantor``` | Data de nascimento do avalista |
+
+### Pessoa jurídica
+
+| Campo | Correspondência | Descrição |
+| ----- | ----- | ----- |
+| Razão social | ```id-guarantor``` | Razão social do avalista |
+| CNPJ | ```cnpj-guarantor``` | CNPJ do avalista |
+| Data da constituição | ```created-company-guarantor``` | Data da constituição do avalista |
+
+## Garantia(s)
+
+### Veículo
+
+| Campo | Correspondência | Descrição |
+| ----- | ----- | ----- |
+| Modalidade de garantia | ```guarantee-modalities``` | Modalidade da garantia |
+| Tipo do bem | ```asset-type``` | Tipo do bem |
+
+<br />
+
+:::info Tipo de bem
+
+Para garantias de veículo, campo tipo de bem ```asset-type``` passar sempre o valor: *Veículo* obrigatoriamente.
+
+:::
+
+### Outras garantias
+
+| Campo | Correspondência | Descrição |
+| ----- | ----- | ----- |
+| Modalidade de garantia | ```guarantee-modalities``` | Modalidade da garantia |
+| Tipo do bem | ```asset-type``` | Tipo do bem |
+| Valor | ```asset-price``` | Valor do bem (R$) |
+| CPF/CNPJ | ```cpf-cnpj-faithful-depositary``` | CPF/CNPJ do fiél depositário |
+| Fiél depositário | ```identify-faithful-depositary``` | Nome completo/razão social do fiél depositário |
+| Bem a ser financiado | ```asset-financial``` | Informativo ```true``` ou ```false``` para informar se este bem será financiado junto a operação |
+| Descrição da garantia | ```guarantee-description``` | Descrição da garantia |
+| CEP | ```guarantee-cep``` | CEP do local da garantia |
+| Endereço | ```guarantee-address``` | Endereço completo do local da garantia |
+| Número | ```guarantee-number``` | Número identificador do local da garantia |
+| Complemento | ```guarantee-complement``` | Complemento identificador do local da garantia |
+| Bairro | ```guarantee=neighborhood``` | Bairro do local da garantia |
+| Cidade | ```guarantee-city``` | Cidade do local da garantia |
+| Estado | ```guarantee-state``` | Estado do local da garantia |
+| País | ```guarantee-country``` | País do local da garantia |
+
+<br />
+
+#### Modalidades de garantia
+
+| Nome da modalidade de garantia |
+| ----------- |
+| Alienação fiduciária |
+
+<br />
+
+#### Tipos de bem
+
+| Nome do tipo de bem |
+| ----------- |
+| Celular/Eletrônicos |
+| Demais máquinas |
+| Equipamentos agrícolas |
+| Equipamentos alimentícios |
+| Equipamentos de som |
+| Equipamentos estéticos |
+| Equipamentos médicos |
+| Equipamentos odontológicos |
+| Equipamentos para academia |
+| Equipamentos veterinários |
+| Impressoras/Equipamentos gráficos |
+| Instrumentos musicais |
+| Máquinas CNC |
+| Materiais para veículos |
+| Móveis planejados |
+| Outro |
+
+<br />
+
+:::info Tipo de bem extraordinário
+
+Para algum tipo de bem que não conste na lista acima, utilize o termo *Outro* e informe o descritivo da garantia no campo ```guarantee-description``` para melhor identificação.
+
+:::
+
+### Imóvel
+
+As garantias de imóvel estarão disponíveis em breve. ⏱️
