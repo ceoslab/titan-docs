@@ -7,6 +7,7 @@ import Heading from '@theme/Heading';
 import  { Redirect } from 'react-router-dom';
 
 import styles from './index.module.css';
+import { useAuth } from '../theme/keycloak';
 
 // function HomepageHeader() {
 //   const {siteConfig} = useDocusaurusContext();
