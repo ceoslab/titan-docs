@@ -12,61 +12,67 @@ Ao utilizar a criação de operação, as organizações podem adaptar estrategi
 
 :::info Documentos
 
-Para inclusão de documentos em uma operação, consulte a página [Documentação](/operacao/documentos).
+Para inclusão de documentos em uma operação, consulte a página [Documentos](/operacao/documentos).
 
 :::
 
 ## Operação
 
-| Campo | Correspondência | Descrição |
-| ----- | ----- | ----- |
-| Produto | ```product``` | Produto da operação |
-| Empresa originadora | ```company-origin``` | Empresa originadora da operação |
+| Campo | Correspondência | Obrigatoriedade | Descrição |
+| ----- | ----- | ----- | ----- |
+| Produto | ```product``` | Sim | Produto da operação |
+| Empresa originadora | ```company-origin``` | Sim | Empresa originadora da operação |
 
 ## Cliente tomador
 
 ### Pessoa física
 
-| Campo | Correspondência | Descrição |
-| ----- | ----- | ----- |
-| Nome completo | ```id-client``` | Nome completo do cliente tomador |
-| CPF | ```cpf-client``` | CPF do cliente tomador |
-| Data de nascimento | ```birthdate-client``` | Data de nascimento do cliente tomador |
+| Campo | Correspondência | Obrigatoriedade | Descrição |
+| ----- | ----- | ----- | ----- |
+| Nome completo | ```id-client``` | Sim | Nome completo do cliente tomador |
+| CPF | ```cpf-client``` | Sim | CPF do cliente tomador |
+| Data de nascimento | ```birthdate-client``` | Sim | Data de nascimento do cliente tomador |
 
 ### Pessoa jurídica
 
-| Campo | Correspondência | Descrição |
-| ----- | ----- | ----- |
-| Razão social | ```id-client``` | Razão social do cliente tomador |
-| CNPJ | ```cnpj-client``` | CNPJ do cliente tomador |
-| Data da constituição | ```created-company-client``` | Data da constituição do cliente tomador |
+| Campo | Correspondência | Obrigatoriedade | Descrição |
+| ----- | ----- | ----- | ----- |
+| Razão social | ```id-client``` | Sim | Razão social do cliente tomador |
+| CNPJ | ```cnpj-client``` | Sim | CNPJ do cliente tomador |
+| Data da constituição | ```created-company-client``` | Sim | Data da constituição do cliente tomador |
 
 ## Avalista(s)
 
+:::info Inclusão de avalistas em uma operação
+
+A inclusão de Avalistas em uma operação não é estritamente obrigatória; no entanto, se optar por incluí-los, é vital enviar alguns campos obrigatórios para garantir uma análise mais precisa.
+
+:::
+
 ### Pessoa física
 
-| Campo | Correspondência | Descrição |
-| ----- | ----- | ----- |
-| Nome completo | ```id-guarantor``` | Nome completo do avalista |
-| CPF | ```cpf-guarantor``` | CPF do avalista |
-| Data de nascimento | ```birthdate-guarantor``` | Data de nascimento do avalista |
+| Campo | Correspondência | Obrigatoriedade | Descrição |
+| ----- | ----- | ----- | ----- |
+| Nome completo | ```id-guarantor``` | Sim | Nome completo do avalista |
+| CPF | ```cpf-guarantor``` | Sim | CPF do avalista |
+| Data de nascimento | ```birthdate-guarantor``` | Sim | Data de nascimento do avalista |
 
 ### Pessoa jurídica
 
-| Campo | Correspondência | Descrição |
-| ----- | ----- | ----- |
-| Razão social | ```id-guarantor``` | Razão social do avalista |
-| CNPJ | ```cnpj-guarantor``` | CNPJ do avalista |
-| Data da constituição | ```created-company-guarantor``` | Data da constituição do avalista |
+| Campo | Correspondência | Obrigatoriedade | Descrição |
+| ----- | ----- | ----- | ----- |
+| Razão social | ```id-guarantor``` | Sim | Razão social do avalista |
+| CNPJ | ```cnpj-guarantor``` | Sim | CNPJ do avalista |
+| Data da constituição | ```created-company-guarantor``` | Sim | Data da constituição do avalista |
 
 ## Garantia(s)
 
 ### Veículo
 
-| Campo | Correspondência | Descrição |
-| ----- | ----- | ----- |
-| Modalidade de garantia | ```guarantee-modalities``` | Modalidade da garantia |
-| Tipo do bem | ```asset-type``` | Tipo do bem |
+| Campo | Correspondência | Obrigatoriedade | Descrição |
+| ----- | ----- | ----- | ----- |
+| Modalidade de garantia | ```guarantee-modalities``` | Sim | Modalidade da garantia |
+| Tipo do bem | ```asset-type``` | Sim | Tipo do bem |
 
 <br />
 
@@ -78,8 +84,8 @@ Para garantias de veículo, campo tipo de bem ```asset-type``` passar sempre o v
 
 ### Outras garantias
 
-| Campo | Correspondência | Descrição |
-| ----- | ----- | ----- |
+| Campo | Correspondência | Obrigatoriedade | Descrição |
+| ----- | ----- | ----- | ----- |
 | Modalidade de garantia | ```guarantee-modalities``` | Modalidade da garantia |
 | Tipo do bem | ```asset-type``` | Tipo do bem |
 | Valor | ```asset-price``` | Valor do bem (R$) |
