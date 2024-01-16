@@ -33,6 +33,7 @@ Esta seção da documentação é dedicada a orientá-lo no processo de autentic
 
 #### [Operação](/category/-operação/)
 
+- [**Simulação de operação:**](/docs/operacao/simulacao.md) A funcionalidade de simulação de operação permite;
 - [**Criação de operação:**](/docs/operacao/criacao.md) A funcionalidade de criação de operação permite que você importe novas operações de maneira intuitiva, fornecendo todos os recursos necessários para configurar parâmetros, definir etapas e iniciar processos operacionais de forma eficiente;
 - [**Documentos da operação:**](/docs/operacao/documentos.md) Incorporação de documentação em uma operação específica, fornecendo anexos informativos para aprofundar a compreensão das pessoas ou empresas envolvidas na operação, juntamente com suas particularidades.
 
