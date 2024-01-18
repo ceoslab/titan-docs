@@ -31,9 +31,13 @@ Explore a documentação para encontrar guias detalhados, exemplos práticos e r
 
 Esta seção da documentação é dedicada a orientá-lo no processo de autenticação no Titan CaaS. Garantimos que sua experiência seja suave e segura, permitindo que você se concentre no desenvolvimento de soluções financeiras inovadoras.
 
+#### [Webhook](/docs/webhook.md)
+
+Esta seção da documentação é dedicada a orientá-lo no processo de integração com **Webhooks** no Titan CaaS. Principal objetivo aqui é que você se concentre na implementação de soluções inovadoras por meio de notificações e comunicações eficientes.
+
 #### [Operação](/category/-operação/)
 
-- [**Simulação de operação:**](/docs/operacao/simulacao.md) A funcionalidade de simulação de operação permite;
+- [**Simulação de operação:**](/docs/operacao/simulacao.md) A funcionalidade de simulação de operação permite que você teste novos cenários operacionais de maneira intuitiva, fornecendo todos os recursos necessários para configurar parâmetros, definir etapas e simular processos operacionais de forma eficiente.
 - [**Criação de operação:**](/docs/operacao/criacao.md) A funcionalidade de criação de operação permite que você importe novas operações de maneira intuitiva, fornecendo todos os recursos necessários para configurar parâmetros, definir etapas e iniciar processos operacionais de forma eficiente;
 - [**Documentos da operação:**](/docs/operacao/documentos.md) Incorporação de documentação em uma operação específica, fornecendo anexos informativos para aprofundar a compreensão das pessoas ou empresas envolvidas na operação, juntamente com suas particularidades.
 
