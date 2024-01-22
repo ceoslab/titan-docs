@@ -6,7 +6,7 @@ sidebar_position: 2
 
 No contexto do Titan CaaS, a **criação de operação** representa o ponto de partida para a originação de solicitações de crédito, empréstimos e outras transações financeiras.
 
-Essa funcionalidade essencial permite que as instituições financeiras iniciem e personalizem cada operação de maneira intuitiva, estabelecendo parâmetros específicos e requisitos detalhados para o processo em questão.
+Essa funcionalidade permite que as instituições financeiras iniciem e personalizem cada operação de maneira singular, estabelecendo parâmetros específicos e requisitos detalhados para o processo em questão.
 
 Ao utilizar a criação de operação, as organizações podem adaptar estrategicamente as operações às necessidades variáveis, garantindo uma análise de crédito precisa e eficiente. Esse recurso no Titan CaaS não apenas simplifica o início de novas operações de crédito, mas também proporciona flexibilidade crucial para ajustar dinamicamente as operações em resposta às mudanças no ambiente financeiro.
 
@@ -16,67 +16,86 @@ Para inclusão de documentos em uma operação, consulte a página [Documentos](
 
 :::
 
-## Parâmetros de envio
+## Operação
 
-### Operação
+### Parâmetros de envio
 
 | Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
 | ----- | ----- | ----- | ----- | ----- |
-| Habilitado | ```enabled``` | Sim | ```true``` ou ```false``` | - |
-| Código da operação | ```operationCode``` | Sim | ```null``` | - |
-| Código do workflow | ```workflowExecutionID``` | Sim | ```null``` | - |
 | Data do aceite | ```acceptanceDate``` | Sim | Date | - |
 | Data do primeiro vencimento | ```firstDueDate``` | Sim | Date | - |
 | Quantidade de parcelas | ```installmentQuantity``` | Sim | Number | - |
-| TFC (Tarifa de Ficha Cadastral) | ```tfc``` | Sim | Number | - |
-| Percentual do TFC | ```tfcPct``` | Não | Number | - |
-| Taxa de juros ao mês | ```monthlyInterestRate``` | Sim | Number | - |
-| Taxa do IOF | ```iofRate``` | Sim | Number | - |
-| Taxa adicional do IOF | ```additionalIOFRate``` | Sim | Number | - |
-| Valor total do IOF | ```totalIOFValue``` | Sim | Number | - |
-| Valor financiado do IOF | ```financedIOFValue``` | Sim | Number | - |
-| Período de carência | ```gracePeriod``` | Sim | Number | - |
-| TEC mensal | ```monthlyTEC``` | Sim | Number | - |
-| TEC anual | ```yearlyTEC``` | Sim | Number | - |
-| Valor liberado | ```disbursementAmount``` | Sim | Number | - |
-| Valor total liberado | ```totalDisbursementAmount``` | Sim | Number | - |
 | Valor solicitado | ```requestedValue``` | Sim | Number | - |
-| Valor total | ```totalValue``` | Sim | Number | - |
 | Entrada | ```downPayment``` | Sim | Number | - |
-| Percentual do seguro prestamista | ```creditLifeInsurancePct``` | Sim | Number | - |
-| Seguro prestamista | ```creditLifeInsurance``` | Sim | Number | - |
-| Valor adicional do Seguro | ```additionalInsuranceValue``` | Sim | Number | - |
-| Financiar IOF | ```financeIOF``` | Não | Boolean | ```true``` |
-| Financiar TFC | ```financeTFC``` | Não | Boolean | ```true``` |
-| Financiar seguro prestamista | ```financeCreditLifeInsurance``` | Não | Boolean | ```true``` |
-| Financiar seguro adicional | ```financeAdditionalInsurance``` | Não | Boolean | ```false``` |
-| Venda presencial | ```inPersonSale``` | Não | Boolean | ```false``` |
+| Financiar IOF | ```financeIOF``` | Sim |  Boolean | ```true``` |
+| Financiar TFC | ```financeTFC``` | Sim | Boolean | ```true``` |
+| Financiar seguro prestamista | ```financeCreditLifeInsurance``` | Sim | Boolean | ```true``` |
+| Financiar seguro adicional | ```financeAdditionalInsurance``` | Sim | Boolean | ```true``` |
+| Venda presencial | ```inPersonSale``` | Sim | Boolean | ```false``` |
 | Capitalização de taxa | ```growthType``` | Sim | ```EXPONENTIAL``` ou ```LINEAR``` | ```EXPONENTIAL``` |
-| Fator da parcela | ```installmentFactor``` | Sim | Number | - |
-| Coeficiente | ```coefficient``` | Sim | Number | - |
-| Valor da parcela sem IOF | ```installmentValueWithoutIOF``` | Sim | Number | - |
-| Valor da parcela com IOF | ```installmentValueWithIOF``` | Sim | Number | - |
-| Valor financiado | ```financedValue``` | Sim | Number | - |
-| Descrição do bem | ```assetDescription``` | Não | String | - |
+| Descrição do bem | ```assetDescription``` | Não | - | - |
 | Código da frequência de pagamento | ```paymentFrequencyID``` | Sim | Number | - |
 | Código do tipo de pagamento | ```paymentTypeID``` | Sim | Number | - |
-| Código da parametrização do produto | ```productVariantID``` | Sim | Number | - |
 | Código do produto | ```productID``` | Sim | Number | - |
-| Código do status da operação | ```operationStatusID``` | Não | Number | - |
-| Status da operação | ```operationStatus``` | Não | String | - |
-| Código da empresa originadora | ```originatingCompanyID``` | Sim | Number | - |
-| Tipo da empresa originadora | ```originatingCompanyType``` | Sim | String | - |
+| Código do status da operação | ```operationStatusID``` | Sim | Number | - |
 | Código da empresa | ```companyID``` | Sim | Number | - |
-| Tipo de empresa | ```companyType``` | Sim | String | - |
+| Tipo de empresa | ```companyType``` | Sim | String | ```MN``` |
+| Cliente | ```customer``` | Sim | Objeto | - |
+| Agente | ```agencyOffice``` | Não | - | - |
+| Anexos do cliente | ```customerAttachments``` | Não | - | - |
+| Avalistas | ```guarantors``` | Não | Array | [] |
+| Membros do comitê | ```committeeMembers``` | Não | Array | [] |
+| Garantias | ```collaterals``` | Não | Array | [] |
+| Pareceres | ```assessments``` | Não | Array | [] |
+| Desembolsos da operação | ```operationDisbursements``` | Não | Array | [] |
 
-### Cliente
+### Exemplo de requisição
 
-#### Pessoa física
+```bash showLineNumbers
+{
+	"acceptanceDate": "2024-01-21",
+	"firstDueDate": "2024-02-20",
+	"installmentQuantity": 24,
+	"requestedValue": 20000.00,
+	"downPayment": 0.00,
+	"financeIOF": true,
+	"financeTFC": true,
+	"financeCreditLifeInsurance": true,
+	"financeAdditionalInsurance": true,
+	"inPersonSale": false,
+	"growthType": "EXPONENTIAL",
+	"assetDescription": null,
+	"paymentFrequencyID": 51,
+	"paymentTypeID": 1,
+	"productID": 1403,
+	"operationStatusID": 554,
+	"companyID": 1551,
+	"companyType": "MN",
+	"customer": {
+		[...],
+	"agencyOffice": null,
+	"customerAttachments": null,
+	"guarantors": [],
+	"committeeMembers": [],
+	"collaterals": [],
+	"assessments": [],
+	"operationDisbursements": []
+}
+```
+
+## Cliente (Pessoa física)
+
+#### Parâmetros de envio
 
 | Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
 | ----- | ----- | ----- | ----- | ----- |
+| Tipo de cliente | ```customerType``` | Sim | ```PERSON``` ou ```COMPANY``` | ```PERSON``` |
+| Pessoa | ```person``` | Sim | Objeto ou ```null``` | - |
+| Empresa | ```company``` | Não | Objeto ou ```null``` | ```null``` |
+| Contagem de operações | ```operationCount``` | Sim | Number | - |
+| Contagem de operações de Avalista | ```guarantorOperationCount``` | Sim | Number | - |
 
-#### Pessoa jurídica
+#### Exemplo de requisição
 
 :::warning Atenção!
 
@@ -90,324 +109,338 @@ Os campos abaixo são adicionados dentro da tag ```customer```. Exemplo:
 
 :::
 
+```bash showLineNumbers
+"customer": {
+	"customerType": "PERSON",
+	"person":
+		[...],
+	"company": null,
+	"operationCount": 14,
+	"guarantorOperationCount": 1
+}
+```
+
 <br />
+
+### ```PERSON```: Parâmetros de envio
 
 | Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
 | ----- | ----- | ----- | ----- | ----- |
-| Código do cliente | ```id``` | Sim | Number | - |
-| Data de criação | ```createdAt``` | Sim | Date | - |
-| Data de atualização | ```updatedAt``` | Sim | Date | - |
-| Código do usuário que criou | ```createdByID``` | Sim | Number | - |
-| Código do usuário que atualizou | ```updatedByID``` | Sim | Number | - |
-| Habilitado | ```enabled``` | Sim | ```true``` ou ```false``` | - |
-| Tipo de cliente | ```customerType``` | Sim | ```PERSON``` ou ```COMPANY``` | ```COMPANY``` |
-| Código da pessoa | ```personID``` | Não | Number | ```null``` |
-| Código da empresa | ```companyID``` | Sim | Number | - |
-| Pessoa | ```person``` | Não | - | ```null``` |
+| E-mail | ```email``` | Sim | String | - |
+| Nome completo | ```fullName``` | Sim | String | - |
+| Nome para exibição | ```displayName``` | Não | String ou ```null``` | - |
+| Número do documento | ```documentNumber``` | Sim | String | - |
+| Número do documento alternativo | ```documentNumberAlt``` | Não | String ou ```null``` | - |
+| Órgão emissor do documento | ```documentIssuingBody``` | Não | String ou ```null``` | - |
+| Número de telefone celular | ```mobilePhoneNumber``` | Não | String ou ```null``` | - |
+| Número de telefone fixo | ```landlinePhoneNumber``` | Não | String ou ```null``` | - |
+| Nome completo da mãe | ```mothersFullName``` | Não | String ou ```null``` | - |
+| Nome completo do pai | ```fathersFullName``` | Não | String ou ```null``` | - |
+| Código da nacionalidade | ```nationalityID``` | Não | Number ou ```null``` | - |
+| Código do Estado de nascimento | ```birthplaceLevel1AdminDivID``` | Não | Number ou ```null``` | - |
+| Código da Cidade de nascimento | ```birthplaceLevel2AdminDivID``` | Não | Number ou ```null``` | - |
+| Data de nascimento | ```birthdate``` | Sim | Date | - |
+| Código do estado civil | ```civilStatusID``` | Sim | Number | - |
+| Código do nível de educação | ```educationLevelID``` | Não | Number ou ```null``` | - |
+| Código do sexo | ```sexID``` | Sim | Number | - |
+| Patrimônio líquido | ```netWorth``` | Sim | Number | - |
+| Renda comprovada | ```provenIncome``` | Não | Number ou ```null``` | - |
+| Contas bancárias | ```accounts``` | Não | Objeto ou ```null``` | - |
+| Links sociais | ```socialNetworks``` | Não | Objeto ou ```null``` | - |
+| Documentos adicionais | ```additionalDocuments``` | Não | Objeto ou ```null``` | - |
+| Ocupações | ```occupations``` | Não | Objeto ou ```null``` | - |
+| Endereço | ```address``` | Não | Objeto ou ```null``` | - |
+| Vinculo de empresas | ```linkedCompanies``` | Não | Objeto ou ```null``` | - |
+| Autenticação | ```hasAuth``` | Não | Boolean | ```false``` |
+| Código(s) dos anexos da pessoa | ```personAttachmentIDs``` | Não | Number | - |
+| Código(s) das empresas vinculadas | ```linkedCompanyCompanyIDs``` | Não | Number | - |
 
-<br />
+### ```PERSON```: Exemplo de requisição
 
 :::warning Atenção!
 
-Os campos abaixo são adicionados dentro da tag ```company```, que se encontra dentro da tag de ```customer```. Exemplo:
+Os campos abaixo são adicionados dentro da tag ```person```, que se ecnontram dentro da tag ```customer```. Exemplo:
 
 ```bash showLineNumbers
 "customer": {
-    "company": {
-        [...]
-    }
-}    
+	"person": {
+		[...]
+	}
+}
 ```
 
 :::
 
+```bash showLineNumbers
+"person": {
+	"email": "pessoateste@gmail.com",
+	"fullName": "PESSOA TESTE DA SILVA",
+	"displayName": null,
+	"documentNumber": "12345678900",
+	"documentNumberAlt": null,
+	"documentIssuingBody": null,
+	"mobilePhoneNumber": "51999999999",
+	"landlinePhoneNumber": null,
+	"mothersFullName": null,
+	"fathersFullName": null,
+	"nationalityID": null,
+	"birthplaceLevel1AdminDivID": null,
+	"birthplaceLevel2AdminDivID": null,
+	"birthdate": "1990-01-01",
+	"civilStatusID": 2,
+	"educationLevelID": null,
+	"sexID": 1,
+	"netWorth": 100000.00,
+	"provenIncome": null,
+	"accounts":
+		[...],
+	"socialNetworks":
+		[...],
+	"additionalDocuments":
+		[...],
+	"occupations":
+		[...],
+	"address":
+		[...],
+	"linkedCompanies":
+		[...],
+	"hasAuth": false,
+	"personAttachmentIDs": [
+		1351
+	],
+	"linkedCompanyCompanyIDs": []
+}
+```
+
 <br />
+
+#### ```accounts```: Parâmetros de envio
 
 | Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
 | ----- | ----- | ----- | ----- | ----- |
-| Código da empresa | ```id``` | Sim | Number | - |
-| Data de criação | ```createdAt``` | Sim | Date | - |
-| Data de atualização | ```updatedAt``` | Sim | Date | - |
-| Código do usuário que criou | ```createdByID``` | Sim | Number | - |
-| Código do usuário que atualizou | ```updatedByID``` | Sim | Number | - |
-| Habilitado | ```enabled``` | Sim | Boolean | ```true``` |
-| CNPJ | ```documentNumber``` | Sim | String | - |
-| Razão social | ```legalName``` | Sim | String | - |
-| Nome fantasia | ```tradeName``` | Não | String | - |
-| E-mail | ```email``` | Não | String | - |
-| Descrição | ```description``` | Não | - | - |
-| Número de celular | ```mobilePhoneNumber``` | Não | String | - |
-| Número de telefone comercial | ```landlinePhoneNumber``` | Não | String | - |
-| Data da constituição | ```incorporationDate``` | Sim | Date | - |
-| Capital social | ```shareCapital``` | Sim | Number | - |
-| Patrimônio líquido | ```equity``` | Sim | Number | - |
-| Faturamento médio mensal | ```monthlyAverageRevenue``` | Não | Number | - |
-| Inscrição estadual | ```stateTaxNumber``` | Não | String | - |
-| Inscrição municipal | ```cityTaxNumber``` | Não | String | - |
-| Optante pelo Simples Nacional | ```simplifiedTax``` | Não | Boolean | ```false``` |
-| Código do status de registro da empresa | ```companyRegistrationStatusID``` | Sim | Number | - |
-| Código do porte da empresa | ```companyDimensionTypeID``` | Sim | Number | - |
-| Código do intervalo de número de funcionários | ```employeeCountRangeID``` | Não | Number | ```null``` |
-| Intervalo de número de Funcionários | ```employeeCountRange``` | Não | String | - |
-<!--| Ganho | ```earnings``` | Não | - | - | -->
+| Número da agência | ```agencyNumber``` | Sim | String | - |
+| Número da conta | ```accountNumber``` | Sim | String | - |
+| Dígito da conta | ```accountNumberDigit``` | Sim | String | - |
+| Código do tipo de conta | ```accountTypeID``` | Sim | Number | - |
+| Código do tipo de chave PIX da conta | ```accountPixKeyTypeID``` | Não | Number ou ```null``` | ```null``` |
+| Chave Pix da conta | ```accountPixKey``` | Não | String ou ```null``` | ```null``` |
+| Máscara do tipo de chave PIX da conta | ```accountPixKeyTypeMask``` | Não | String ou ```null``` | ```null``` |
+| Código do banco | ```bankID``` | Sim | Number | - |
+| Conta primária | ```primaryAccount``` | Não | Boolean | ```false``` |
+| Nome do titular | ```holderName``` | Sim | String | - |
+| Número do documento | ```documentNumber``` | Sim | String | - |
 
-<br />
+#### ```accounts```: Exemplo de requisição
 
 :::warning Atenção!
 
-Os campos abaixo são adicionados dentro da tag ```companyRegistrationStatus```, que se contra dentro de ```company```. Exemplo:
+Os campos abaixo são adicionados dentro da tag ```accounts```, que se ecnontram dentro da tag ```person```. Exemplo:
 
 ```bash showLineNumbers
 "customer": {
-    "company": {
-        "companyRegistrationStatus": {
-            [...]
-        }
-    }
-}    
+	"person": {
+		"accounts": [
+			{
+				[...]
+			}
+		]
+	}
+}
 ```
 
 :::
 
+```bash showLineNumbers
+"accounts": [
+	{
+		"agencyNumber": "1516",
+		"accountNumber": "25191984",
+		"accountNumberDigit": "89",
+		"accountTypeID": 1,
+		"accountPixKeyTypeID": null,
+		"accountPixKey": null,
+		"accountPixKeyTypeMask": null,
+		"bankID": 404,
+		"primaryAccount": null,
+		"holderName": "PESSOA TESTE DA SILVA",
+		"documentNumber": "12345678900"
+	}
+]
+```
+
 <br />
+
+#### ```occupations```: Parâmetros de envio
 
 | Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
 | ----- | ----- | ----- | ----- | ----- |
-| Código | ```id``` | Sim | Number | - |
-| Texto | ```text``` | Sim | String | ```ATIVA``` |
-| Habilitado | ```enabled``` | Sim | Boolean | - |
+| Salário | ```salary``` | Sim | Number | - |
+| Data de admissão | ```employmentStartDate``` | Sim | Date | - |
+| Possui vínculo societário? | ```hasOwnershipLink``` | Sim | Boolean | - |
+| Código da profissão | ```professionID``` | Sim | Number | - |
+| Empresa | ```company``` | Sim | Objeto | - |
+| Pessoa | ```person``` | Sim | Objeto | - |
+| E-mail | ```email``` | Sim | String | - |
+| Nome completo | ```fullName``` | Sim | String | - |
+| Nome para exibição | ```displayName``` | Não | String ou ```null``` | - |
+| Número do documento | ```documentNumber``` | Sim | String | - |
+| Número do documento alternativo | ```documentNumberAlt``` | Não | String ou ```null``` | - |
+| Órgão emissor do documento | ```documentIssuingBody``` | Não | String ou ```null``` | - |
+| Número de telefone celular | ```mobilePhoneNumber``` | Não | String ou ```null``` | - |
+| Número de telefone fixo | ```landlinePhoneNumber``` | Não | String ou ```null``` | - |
+| Nome completo da mãe | ```mothersFullName``` | Não | String ou ```null``` | - |
+| Nome completo do pai | ```fathersFullName``` | Não | String ou ```null``` | - |
+| Código da nacionalidade | ```nationalityID``` | Não | Number ou ```null``` | - |
+| Código do Estado de nascimento | ```birthplaceLevel1AdminDivID``` | Não | Number ou ```null``` | - |
+| Código da Cidade de nascimento | ```birthplaceLevel2AdminDivID``` | Não | Number ou ```null``` | - |
+| Data de nascimento | ```birthdate``` | Sim | Date | - |
+| Código do estado civil | ```civilStatusID``` | Sim | Number | - |
+| Código do nível de educação | ```educationLevelID``` | Não | Number ou ```null``` | - |
+| Código do sexo | ```sexID``` | Sim | Number | - |
+| Patrimônio líquido | ```netWorth``` | Sim | Number | - |
+| Renda comprovada | ```provenIncome``` | Não | Number ou ```null``` | - |
+| Autenticacão | ```hasAuth``` | Não | Boolean | ```null``` |
 
-<br />
+#### ```occupations```: Exemplo de requisição
 
 :::warning Atenção!
 
-Os campos abaixo são adicionados dentro da tag ```companyDimensionType```, que se contra dentro de ```company```. Exemplo:
+Os campos abaixo são adicionados dentro da tag ```occupations```, que se ecnontram dentro da tag ```person```. Exemplo:
 
 ```bash showLineNumbers
 "customer": {
-    "company": {
-        "companyDimensionType": {
-            [...]
-        }
-    }
-}    
+	"person": {
+		"occupations": [
+			{
+				[...]
+			}
+		]
+	}
+}
 ```
 
 :::
 
-<br />
-
-| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
-| Código | ```id``` | Sim | Number | - |
-| Texto | ```text``` | Sim | String | ```DEMAIS``` |
-| Habilitado | ```enabled``` | Sim | Boolean | - |
-| Identificador | ```code``` | Sim | Number | - |
-
-<br />
-
-:::warning Atenção!
-
-Os campos abaixo são adicionados dentro da tag ```address```, que se contra dentro de ```company```. Exemplo:
-
 ```bash showLineNumbers
-"customer": {
-    "company": {
-        "address": {
-            [...]
-        }
-    }
-}    
+"occupations": [
+	{
+		"salary": 100000.00,
+		"employmentStartDate": "2000-10-10",
+		"hasOwnershipLink": false,
+		"professionID": 5,
+		"company": {
+			[...]
+		},
+		"person": {
+			"email": "pessoateste@gmail.com",
+			"fullName": "PESSOA TESTE DA SILVA",
+			"displayName": null,
+			"documentNumber": "12345678900",
+			"documentNumberAlt": null,
+			"documentIssuingBody": null,
+			"mobilePhoneNumber": "51999999999",
+			"landlinePhoneNumber": null,
+			"mothersFullName": null,
+			"fathersFullName": null,
+			"nationalityID": null,
+			"birthplaceLevel1AdminDivID": null,
+			"birthplaceLevel2AdminDivID": null,
+			"birthdate": "1990-01-01",
+			"civilStatusID": 2,
+			"educationLevelID": null,
+			"sexID": 1,
+			"netWorth": 100000.00,
+			"provenIncome": null,
+			"hasAuth": false
+		},
+		"businessPartner": null
+	}
+]
 ```
 
-:::
-
 <br />
+
+#### ```address```: Parâmetros de envio
 
 | Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
 | ----- | ----- | ----- | ----- | ----- |
-| Código | ```id``` | Sim | Number | - |
-| Data de criação | ```createdAt``` | Sim | Date | - |
-| Data de atualização | ```updatedAt``` | Sim | Date | - |
-| Código do usuário que criou | ```createdByID``` | Sim | Number | - |
-| Código do usuário que atualizou | ```updatedByID``` | Sim | Number | - |
-| Habilitado | ```enabled``` | Sim | ```true``` ou ```false``` | - |
 | CEP | ```postalCode``` | Sim | String | - |
-| Código do País | ```countryID``` | Sim | Number | - |
+| Código do País | ```countryID``` | Sim | Number | ```51``` |
 | Código do Estado | ```level1AdminDivID``` | Sim | Number | - |
 | Código da Cidade | ```level2AdminDivID``` | Sim | Number | - |
-| Código da País | ```level3AdminDivID``` | Não | Number | ```null``` |
 | Endereço | ```line1``` | Sim | String | - |
-| Complemento | ```line2``` | Não | String | - |
-| Número | ```houseNumber``` | Sim | String | - |
+| Número da residência | ```houseNumber``` | Sim | String | - |
+| Complemento | ```line2``` | Não | String ou ```null``` | ```null``` |
 | Bairro | ```neighborhood``` | Sim | String | - |
-| Latitude | ```latitude``` | Não | Number | ```null``` |
-| Longitude | ```longitude``` | Não | Number | ```null``` |
-| Código da empresa | ```companyID``` | Sim | Number | - |
+| Latitude | ```latitude``` | Não | Number ou ```null``` | ```null``` |
+| Longitude | ```longitude``` | Não | Number ou ```null``` | ```null``` |
 
-<br />
+#### ```address```: Exemplo de requisição
 
 :::warning Atenção!
 
-Os campos abaixo são adicionados dentro da tag ```level1AdminDiv```, que se contra dentro de ```address```. Exemplo:
+Os campos abaixo são adicionados dentro da tag ```address```, que se ecnontram dentro da tag ```person```. Exemplo:
 
 ```bash showLineNumbers
 "customer": {
-    "company": {
-        "address": {
-            "level1AdminDiv": {
-                [...]
-            }
-        }
-    }
+	"person": {
+		"address": {
+			[...]
+		}
+	}
 }    
 ```
 
 :::
 
-<br />
-
-| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
-| Código | ```id``` | Sim | Number | - |
-| Estado | ```name``` | Sim | String | - |
-| Código do País | ```countryID``` | Sim | Number | - |
-| Abreviação do Estado | ```abbreviation``` | Sim | String | - |
-| Identificador | ```code``` | Sim | String | - |
-
-<br />
-
-:::warning Atenção!
-
-Os campos abaixo são adicionados dentro da tag ```level2AdminDiv```, que se contra dentro de ```address```. Exemplo:
-
 ```bash showLineNumbers
-"customer": {
-    "company": {
-        "address": {
-            "level2AdminDiv": {
-                [...]
-            }
-        }
-    }
-}    
+"address": {
+	"postalCode": "90450140",
+	"countryID": 51,
+	"level1AdminDivID": 23,
+	"level2AdminDivID": 4932,
+	"line1": "Rua Jaraguá",
+	"houseNumber": "48",
+	"line2": "333",
+	"neighborhood": "Bela Vista",
+	"latitude": null,
+	"longitude": null
+}
 ```
-
-:::
-
-<br />
-
-| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
-| Código | ```id``` | Sim | Number | - |
-| Cidade | ```name``` | Sim | String | - |
-| Abreviação do Estado | ```abbreviation``` | Sim | String | - |
-| Identificador | ```code``` | Sim | String | - |
-| Código do Estado | ```level1AdminDivID``` | Sim | Number | - |
-
-### Avalista(s)
-
-:::info Inclusão de avalistas em uma operação
-
-A inclusão de Avalistas em uma operação não é estritamente obrigatória; no entanto, se optar por incluí-los, é vital enviar alguns campos obrigatórios para garantir uma análise mais precisa.
-
-:::
-
-#### Pessoa física
-
-| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
-| Nome completo | ```id-guarantor``` | Sim | Nome completo do avalista |
-| CPF | ```cpf-guarantor``` | Sim | CPF do avalista |
-| Data de nascimento | ```birthdate-guarantor``` | Sim | Data de nascimento do avalista |
-
-#### Pessoa jurídica
-
-| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
-| Razão social | ```id-guarantor``` | Sim | Razão social do avalista |
-| CNPJ | ```cnpj-guarantor``` | Sim | CNPJ do avalista |
-| Data da constituição | ```created-company-guarantor``` | Sim | Data da constituição do avalista |
-
-### Garantia(s)
-
-#### Veículo
-
-| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
-| Modalidade de garantia | ```guarantee-modalities``` | Sim | Modalidade da garantia |
-| Tipo do bem | ```asset-type``` | Sim | Tipo do bem |
-
-<br />
-
-:::info Tipo de bem
-
-Para garantias de veículo, campo tipo de bem ```asset-type``` passar sempre o valor: *Veículo* obrigatoriamente.
-
-:::
-
-#### Outras garantias
-
-| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
-| Modalidade de garantia | ```guarantee-modalities``` | Modalidade da garantia |
-| Tipo do bem | ```asset-type``` | Tipo do bem |
-| Valor | ```asset-price``` | Valor do bem (R$) |
-| CPF/CNPJ | ```cpf-cnpj-faithful-depositary``` | CPF/CNPJ do fiél depositário |
-| Fiél depositário | ```identify-faithful-depositary``` | Nome completo/razão social do fiél depositário |
-| Bem a ser financiado | ```asset-financial``` | Informativo ```true``` ou ```false``` para informar se este bem será financiado junto a operação |
-| Descrição da garantia | ```guarantee-description``` | Descrição da garantia |
-| CEP | ```guarantee-cep``` | CEP do local da garantia |
-| Endereço | ```guarantee-address``` | Endereço completo do local da garantia |
-| Número | ```guarantee-number``` | Número identificador do local da garantia |
-| Complemento | ```guarantee-complement``` | Complemento identificador do local da garantia |
-| Bairro | ```guarantee=neighborhood``` | Bairro do local da garantia |
-| Cidade | ```guarantee-city``` | Cidade do local da garantia |
-| Estado | ```guarantee-state``` | Estado do local da garantia |
-| País | ```guarantee-country``` | País do local da garantia |
-
-#### Imóvel
-
-As garantias de imóvel estarão disponíveis em breve. ⏱️
-
-## Parâmetros de retorno
 
 ### Exemplo de resposta
 
-```js
-/api/operations
-````
-
 ```bash showLineNumbers
 {
-	"id": 4454,
-	"createdAt": "2023-12-28T20:11:23.477314Z",
-	"updatedAt": "2023-12-28T20:11:23.477317Z",
+	"id": 5609,
+	"createdAt": "2024-01-22T14:57:45.546353Z",
+	"updatedAt": "2024-01-22T14:57:45.546357Z",
 	"createdByID": 1,
 	"updatedByID": 1,
 	"enabled": true,
-	"operationCode": 209,
-	"workflowExecutionID": 9325,
-	"acceptanceDate": "2023-12-28",
-	"firstDueDate": "2024-01-03",
+	"operationCode": 261,
+	"workflowExecutionID": null,
+	"acceptanceDate": "2024-01-22",
+	"firstDueDate": "2024-02-20",
+	"lastDueDate": null,
 	"installmentQuantity": 24,
-	"tfc": 1500,
+	"tfc": 800.00000000000000,
 	"tfcPct": null,
-	"monthlyInterestRate": 0.0279,
-	"iofRate": 0.000041,
+	"monthlyInterestRate": 0.027800000000,
+	"iofRate": 0.000082,
 	"additionalIOFRate": 0.0038,
-	"totalIOFValue": 1415.06,
-	"financedIOFValue": 1435.07,
-	"gracePeriod": 6,
-	"monthlyTEC": 0.03074942472,
-	"yearlyTEC": 0.438259373214,
-	"disbursementAmount": 100000,
-	"totalDisbursementAmount": 100000,
-	"requestedValue": 100000,
-	"totalValue": 140044.8,
-	"downPayment": 10,
-	"creditLifeInsurancePct": 0,
-	"creditLifeInsurance": 0,
+	"totalIOFValue": 599.622202721524588110835929597462528,
+	"financedIOFValue": 617.0756101072917077074291111767207,
+	"gracePeriod": 29,
+	"monthlyTEC": 0.035897747292722041406600611574446,
+	"yearlyTEC": 0.526872114623385581627779039644004,
+	"disbursementAmount": 20000.00,
+	"totalDisbursementAmount": 20000.00,
+	"requestedValue": 20000.00,
+	"totalValue": 30266.83,
+	"downPayment": 0.00,
+	"creditLifeInsurancePct": 0.020000000000,
+	"creditLifeInsurance": 4E+2,
 	"additionalInsuranceValue": 0,
 	"financeIOF": true,
 	"financeTFC": true,
@@ -415,18 +448,20 @@ As garantias de imóvel estarão disponíveis em breve. ⏱️
 	"financeAdditionalInsurance": false,
 	"inPersonSale": false,
 	"growthType": "EXPONENTIAL",
-	"installmentFactor": 17.640365996796,
-	"coefficient": 0.056688166231,
-	"installmentValueWithoutIOF": 5753.84,
-	"installmentValueWithIOF": 5835.2,
-	"financedValue": 101500,
+	"installmentFactor": 17.2997880164382247477682199284754290,
+	"coefficient": 0.05780417650492606933983017590922908,
+	"installmentValueWithoutIOF": 1225.45,
+	"installmentValueWithIOF": 1261.1181,
+	"financedValue": 21817.07561010729170770742911117672,
 	"assetDescription": null,
 	"paymentFrequencyID": 51,
+	"paymentFrequency": null,
 	"paymentTypeID": 1,
-	"productVariantID": 1501,
-	"productID": 1402,
-	"customerID": 2701,
-	"operationStatusID": null,
+	"paymentType": null,
+	"productVariantID": 1404,
+	"productID": 1403,
+	"customerID": 1505,
+	"operationStatusID": 554,
 	"operationStatus": null,
 	"originatingCompanyID": 1551,
 	"originatingCompanyType": "MN",
@@ -441,11 +476,209 @@ As garantias de imóvel estarão disponíveis em breve. ⏱️
 	"committeeMembers": null,
 	"collaterals": null,
 	"assessments": null,
-	"operationDisbursements": null,
+	"operationDisbursements": [],
 	"installments": null,
 	"operationSignatures": null,
 	"operationMembers": null,
 	"conversationID": null,
+	"yearlyInterestRate": 0.3896433714367775113805455428461794,
 	"operationAttachmentIDs": null
 }
 ```
+
+## Cliente (Pessoa jurídica)
+
+#### Parâmetros de envio
+
+| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+| Tipo de cliente | ```customerType``` | Sim | ```PERSON``` ou ```COMPANY``` | ```COMPANY``` |
+| Pessoa | ```person``` | Não | Objeto ou ```null``` | ```null``` |
+| Empresa | ```company``` | Sim | Objeto ou ```null``` | - |
+| Contagem de operações | ```operationCount``` | Sim | Number | - |
+| Contagem de operações de Avalista | ```guarantorOperationCount``` | Sim | Number | - |
+
+#### Exemplo de requisição
+
+:::warning Atenção!
+
+Os campos abaixo são adicionados dentro da tag ```customer```. Exemplo:
+
+```bash showLineNumbers
+"customer": {
+    [...]
+}    
+```
+
+:::
+
+```bash showLineNumbers
+"customer": {
+	"customerType": "COMPANY",
+	"person": null,
+	"company":
+		[...],
+	"operationCount": 14,
+	"guarantorOperationCount": 1
+}
+```
+
+<br />
+
+### ```COMPANY```: Parâmetros de envio
+
+| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+
+### ```COMPANY```: Exemplo de requisição
+
+:::warning Atenção!
+
+Os campos abaixo são adicionados dentro da tag ```company```, que se ecnontram dentro da tag ```customer```. Exemplo:
+
+```bash showLineNumbers
+"customer": {
+	"company": {
+		[...]
+	}
+}    
+```
+
+:::
+
+```bash showLineNumbers
+	[CÓDIGO]
+```
+
+### Exemplo de resposta
+
+```bash showLineNumbers
+	[CÓDIGO]
+```
+
+---
+
+## Avalista(s)
+
+:::info Inclusão de avalistas em uma operação
+
+A inclusão de Avalistas em uma operação não é estritamente obrigatória; no entanto, se optar por incluí-los, é vital enviar alguns campos obrigatórios para garantir uma análise mais precisa.
+
+:::
+
+### Pessoa física
+
+| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+
+### Pessoa jurídica
+
+| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+
+---
+
+## Garantia(s)
+
+### Veículo
+
+| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+
+<br />
+
+:::info Tipo de bem
+
+Para garantias de veículo, campo tipo de bem ```asset-type``` passar sempre o valor: *Veículo* obrigatoriamente.
+
+:::
+
+### Outras garantias
+
+| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+
+### Imóvel
+
+As garantias de imóvel estarão disponíveis em breve. ⏱️
+
+---
+
+## Mapeamento de campos
+
+O processo de mapeamento de campos é essencial para compreender a relação entre os identificadores (IDs) utilizados nesta API e os campos específicos que cada ID representa. Nesta seção, apresentamos uma tabela abrangente que associa cada ID a uma descrição do respectivo campo correspondente. Essa abordagem visa simplificar a compreensão, fornecendo informações claras e significativas sobre a função de cada identificador no contexto da criação de uma operação dentro do Titan.
+
+#### Frequência de pagamento (```paymentFrequencyID```):
+
+| ID | Correspondência |
+| ----- | ----- |
+
+#### Tipo de pagamento (```paymentTypeID```):
+
+| ID | Correspondência |
+| ----- | ----- |
+
+#### Status da operação (```operationStatusID```):
+
+| ID | Correspondência |
+| ----- | ----- |
+
+#### Tipo de empresa (```companyType```):
+
+| ID | Correspondência |
+| ----- | ----- |
+
+#### Nacionalidade (```nationalityID```):
+
+| ID | Correspondência |
+| ----- | ----- |
+
+#### País (```countryID```):
+
+| ID | Correspondência |
+| ----- | ----- |
+
+#### Estado de nascimento (```birthplaceLevel1AdminDivID```, ```level1AdminDivID```):
+
+| ID | Correspondência |
+| ----- | ----- |
+
+#### Cidade de nascimento (```birthplaceLevel2AdminDivID```, ```level2AdminDivID```):
+
+| ID | Correspondência |
+| ----- | ----- |
+
+#### Estado civil (```civilStatusID```): 
+
+| ID | Correspondência |
+| ----- | ----- |
+
+#### Nível de educação (```educationLevelID```):
+
+| ID | Correspondência |
+| ----- | ----- |
+
+#### Sexo (```sexID```):
+
+| ID | Correspondência |
+| ----- | ----- |
+
+#### Tipo de conta (```accountTypeID```):
+
+| ID | Correspondência |
+| ----- | ----- |
+
+#### Tipo de chave PIX da conta (```accountPixKeyTypeID```):
+
+| ID | Correspondência |
+| ----- | ----- |
+
+#### Banco (```bankID```):
+
+| ID | Correspondência |
+| ----- | ----- |
+
+#### Profissão (```professionID```):
+
+| ID | Correspondência |
+| ----- | ----- |
