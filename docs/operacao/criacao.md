@@ -643,11 +643,13 @@ O processo de mapeamento de campos é essencial para compreender a relação ent
 
 | ID | Correspondência |
 | ----- | ----- |
+| 51 | Mensal |
 
 #### Tipo de pagamento (```paymentTypeID```):
 
 | ID | Correspondência |
 | ----- | ----- |
+| 1 | Boleto |
 
 #### Status da operação (```operationStatusID```):
 
@@ -659,25 +661,81 @@ O processo de mapeamento de campos é essencial para compreender a relação ent
 | ID | Correspondência |
 | ----- | ----- |
 
-#### Nacionalidade (```nationalityID```):
+#### Estado (```level1AdminDivID```), Cidade (```level2AdminDivID```):
+
+Parâmetros de envio:
+
+```js
+GET {{ _.base_url }}/api/addresses/{cep}
+```
+
+Exemplo de requisição:
+
+```js
+GET https://demo.titan.ceoslab.app/api/addresses/92025840
+```
+
+Exemplo de resposta:
+
+```bash
+{
+	"postalCode": "92025840",
+	"countryID": 51,
+	"country": {
+		"id": 51,
+		"text": "BRASIL",
+		"enabled": true
+	},
+	"line1": "Avenida Açucena",
+	"level1AdminDivID": 23,
+	"level1AdminDiv": {
+		"id": 23,
+		"name": "Rio Grande do Sul",
+		"countryID": 51,
+		"abbreviation": "RS",
+		"code": "43"
+	},
+	"level2AdminDivID": 4686,
+	"level2AdminDiv": {
+		"id": 4686,
+		"name": "CANOAS",
+		"abbreviation": "RS",
+		"code": "4304606",
+		"level1AdminDivID": 23
+	},
+	"neighborhood": "Estância Velha",
+	"latitude": -29.91714,
+	"longitude": -51.15487
+}		
+```
+
+#### Nacionalidade, País (```nationalityID```, ```countryID```):
 
 | ID | Correspondência |
 | ----- | ----- |
+| 51 | Brasil |
 
-#### País (```countryID```):
+#### Nacionalidade (Estado) (```birthplaceLevel1AdminDivID```):
+```js
+GET {{ _.base_url }}/api/level-1-admin-divs
+```
 
-| ID | Correspondência |
-| ----- | ----- |
+Exemplo de requisição:
 
-#### Estado de nascimento (```birthplaceLevel1AdminDivID```, ```level1AdminDivID```):
+```js
+GET https://demo.titan.ceoslab.app/api/level-1-admin-divs
+```
 
-| ID | Correspondência |
-| ----- | ----- |
+Exemplo de resposta:
 
-#### Cidade de nascimento (```birthplaceLevel2AdminDivID```, ```level2AdminDivID```):
+```bash
+	
+```
 
-| ID | Correspondência |
-| ----- | ----- |
+#### Nacionalidade (Cidade) (```birthplaceLevel2AdminDivID```):
+```js
+GET {{ _.base_url }}/api/level-2-admin-divs/?filters[level1AdminDivID][$eq]={id}
+```
 
 #### Estado civil (```civilStatusID```): 
 
