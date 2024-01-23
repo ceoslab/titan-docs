@@ -641,15 +641,18 @@ O processo de mapeamento de campos é essencial para compreender a relação ent
 
 #### Frequência de pagamento (```paymentFrequencyID```):
 
-| ID | Correspondência |
+| Identificador | Correspondência |
 | ----- | ----- |
 | 51 | Mensal |
+| 52 | Trimestral |
+| 53 | Semestral |
 
 #### Tipo de pagamento (```paymentTypeID```):
 
-| ID | Correspondência |
+| Identificador | Correspondência |
 | ----- | ----- |
 | 1 | Boleto |
+| 2 | Débito em conta |
 
 #### Status da operação (```operationStatusID```):
 
@@ -658,8 +661,13 @@ O processo de mapeamento de campos é essencial para compreender a relação ent
 
 #### Tipo de empresa (```companyType```):
 
-| ID | Correspondência |
+| Identificador | Correspondência |
 | ----- | ----- |
+| ----- | MN |
+| ----- | AO |
+| ----- | AF |
+| ----- | CB |
+| ----- | CS |
 
 #### Estado (```level1AdminDivID```), Cidade (```level2AdminDivID```):
 
@@ -739,8 +747,17 @@ GET {{ _.base_url }}/api/level-2-admin-divs/?filters[level1AdminDivID][$eq]={id}
 
 #### Estado civil (```civilStatusID```): 
 
-| ID | Correspondência |
+| Identificador | Correspondência |
 | ----- | ----- |
+| 1 | Divorciado(a) |
+| 2 | Casado(a) |
+| 3 | Separado(a) |
+| 4 | Solteiro(a) |
+| 5 | Viúvo(a) |
+| 51 | Casado com comunhão total de bens |
+| 52 | Casado com comunhão parcial de bens |
+| 53 | Casado com separação total de bens |
+| 54 | União estável |
 
 #### Nível de educação (```educationLevelID```):
 
