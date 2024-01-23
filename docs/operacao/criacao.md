@@ -18,6 +18,8 @@ Para inclusão de documentos em uma operação, consulte a página [Documentos](
 
 ## Operação
 
+Os atributos listados a seguir dizem respeito aos dados que precisarão ser fornecidos para a **criação de uma operação por meio da API**. Esteja atento à especificação dos objetos, distinguindo entre pessoa física e jurídica.
+
 ### Parâmetros de envio
 
 | Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
@@ -33,16 +35,16 @@ Para inclusão de documentos em uma operação, consulte a página [Documentos](
 | Financiar seguro adicional | ```financeAdditionalInsurance``` | Sim | Boolean | ```true``` |
 | Venda presencial | ```inPersonSale``` | Sim | Boolean | ```false``` |
 | Capitalização de taxa | ```growthType``` | Sim | ```EXPONENTIAL``` ou ```LINEAR``` | ```EXPONENTIAL``` |
-| Descrição do bem | ```assetDescription``` | Não | - | - |
-| Código da frequência de pagamento | ```paymentFrequencyID``` | Sim | Number | - |
-| Código do tipo de pagamento | ```paymentTypeID``` | Sim | Number | - |
-| Código do produto | ```productID``` | Sim | Number | - |
-| Código do status da operação | ```operationStatusID``` | Sim | Number | - |
-| Código da empresa | ```companyID``` | Sim | Number | - |
+| Descrição do bem | ```assetDescription``` | Não | String | - |
+| Identificador da frequência de pagamento | ```paymentFrequencyID``` | Sim | Number | - |
+| Identificador do tipo de pagamento | ```paymentTypeID``` | Sim | Number | - |
+| Identificador do produto | ```productID``` | Sim | Number | - |
+| Identificador do status da operação | ```operationStatusID``` | Sim | Number | - |
+| Identificador da empresa | ```companyID``` | Sim | Number | - |
 | Tipo de empresa | ```companyType``` | Sim | String | ```MN``` |
 | Cliente | ```customer``` | Sim | Objeto | - |
-| Agente | ```agencyOffice``` | Não | - | - |
-| Anexos do cliente | ```customerAttachments``` | Não | - | - |
+| Agente | ```agencyOffice``` | Não | - | ```null``` |
+| Anexos do cliente | ```customerAttachments``` | Não | - | ```null``` |
 | Avalistas | ```guarantors``` | Não | Array | [] |
 | Membros do comitê | ```committeeMembers``` | Não | Array | [] |
 | Garantias | ```collaterals``` | Não | Array | [] |
@@ -72,7 +74,8 @@ Para inclusão de documentos em uma operação, consulte a página [Documentos](
 	"companyID": 1551,
 	"companyType": "MN",
 	"customer": {
-		[...],
+		...,
+	}	
 	"agencyOffice": null,
 	"customerAttachments": null,
 	"guarantors": [],
@@ -83,7 +86,11 @@ Para inclusão de documentos em uma operação, consulte a página [Documentos](
 }
 ```
 
+---
+
 ## Cliente (Pessoa física)
+
+Os seguintes campos pertencem ao objeto ```customer```, dando prioridade às peculiaridades de **pessoa física**. Para utilizar as especificações de [pessoa jurídica](#cliente-pessoa-jurídica), acesse o objeto correspondente.
 
 #### Parâmetros de envio
 
@@ -99,11 +106,11 @@ Para inclusão de documentos em uma operação, consulte a página [Documentos](
 
 :::warning Atenção!
 
-Os campos abaixo são adicionados dentro da tag ```customer```. Exemplo:
+Os campos abaixo são adicionados dentro do objeto ```customer```. Exemplo:
 
 ```bash showLineNumbers
 "customer": {
-    [...]
+    ...
 }    
 ```
 
@@ -112,37 +119,40 @@ Os campos abaixo são adicionados dentro da tag ```customer```. Exemplo:
 ```bash showLineNumbers
 "customer": {
 	"customerType": "PERSON",
-	"person":
-		[...],
+	"person": {
+		...,
+	}	
 	"company": null,
 	"operationCount": 14,
 	"guarantorOperationCount": 1
 }
 ```
 
-<br />
+---
 
 ### ```PERSON```: Parâmetros de envio
+
+Os seguintes campos pertencem ao objeto ```person```, dando prioridade às peculiaridades de **pessoa física**. Para utilizar as especificações de [pessoa jurídica](#cliente-pessoa-jurídica), acesse o objeto correspondente.
 
 | Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
 | ----- | ----- | ----- | ----- | ----- |
 | E-mail | ```email``` | Sim | String | - |
 | Nome completo | ```fullName``` | Sim | String | - |
 | Nome para exibição | ```displayName``` | Não | String ou ```null``` | - |
-| Número do documento | ```documentNumber``` | Sim | String | - |
+| Número do documento (CPF) | ```documentNumber``` | Sim | String | - |
 | Número do documento alternativo | ```documentNumberAlt``` | Não | String ou ```null``` | - |
 | Órgão emissor do documento | ```documentIssuingBody``` | Não | String ou ```null``` | - |
 | Número de telefone celular | ```mobilePhoneNumber``` | Não | String ou ```null``` | - |
 | Número de telefone fixo | ```landlinePhoneNumber``` | Não | String ou ```null``` | - |
 | Nome completo da mãe | ```mothersFullName``` | Não | String ou ```null``` | - |
 | Nome completo do pai | ```fathersFullName``` | Não | String ou ```null``` | - |
-| Código da nacionalidade | ```nationalityID``` | Não | Number ou ```null``` | - |
-| Código do Estado de nascimento | ```birthplaceLevel1AdminDivID``` | Não | Number ou ```null``` | - |
-| Código da Cidade de nascimento | ```birthplaceLevel2AdminDivID``` | Não | Number ou ```null``` | - |
+| Identificador da nacionalidade | ```nationalityID``` | Não | Number ou ```null``` | - |
+| Identificador do Estado de nascimento | ```birthplaceLevel1AdminDivID``` | Não | Number ou ```null``` | - |
+| Identificador da Cidade de nascimento | ```birthplaceLevel2AdminDivID``` | Não | Number ou ```null``` | - |
 | Data de nascimento | ```birthdate``` | Sim | Date | - |
-| Código do estado civil | ```civilStatusID``` | Sim | Number | - |
-| Código do nível de educação | ```educationLevelID``` | Não | Number ou ```null``` | - |
-| Código do sexo | ```sexID``` | Sim | Number | - |
+| Identificador do estado civil | ```civilStatusID``` | Sim | Number | - |
+| Identificador do nível de educação | ```educationLevelID``` | Não | Number ou ```null``` | - |
+| Identificador do sexo | ```sexID``` | Sim | Number | - |
 | Patrimônio líquido | ```netWorth``` | Sim | Number | - |
 | Renda comprovada | ```provenIncome``` | Não | Number ou ```null``` | - |
 | Contas bancárias | ```accounts``` | Não | Objeto ou ```null``` | - |
@@ -152,19 +162,19 @@ Os campos abaixo são adicionados dentro da tag ```customer```. Exemplo:
 | Endereço | ```address``` | Não | Objeto ou ```null``` | - |
 | Vinculo de empresas | ```linkedCompanies``` | Não | Objeto ou ```null``` | - |
 | Autenticação | ```hasAuth``` | Não | Boolean | ```false``` |
-| Código(s) dos anexos da pessoa | ```personAttachmentIDs``` | Não | Number | - |
-| Código(s) das empresas vinculadas | ```linkedCompanyCompanyIDs``` | Não | Number | - |
+| Identificador(es) dos anexos da pessoa | ```personAttachmentIDs``` | Não | Number | - |
+| Identificador(es) das empresas vinculadas | ```linkedCompanyCompanyIDs``` | Não | Number | - |
 
 ### ```PERSON```: Exemplo de requisição
 
 :::warning Atenção!
 
-Os campos abaixo são adicionados dentro da tag ```person```, que se ecnontram dentro da tag ```customer```. Exemplo:
+Os campos abaixo são adicionados dentro do objeto ```person```, que se encontram dentro do objeto ```customer```. Exemplo:
 
 ```bash showLineNumbers
 "customer": {
 	"person": {
-		[...]
+		...
 	}
 }
 ```
@@ -192,18 +202,28 @@ Os campos abaixo são adicionados dentro da tag ```person```, que se ecnontram d
 	"sexID": 1,
 	"netWorth": 100000.00,
 	"provenIncome": null,
-	"accounts":
-		[...],
-	"socialNetworks":
-		[...],
-	"additionalDocuments":
-		[...],
-	"occupations":
-		[...],
-	"address":
-		[...],
-	"linkedCompanies":
-		[...],
+	"accounts": [
+		{
+			...,
+		}	
+	]	
+	"socialNetworks": {
+		...,
+	}	
+	"additionalDocuments": {
+		...,
+	}	
+	"occupations":[
+		{
+			...,
+		}	
+	]	
+	"address": {
+		...,
+	}	
+	"linkedCompanies": {
+		...,
+	}	
 	"hasAuth": false,
 	"personAttachmentIDs": [
 		1351
@@ -212,36 +232,38 @@ Os campos abaixo são adicionados dentro da tag ```person```, que se ecnontram d
 }
 ```
 
-<br />
+---
 
 #### ```accounts```: Parâmetros de envio
+
+Os seguintes campos pertencem ao objeto ```accounts```, dando prioridade às peculiaridades de **pessoa física**. Para utilizar as especificações de [pessoa jurídica](#cliente-pessoa-jurídica), acesse o objeto correspondente.
 
 | Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
 | ----- | ----- | ----- | ----- | ----- |
 | Número da agência | ```agencyNumber``` | Sim | String | - |
 | Número da conta | ```accountNumber``` | Sim | String | - |
 | Dígito da conta | ```accountNumberDigit``` | Sim | String | - |
-| Código do tipo de conta | ```accountTypeID``` | Sim | Number | - |
-| Código do tipo de chave PIX da conta | ```accountPixKeyTypeID``` | Não | Number ou ```null``` | ```null``` |
+| Identificador do tipo de conta | ```accountTypeID``` | Sim | Number | - |
+| Identificador do tipo de chave PIX da conta | ```accountPixKeyTypeID``` | Não | Number ou ```null``` | ```null``` |
 | Chave Pix da conta | ```accountPixKey``` | Não | String ou ```null``` | ```null``` |
 | Máscara do tipo de chave PIX da conta | ```accountPixKeyTypeMask``` | Não | String ou ```null``` | ```null``` |
-| Código do banco | ```bankID``` | Sim | Number | - |
+| Identificador do banco | ```bankID``` | Sim | Number | - |
 | Conta primária | ```primaryAccount``` | Não | Boolean | ```false``` |
 | Nome do titular | ```holderName``` | Sim | String | - |
-| Número do documento | ```documentNumber``` | Sim | String | - |
+| Número do documento (CPF) | ```documentNumber``` | Sim | String | - |
 
 #### ```accounts```: Exemplo de requisição
 
 :::warning Atenção!
 
-Os campos abaixo são adicionados dentro da tag ```accounts```, que se ecnontram dentro da tag ```person```. Exemplo:
+Os campos abaixo são adicionados dentro do array de ```accounts```, que se encontram dentro do objeto ```person```. Exemplo:
 
 ```bash showLineNumbers
 "customer": {
 	"person": {
 		"accounts": [
 			{
-				[...]
+				...
 			}
 		]
 	}
@@ -268,16 +290,18 @@ Os campos abaixo são adicionados dentro da tag ```accounts```, que se ecnontram
 ]
 ```
 
-<br />
+---
 
 #### ```occupations```: Parâmetros de envio
+
+Os seguintes campos pertencem ao objeto ```occupations```, dando prioridade às peculiaridades de **pessoa física**. Para utilizar as especificações de [pessoa jurídica](#cliente-pessoa-jurídica), acesse o objeto correspondente.
 
 | Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
 | ----- | ----- | ----- | ----- | ----- |
 | Salário | ```salary``` | Sim | Number | - |
 | Data de admissão | ```employmentStartDate``` | Sim | Date | - |
 | Possui vínculo societário? | ```hasOwnershipLink``` | Sim | Boolean | - |
-| Código da profissão | ```professionID``` | Sim | Number | - |
+| Identificador da profissão | ```professionID``` | Sim | Number | - |
 | Empresa | ```company``` | Sim | Objeto | - |
 | Pessoa | ```person``` | Sim | Objeto | - |
 | E-mail | ```email``` | Sim | String | - |
@@ -290,13 +314,13 @@ Os campos abaixo são adicionados dentro da tag ```accounts```, que se ecnontram
 | Número de telefone fixo | ```landlinePhoneNumber``` | Não | String ou ```null``` | - |
 | Nome completo da mãe | ```mothersFullName``` | Não | String ou ```null``` | - |
 | Nome completo do pai | ```fathersFullName``` | Não | String ou ```null``` | - |
-| Código da nacionalidade | ```nationalityID``` | Não | Number ou ```null``` | - |
-| Código do Estado de nascimento | ```birthplaceLevel1AdminDivID``` | Não | Number ou ```null``` | - |
-| Código da Cidade de nascimento | ```birthplaceLevel2AdminDivID``` | Não | Number ou ```null``` | - |
+| Identificador da nacionalidade | ```nationalityID``` | Não | Number ou ```null``` | - |
+| Identificador do Estado de nascimento | ```birthplaceLevel1AdminDivID``` | Não | Number ou ```null``` | - |
+| Identificador da Cidade de nascimento | ```birthplaceLevel2AdminDivID``` | Não | Number ou ```null``` | - |
 | Data de nascimento | ```birthdate``` | Sim | Date | - |
-| Código do estado civil | ```civilStatusID``` | Sim | Number | - |
-| Código do nível de educação | ```educationLevelID``` | Não | Number ou ```null``` | - |
-| Código do sexo | ```sexID``` | Sim | Number | - |
+| Identificador do estado civil | ```civilStatusID``` | Sim | Number | - |
+| Identificador do nível de educação | ```educationLevelID``` | Não | Number ou ```null``` | - |
+| Identificador do sexo | ```sexID``` | Sim | Number | - |
 | Patrimônio líquido | ```netWorth``` | Sim | Number | - |
 | Renda comprovada | ```provenIncome``` | Não | Number ou ```null``` | - |
 | Autenticacão | ```hasAuth``` | Não | Boolean | ```null``` |
@@ -305,14 +329,14 @@ Os campos abaixo são adicionados dentro da tag ```accounts```, que se ecnontram
 
 :::warning Atenção!
 
-Os campos abaixo são adicionados dentro da tag ```occupations```, que se ecnontram dentro da tag ```person```. Exemplo:
+Os campos abaixo são adicionados dentro do array de ```occupations```, que se encontram dentro do objeto ```person```. Exemplo:
 
 ```bash showLineNumbers
 "customer": {
 	"person": {
 		"occupations": [
 			{
-				[...]
+				...
 			}
 		]
 	}
@@ -329,7 +353,7 @@ Os campos abaixo são adicionados dentro da tag ```occupations```, que se ecnont
 		"hasOwnershipLink": false,
 		"professionID": 5,
 		"company": {
-			[...]
+			...
 		},
 		"person": {
 			"email": "pessoateste@gmail.com",
@@ -358,16 +382,18 @@ Os campos abaixo são adicionados dentro da tag ```occupations```, que se ecnont
 ]
 ```
 
-<br />
+---
 
 #### ```address```: Parâmetros de envio
+
+Os seguintes campos pertencem ao objeto ```address```, dando prioridade às peculiaridades de **pessoa física**. Para utilizar as especificações de [pessoa jurídica](#cliente-pessoa-jurídica), acesse o objeto correspondente.
 
 | Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
 | ----- | ----- | ----- | ----- | ----- |
 | CEP | ```postalCode``` | Sim | String | - |
-| Código do País | ```countryID``` | Sim | Number | ```51``` |
-| Código do Estado | ```level1AdminDivID``` | Sim | Number | - |
-| Código da Cidade | ```level2AdminDivID``` | Sim | Number | - |
+| Identificador do País | ```countryID``` | Sim | Number | ```51``` |
+| Identificador do Estado | ```level1AdminDivID``` | Sim | Number | - |
+| Identificador da Cidade | ```level2AdminDivID``` | Sim | Number | - |
 | Endereço | ```line1``` | Sim | String | - |
 | Número da residência | ```houseNumber``` | Sim | String | - |
 | Complemento | ```line2``` | Não | String ou ```null``` | ```null``` |
@@ -379,13 +405,13 @@ Os campos abaixo são adicionados dentro da tag ```occupations```, que se ecnont
 
 :::warning Atenção!
 
-Os campos abaixo são adicionados dentro da tag ```address```, que se ecnontram dentro da tag ```person```. Exemplo:
+Os campos abaixo são adicionados dentro do objeto ```address```, que se ecnontram dentro do objeto ```person```. Exemplo:
 
 ```bash showLineNumbers
 "customer": {
 	"person": {
 		"address": {
-			[...]
+			...
 		}
 	}
 }    
@@ -486,7 +512,11 @@ Os campos abaixo são adicionados dentro da tag ```address```, que se ecnontram 
 }
 ```
 
+---
+
 ## Cliente (Pessoa jurídica)
+
+Os seguintes campos pertencem ao objeto ```customer```, dando prioridade às peculiaridades de **pessoa jurídica**. Para utilizar as especificações de [pessoa física](#cliente-pessoa-física), acesse o objeto correspondente.
 
 #### Parâmetros de envio
 
@@ -502,11 +532,11 @@ Os campos abaixo são adicionados dentro da tag ```address```, que se ecnontram 
 
 :::warning Atenção!
 
-Os campos abaixo são adicionados dentro da tag ```customer```. Exemplo:
+Os campos abaixo são adicionados dentro do objeto ```customer```. Exemplo:
 
 ```bash showLineNumbers
 "customer": {
-    [...]
+    ...
 }    
 ```
 
@@ -516,14 +546,15 @@ Os campos abaixo são adicionados dentro da tag ```customer```. Exemplo:
 "customer": {
 	"customerType": "COMPANY",
 	"person": null,
-	"company":
-		[...],
+	"company": {
+		...,
+	}	
 	"operationCount": 14,
 	"guarantorOperationCount": 1
 }
 ```
 
-<br />
+---
 
 ### ```COMPANY```: Parâmetros de envio
 
@@ -534,12 +565,12 @@ Os campos abaixo são adicionados dentro da tag ```customer```. Exemplo:
 
 :::warning Atenção!
 
-Os campos abaixo são adicionados dentro da tag ```company```, que se ecnontram dentro da tag ```customer```. Exemplo:
+Os campos abaixo são adicionados dentro do objeto ```company```, que se encontram dentro do objeto ```customer```. Exemplo:
 
 ```bash showLineNumbers
 "customer": {
 	"company": {
-		[...]
+		...
 	}
 }    
 ```
