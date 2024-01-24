@@ -151,7 +151,7 @@ Os seguintes campos pertencem ao objeto ```person```, dando prioridade às pecul
 | Identificador da Cidade de nascimento | ```birthplaceLevel2AdminDivID``` | Não | Number ou ```null``` | - |
 | Data de nascimento | ```birthdate``` | Sim | Date | - |
 | Identificador do estado civil | ```civilStatusID``` | Sim | Number | - |
-| Identificador do nível de educação | ```educationLevelID``` | Não | Number ou ```null``` | - |
+| Identificador da escolaridade | ```educationLevelID``` | Não | Number ou ```null``` | - |
 | Identificador do sexo | ```sexID``` | Sim | Number | - |
 | Patrimônio líquido | ```netWorth``` | Sim | Number | - |
 | Renda comprovada | ```provenIncome``` | Não | Number ou ```null``` | - |
@@ -319,7 +319,7 @@ Os seguintes campos pertencem ao objeto ```occupations```, dando prioridade às 
 | Identificador da Cidade de nascimento | ```birthplaceLevel2AdminDivID``` | Não | Number ou ```null``` | - |
 | Data de nascimento | ```birthdate``` | Sim | Date | - |
 | Identificador do estado civil | ```civilStatusID``` | Sim | Number | - |
-| Identificador do nível de educação | ```educationLevelID``` | Não | Number ou ```null``` | - |
+| Identificador da escolaridade | ```educationLevelID``` | Não | Number ou ```null``` | - |
 | Identificador do sexo | ```sexID``` | Sim | Number | - |
 | Patrimônio líquido | ```netWorth``` | Sim | Number | - |
 | Renda comprovada | ```provenIncome``` | Não | Number ou ```null``` | - |
@@ -656,22 +656,59 @@ O processo de mapeamento de campos é essencial para compreender a relação ent
 
 #### Status da operação (```operationStatusID```):
 
-| ID | Correspondência |
-| ----- | ----- |
+```js
+GET {{ _.base_url }}/api/operation-statuses/list
+```
+
+Exemplo de requisição:
+
+```js
+GET https://demo.titan.ceoslab.app/api/operation-statuses/list
+```
+
+Exemplo de resposta:
+
+```bash showLineNumbers
+[
+	{
+		"id": 665,
+		"createdAt": "2023-12-21T19:26:10.473238Z",
+		"updatedAt": "2023-12-21T19:26:10.473243Z",
+		"createdByID": null,
+		"updatedByID": null,
+		"enabled": true,
+		"text": "Em análise",
+		"code": "EM_ANALISE_ZXHDERO",
+		"colorHex": "4573ec33",
+		"operationCount": 3
+	},
+	{
+		"id": 710,
+		"createdAt": "2023-12-21T22:42:48.855745Z",
+		"updatedAt": "2023-12-21T22:42:48.85575Z",
+		"createdByID": null,
+		"updatedByID": null,
+		"enabled": true,
+		"text": "PAGO",
+		"code": "PAGO_HRPNNTP",
+		"colorHex": "92cc8233",
+		"operationCount": 0
+	},
+	...
+]
+```
 
 #### Tipo de empresa (```companyType```):
 
 | Identificador | Correspondência |
 | ----- | ----- |
-| ----- | MN |
-| ----- | AO |
-| ----- | AF |
-| ----- | CB |
-| ----- | CS |
+| MN | Organização |
+| AO | Agente |
+| AF | Conveniada |
+| CB | Correspondente bancário |
+| CS | Cessionária |
 
 #### Estado (```level1AdminDivID```), Cidade (```level2AdminDivID```):
-
-Parâmetros de envio:
 
 ```js
 GET {{ _.base_url }}/api/addresses/{cep}
@@ -685,7 +722,7 @@ GET https://demo.titan.ceoslab.app/api/addresses/92025840
 
 Exemplo de resposta:
 
-```bash
+```bash showLineNumbers
 {
 	"postalCode": "92025840",
 	"countryID": 51,
@@ -719,32 +756,75 @@ Exemplo de resposta:
 
 #### Nacionalidade, País (```nationalityID```, ```countryID```):
 
-| ID | Correspondência |
+| Identificador | Correspondência |
 | ----- | ----- |
 | 51 | Brasil |
 
 #### Nacionalidade (Estado) (```birthplaceLevel1AdminDivID```):
+
+| Identificador | Correspondência |
+| ----- | ----- |
+| 1 | Rondônia |
+| 2 | Acre |
+| 3 | Amazonas |
+| 4 | Roraima |
+| 5 | Pará |
+| 6 | Amapá |
+| 7 | Tocantins |
+| 8 | Maranhão |
+| 9 | Piauí |
+| 10 | Ceará |
+| 11 | Rio Grande do Norte |
+| 12 | Paraíba |
+| 13 | Pernambuco |
+| 14 | Alagoas |
+| 15 | Sergipe |
+| 16 | Bahia |
+| 17 | Minas Gerais |
+| 18 | Espírito Santo |
+| 19 | Rio de Janeiro |
+| 20 | São Paulo |
+| 21 | Paraná |
+| 22 | Santa Catarina |
+| 23 | Rio Grande do Sul |
+| 24 | Mato Grosso do Sul |
+| 25 | Mato Grosso |
+| 26 | Goiás |
+| 27 | Distrito Federal |
+
+#### Nacionalidade (Cidade) (```birthplaceLevel2AdminDivID```):
+
 ```js
-GET {{ _.base_url }}/api/level-1-admin-divs
+GET {{ _.base_url }}/api/level-2-admin-divs/list?filters[level1AdminDivID][$eq]={id}
 ```
 
 Exemplo de requisição:
 
 ```js
-GET https://demo.titan.ceoslab.app/api/level-1-admin-divs
+GET https://demo.titan.ceoslab.app/api/level-2-admin-divs/list?filters[level1AdminDivID][$eq]=23
 ```
 
 Exemplo de resposta:
 
-```bash
-	
+```bash showLineNumbers
+[
+	{
+		"id": 4932,
+		"name": "PORTO ALEGRE",
+		"abbreviation": "RS",
+		"code": "4314902",
+		"level1AdminDivID": 23
+	},
+	{
+		"id": 4789,
+		"name": "GRAMADO",
+		"abbreviation": "RS",
+		"code": "4309100",
+		"level1AdminDivID": 23
+	},
+	...
+]
 ```
-
-#### Nacionalidade (Cidade) (```birthplaceLevel2AdminDivID```):
-```js
-GET {{ _.base_url }}/api/level-2-admin-divs/?filters[level1AdminDivID][$eq]={id}
-```
-
 #### Estado civil (```civilStatusID```): 
 
 | Identificador | Correspondência |
@@ -759,32 +839,124 @@ GET {{ _.base_url }}/api/level-2-admin-divs/?filters[level1AdminDivID][$eq]={id}
 | 53 | Casado com separação total de bens |
 | 54 | União estável |
 
-#### Nível de educação (```educationLevelID```):
+#### Escolaridade (```educationLevelID```):
 
-| ID | Correspondência |
+| Identificador | Correspondência |
 | ----- | ----- |
+| 1 | Superior completo |
+| 2 | Médio incompleto |
+| 3 | Fundamental incompleto |
+| 4 | Fundamental completo |
+| 5 | Mestrado |
+| 6 | Superior incompleto |
+| 7 | Médio completo |
+| 8 | Analfabeto |
+| 9 | Doutorado |
 
 #### Sexo (```sexID```):
 
-| ID | Correspondência |
+| Identificador | Correspondência |
 | ----- | ----- |
+| 1 | Masculino |
+| 2 | Prefiro não informar |
+| 3 | Feminino |
 
 #### Tipo de conta (```accountTypeID```):
 
-| ID | Correspondência |
+| Identificador | Correspondência |
 | ----- | ----- |
+| 1 | Conta corrente |
+| 2 | Conta salário |
+| 3 | Conta de depósitos |
+| 4 | Conta poupança |
+| 5 | Conta de pagamento |
+| 6 | Conta universitária |
 
 #### Tipo de chave PIX da conta (```accountPixKeyTypeID```):
 
-| ID | Correspondência |
+| Identificador | Correspondência |
 | ----- | ----- |
+| 1 | Celular |
+| 2 | E-mail |
+| 3 | CNPJ |
+| 4 | CPF |
+| 5 | Chave aleatória |
 
 #### Banco (```bankID```):
 
-| ID | Correspondência |
-| ----- | ----- |
+```js
+GET {{ _.base_url }}/api/banks/list
+```
+
+Exemplo de requisição:
+
+```js
+GET https://demo.titan.ceoslab.app/api/banks/list
+```
+
+Exemplo de resposta:
+
+```bash showLineNumbers
+[
+	{
+		"id": 401,
+		"createdAt": "2023-10-09T12:41:37.243219Z",
+		"updatedAt": "2023-10-09T12:41:37.243225Z",
+		"createdByID": null,
+		"updatedByID": null,
+		"enabled": true,
+		"altCode": 0,
+		"name": "BCO DO BRASIL S.A.",
+		"code": 1,
+		"fullName": "Banco do Brasil S.A."
+	},
+	{
+		"id": 410,
+		"createdAt": "2023-10-09T12:41:37.251317Z",
+		"updatedAt": "2023-10-09T12:41:37.251321Z",
+		"createdByID": null,
+		"updatedByID": null,
+		"enabled": true,
+		"altCode": 360305,
+		"name": "CAIXA ECONOMICA FEDERAL",
+		"code": 104,
+		"fullName": "CAIXA ECONOMICA FEDERAL"
+	},
+	...
+]
+```
 
 #### Profissão (```professionID```):
 
-| ID | Correspondência |
-| ----- | ----- |
+```js
+GET {{ _.base_url }}/api/professions/list
+```
+
+Exemplo de requisição:
+
+```js
+GET https://demo.titan.ceoslab.app/api/professions/list
+```
+
+Exemplo de resposta:
+
+```bash showLineNumbers
+[
+	{
+		"id": 538,
+		"text": "REITOR",
+		"enabled": true
+	},
+	{
+		"id": 318,
+		"text": "ELETRICISTA",
+		"enabled": true
+	},
+	{
+		"id": 107,
+		"text": "BIBLIOTECÁRIO",
+		"enabled": true
+	},
+	...
+]	
+```
