@@ -207,12 +207,16 @@ Os campos abaixo são adicionados dentro do objeto ```person```, que se encontra
 			...,
 		}	
 	]	
-	"socialNetworks": {
-		...,
-	}	
-	"additionalDocuments": {
-		...,
-	}	
+	"socialNetworks": [
+		{
+			...,
+		}
+	]		
+	"additionalDocuments": [
+		{
+			...,
+		}
+	}		
 	"occupations":[
 		{
 			...,
@@ -226,7 +230,7 @@ Os campos abaixo são adicionados dentro do objeto ```person```, que se encontra
 	}	
 	"hasAuth": false,
 	"personAttachmentIDs": [
-		1351
+		...
 	],
 	"linkedCompanyCompanyIDs": []
 }
@@ -246,7 +250,6 @@ Os seguintes campos pertencem ao objeto ```accounts```, dando prioridade às pec
 | Identificador do tipo de conta | ```accountTypeID``` | Sim | Number | - |
 | Identificador do tipo de chave PIX da conta | ```accountPixKeyTypeID``` | Não | Number ou ```null``` | ```null``` |
 | Chave Pix da conta | ```accountPixKey``` | Não | String ou ```null``` | ```null``` |
-| Máscara do tipo de chave PIX da conta | ```accountPixKeyTypeMask``` | Não | String ou ```null``` | ```null``` |
 | Identificador do banco | ```bankID``` | Sim | Number | - |
 | Conta primária | ```primaryAccount``` | Não | Boolean | ```false``` |
 | Nome do titular | ```holderName``` | Sim | String | - |
@@ -259,35 +262,214 @@ Os seguintes campos pertencem ao objeto ```accounts```, dando prioridade às pec
 Os campos abaixo são adicionados dentro do array de ```accounts```, que se encontram dentro do objeto ```person```. Exemplo:
 
 ```bash showLineNumbers
-"customer": {
-	"person": {
-		"accounts": [
-			{
-				...
-			}
-		]
-	}
+"person": {
+	"accounts": [
+		{
+			...
+		}
+	]
 }
 ```
-
 :::
 
 ```bash showLineNumbers
 "accounts": [
 	{
-		"agencyNumber": "1516",
+		"agencyNumber": "0001",
 		"accountNumber": "25191984",
-		"accountNumberDigit": "89",
+		"accountNumberDigit": "9",
 		"accountTypeID": 1,
 		"accountPixKeyTypeID": null,
 		"accountPixKey": null,
-		"accountPixKeyTypeMask": null,
-		"bankID": 404,
-		"primaryAccount": null,
+		"bankID": 560,
+		"primaryAccount": false,
 		"holderName": "PESSOA TESTE DA SILVA",
 		"documentNumber": "12345678900"
 	}
 ]
+```
+
+#### ```accounts```: Exemplo de resposta
+
+```bash showLineNumbers
+"accounts": [
+	{
+	"id": 1,
+	"createdAt": "2022-03-10T12:15:50-04:00",
+	"updatedAt": "2022-03-10T12:15:50-04:00",
+	"createdByID": 1,
+	"updatedByID": 1,
+	"enabled": true,
+	"agencyNumber": "0001",
+	"accountNumber": "25191984",
+	"accountNumberDigit": "9",
+	"accountTypeID": 1,
+	"accountPixKeyTypeID": null,
+	"accountPixKey": null,
+	"accountPixKeyTypeMask": null,
+	"bankID": 560,
+	"bank": {
+		"id": 560,
+		"createdAt": "2022-03-10T12:15:50-04:00",
+		"updatedAt": "2022-03-10T12:15:50-04:00",
+		"createdByID": null,
+		"updatedByID": null,
+		"enabled": true,
+		"altCode": 18236120,
+		"name": "NU PAGAMENTOS - IP",
+		"code": 260,
+		"fullName": "NU PAGAMENTOS S.A. - INSTITUIÇÃO DE PAGAMENTO"
+	},
+	"primaryAccount": false,
+	"holderName": "PESSOA TESTE DA SILVA",
+	"documentNumber": "12345678900",
+	"personID": 325
+	}
+]
+```
+
+---
+
+#### ```socialNetworks```: Parâmetros de envio
+
+Os seguintes campos pertencem ao objeto ```socialNetworks```, dando prioridade às peculiaridades de **pessoa física**. Para utilizar as especificações de [pessoa jurídica](#cliente-pessoa-jurídica), acesse o objeto correspondente.
+
+Para listar quais identificadores você precisará para realizar o envio da sua requisição, consulte a seção de [Mapeamento de campos](#mapeamento-de-campos) > [Tipo de link social](#tipo-de-link-social-social-network-types).
+
+| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+| Identificador do tipo de link social | ```socialNetworkTypeID``` | Sim | Number | - |
+| Endereço do link social | ```username``` | Sim | String | - |
+| Identificador da pessoa | ```personID``` | Sim | Number | - |
+
+#### ```socialNetworks```: Exemplo de requisição
+
+:::warning Atenção!
+
+Os campos abaixo são adicionados dentro do array de ```socialNetworks```, que se encontram dentro do objeto ```person```. Exemplo:
+
+```bash showLineNumbers
+"person": {
+	"socialNetworks":[
+		{
+			...
+		}
+	]	
+}
+```
+:::
+
+```bash showLineNumbers
+"socialNetworks": [
+	{
+		"socialNetworkTypeID": 51,
+		"username": "pessoa.teste",
+		"personID": 325
+	}
+]	
+```
+
+#### ```socialNetworks```: Exemplo de resposta
+
+```bash showLineNumbers
+"socialNetworks": [
+	{
+		"id": 1,
+		"createdAt": "2022-03-10T12:15:50-04:00",
+		"updatedAt": "2022-03-10T12:15:50-04:00",
+		"createdByID": 1,
+		"updatedByID": 1,
+		"enabled": true,
+		"socialNetworkTypeID": 51,
+		"socialNetworkType": {
+			"id": 51,
+			"text": "Instagram",
+			"enabled": true,
+			"urlTemplate": "instagram.com"
+		},
+		"username": "pessoa.teste",
+		"url": "instagram.com/pessoa.teste",
+		"personID": 325
+	}
+]	
+```
+
+---
+
+#### ```additionalDocuments```: Parâmetros de envio
+
+Os seguintes campos pertencem ao objeto ```additionalDocuments```, dando prioridade às peculiaridades de **pessoa física**. Para utilizar as especificações de [pessoa jurídica](#cliente-pessoa-jurídica), acesse o objeto correspondente.
+
+Para listar quais identificadores você precisará para realizar o envio da sua requisição, consulte a seção de [Mapeamento de campos](#mapeamento-de-campos) > [Tipo de documento adicional](#tipo-de-documento-adicional-typeid).
+
+| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+| Número do documento | ```number``` | Sim | Number | - |
+| Órgão emissor | ```authority``` | Não | String | - |
+| Identificador do estado do órgão emissor | ```ufID``` | Não | Number | - |
+| Identificador do tipo de documento | ```typeID``` | Não | Number | - |
+| Data de emissão do documento | ```issueDate``` | Não | Date | - |
+
+#### ```additionalDocuments```: Exemplo de requisição
+
+:::warning Atenção!
+
+Os campos abaixo são adicionados dentro do array de ```additionalDocuments```, que se encontram dentro do objeto ```person```. Exemplo:
+
+```bash showLineNumbers
+"person": {
+	"additionalDocuments":[
+		{
+			...
+		}
+	]	
+}
+```
+:::
+
+```bash showLineNumbers
+"additionalDocuments": [
+	{
+		"number": "1234567890",
+		"authority": "ssp",
+		"ufID": 23,
+		"typeID": 3,
+		"issueDate": "2019-08-09"
+	}
+]	
+```
+
+#### ```additionalDocuments```: Exemplo de resposta
+
+```bash showLineNumbers
+"additionalDocuments": [
+	{
+		"id": 1,
+		"createdAt": "2022-03-10T12:15:50-04:00",
+		"updatedAt": "2022-03-10T12:15:50-04:00",
+		"createdByID": 1,
+		"updatedByID": 1,
+		"enabled": true,
+		"number": "1234567890",
+		"authority": "ssp",
+		"ufID": 23,
+		"uf": {
+			"id": 23,
+			"name": "Rio Grande do Sul",
+			"countryID": 51,
+			"abbreviation": "RS",
+			"code": "43"
+		},
+		"typeID": 3,
+		"type": {
+			"id": 3,
+			"text": "RG",
+			"enabled": true
+		},
+		"issueDate": "2019-08-09",
+		"personID": 325
+	}
+]	
 ```
 
 ---
@@ -654,7 +836,21 @@ O processo de mapeamento de campos é essencial para compreender a relação ent
 | 1 | Boleto |
 | 2 | Débito em conta |
 
+#### Tipo de documento adicional (```typeID```):
+
+| Identificador | Correspondência |
+| ----- | ----- |
+| 1 | CNH |
+| 2 | Passaporte |
+| 3 | RG |
+
 #### Status da operação (```operationStatusID```):
+
+:::info Atente-se
+Os status listados nesta API Rest variam de acordo com os status criados pela Organização.
+:::
+
+Padrão de API:
 
 ```js
 GET {{ _.base_url }}/api/operation-statuses/list
@@ -663,7 +859,7 @@ GET {{ _.base_url }}/api/operation-statuses/list
 Exemplo de requisição:
 
 ```js
-GET https://demo.titan.ceoslab.app/api/operation-statuses/list
+GET https://empresa.titan.ceoslab.app/api/operation-statuses/list
 ```
 
 Exemplo de resposta:
@@ -708,7 +904,13 @@ Exemplo de resposta:
 | CB | Correspondente bancário |
 | CS | Cessionária |
 
-#### Estado (```level1AdminDivID```), Cidade (```level2AdminDivID```):
+#### Endereço: Estado (```level1AdminDivID```), Cidade (```level2AdminDivID```):
+
+:::info Atente-se
+Esta API é utilizada para os casos em que é necessário fornecer o endereço completo.
+:::
+
+Padrão de API:
 
 ```js
 GET {{ _.base_url }}/api/addresses/{cep}
@@ -717,7 +919,7 @@ GET {{ _.base_url }}/api/addresses/{cep}
 Exemplo de requisição:
 
 ```js
-GET https://demo.titan.ceoslab.app/api/addresses/92025840
+GET https://empresa.titan.ceoslab.app/api/addresses/92025840
 ```
 
 Exemplo de resposta:
@@ -760,39 +962,45 @@ Exemplo de resposta:
 | ----- | ----- |
 | 51 | Brasil |
 
-#### Nacionalidade (Estado) (```birthplaceLevel1AdminDivID```):
+#### Nacionalidade (Estado), Identificador do estado do órgão emissor (```birthplaceLevel1AdminDivID```, ```ufID```):
 
-| Identificador | Correspondência |
-| ----- | ----- |
-| 1 | Rondônia |
-| 2 | Acre |
-| 3 | Amazonas |
-| 4 | Roraima |
-| 5 | Pará |
-| 6 | Amapá |
-| 7 | Tocantins |
-| 8 | Maranhão |
-| 9 | Piauí |
-| 10 | Ceará |
-| 11 | Rio Grande do Norte |
-| 12 | Paraíba |
-| 13 | Pernambuco |
-| 14 | Alagoas |
-| 15 | Sergipe |
-| 16 | Bahia |
-| 17 | Minas Gerais |
-| 18 | Espírito Santo |
-| 19 | Rio de Janeiro |
-| 20 | São Paulo |
-| 21 | Paraná |
-| 22 | Santa Catarina |
-| 23 | Rio Grande do Sul |
-| 24 | Mato Grosso do Sul |
-| 25 | Mato Grosso |
-| 26 | Goiás |
-| 27 | Distrito Federal |
+Padrão de API:
+
+```js
+GET {{ _.base_url }}/api/level-1-admin-divs/list
+```
+
+Exemplo de requisição:
+
+```js
+GET https://empresa.titan.ceoslab.app/api/level-1-admin-divs/list
+```
+
+Exemplo de resposta:
+
+```bash showLineNumbers
+[
+	{
+		"id": 23,
+		"name": "Rio Grande do Sul",
+		"countryID": 51,
+		"abbreviation": "RS",
+		"code": "43"
+	},
+	{
+		"id": 19,
+		"name": "Rio de Janeiro",
+		"countryID": 51,
+		"abbreviation": "RJ",
+		"code": "33"
+	},
+	...
+]
+```
 
 #### Nacionalidade (Cidade) (```birthplaceLevel2AdminDivID```):
+
+Padrão de API:
 
 ```js
 GET {{ _.base_url }}/api/level-2-admin-divs/list?filters[level1AdminDivID][$eq]={id}
@@ -801,7 +1009,7 @@ GET {{ _.base_url }}/api/level-2-admin-divs/list?filters[level1AdminDivID][$eq]=
 Exemplo de requisição:
 
 ```js
-GET https://demo.titan.ceoslab.app/api/level-2-admin-divs/list?filters[level1AdminDivID][$eq]=23
+GET https://empresa.titan.ceoslab.app/api/level-2-admin-divs/list?filters[level1AdminDivID][$eq]=23
 ```
 
 Exemplo de resposta:
@@ -825,6 +1033,7 @@ Exemplo de resposta:
 	...
 ]
 ```
+
 #### Estado civil (```civilStatusID```): 
 
 | Identificador | Correspondência |
@@ -861,6 +1070,19 @@ Exemplo de resposta:
 | 2 | Prefiro não informar |
 | 3 | Feminino |
 
+#### Tipo de link social (```social-network-types```):
+
+| Identificador | Correspondência |
+| ----- | ----- |
+| 51 | Instagram |
+| 52 | LinkedIn empresarial |
+| 53 | LinkedIn pessoal |
+| 54 | Outro |
+| 55 | Facebook |
+| 56 | Site |
+| 57 | Pinterest |
+| 58 | X (Twitter) |
+
 #### Tipo de conta (```accountTypeID```):
 
 | Identificador | Correspondência |
@@ -884,6 +1106,8 @@ Exemplo de resposta:
 
 #### Banco (```bankID```):
 
+Padrão de API:
+
 ```js
 GET {{ _.base_url }}/api/banks/list
 ```
@@ -891,7 +1115,7 @@ GET {{ _.base_url }}/api/banks/list
 Exemplo de requisição:
 
 ```js
-GET https://demo.titan.ceoslab.app/api/banks/list
+GET https://empresa.titan.ceoslab.app/api/banks/list
 ```
 
 Exemplo de resposta:
@@ -928,6 +1152,8 @@ Exemplo de resposta:
 
 #### Profissão (```professionID```):
 
+Padrão de API:
+
 ```js
 GET {{ _.base_url }}/api/professions/list
 ```
@@ -935,7 +1161,7 @@ GET {{ _.base_url }}/api/professions/list
 Exemplo de requisição:
 
 ```js
-GET https://demo.titan.ceoslab.app/api/professions/list
+GET https://empresa.titan.ceoslab.app/api/professions/list
 ```
 
 Exemplo de resposta:
