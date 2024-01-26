@@ -10,8 +10,14 @@ Esta seção da documentação é dedicada a orientá-lo no processo de integra�
 
 Peça ao seu parceiro de negócios para criar um webhook em seu cadastro dentro do Titan. Para que seja criado um webhook seu parceiro de negócio irá precisa que você forneça:
 
-- **URL de destino:** o endereço para onde as notificações serão enviadas e recebidas *(obrigatório)*;
-- **Cabeçalho(s):** fornecem detalhes extras sobre a solicitação HTTP enviada para o endpoint do webhook. Se desejar incluir, especifique a(s) **chave(s)** e o(s) **valor(es)** necessário(s) *(opcional)*;
+- **URL de destino:** o endereço para onde as notificações serão enviadas. *(obrigatório)*;
+- **Cabeçalho(s):** fornecem detalhes extras sobre o padrão de *request* para a URL de destino. Se desejar incluir, especifique a(s) **chave(s)** e o(s) **valor(es)** necessário(s). *(opcional)*;
+
+#### Exemplo de cabeçalho:
+
+| Chave | Valor |
+| ----- | ----- |
+| ```authorization: Bearer``` | ```eyJhbGciOiJSUzI1NiIsInAiS...``` |
 
 :::tip Dica
 Caso seu parceiro não esteja familiarizado com o processo de geração de um **webhook dentro do Titan**, instrua-o a acessar o link da nossa [Central de Ajuda](https://ajuda.titan.ceoslab.app) para visualizar o passo a passo de como criar um webhook.
@@ -19,15 +25,15 @@ Caso seu parceiro não esteja familiarizado com o processo de geração de um **
 
 ### Passo 2: Configuração do webhook
 
-Certifique-se de que o webhook esteja configurado corretamente para atender aos requisitos da sua aplicação. Isso pode incluir URL de destino, método de envio, formato de dados, entre outros.
+Certifique-se de que o webhook esteja configurado corretamente para atender aos requisitos da sua aplicação, isso pode incluir URL de destino, método de envio e autenticação.
 
 :::warning Atenção!
-Verifique se as informações do webhook estão corretas antes de prosseguir.
+Se você deseja usar seu próprio sistema de assinatura você pode receber o(s) contrato(s) gerados via webhook na troca de determinado status, configurando o gatilho de **"Troca de status"** e o evento **"Gerar CCB"** na aba de **"Eventos"** do webhook.
 :::
 
 ### Passo 3: Teste e integração
 
-Antes de usar o webhook em produção, realize testes para garantir que as notificações estejam sendo recebidas conforme o esperado. Isso ajudará a evitar problemas durante o uso real do webhook.
+Para garantir o correto funcionamento do seu webhook, realize um teste no endpoint de **[Criação](./operacao/criacao.md)**.
 
 ---
 

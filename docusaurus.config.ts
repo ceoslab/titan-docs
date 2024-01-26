@@ -63,6 +63,13 @@ const config: Config = {
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Documentação',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
+          position: 'left',
+          label: 'Página do produto',
+          href: "https://ceoslab.com.br/titan"
         }
       ],
     },
