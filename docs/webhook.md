@@ -10,7 +10,7 @@ Esta seção da documentação é dedicada a orientá-lo no processo de integra�
 
 Peça ao seu parceiro de negócios para criar um webhook em seu cadastro dentro do Titan. Para que seja criado um webhook seu parceiro de negócio irá precisa que você forneça:
 
-- **URL de destino:** o endereço para onde as notificações serão enviadas e recebidas (obrigatório);*(obrigatório)*;
+- **URL de destino:** o endereço para onde as notificações serão enviadas e recebidas *(obrigatório)*;
 - **Cabeçalho(s):** fornecem detalhes extras sobre a solicitação HTTP enviada para o endpoint do webhook. Se desejar incluir, especifique a(s) **chave(s)** e o(s) **valor(es)** necessário(s) *(opcional)*;
 
 :::tip Dica
