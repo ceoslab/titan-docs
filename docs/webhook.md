@@ -4,30 +4,31 @@ sidebar_position: 3
 
 # 📢 Webhook
 
-Esta seção da documentação é dedicada a orientá-lo no processo de integração com **Webhooks** no Titan CaaS. Garantimos que sua experiência seja suave e segura, permitindo que você se concentre na implementação de soluções inovadoras por meio de notificações e comunicações eficientes.
+Esta seção da documentação é dedicada a orientá-lo no processo de integração com **webhooks** no Titan CaaS. Garantimos que sua experiência seja suave e segura, permitindo que você se concentre na implementação de soluções inovadoras por meio de notificações e comunicações eficientes.
 
-## Como criar um webhook
+### Passo 1: Criação do webhook
 
-### Passo 1: Acesse o registro de uma cessionária
+Peça ao seu parceiro de negócios para criar um webhook em seu cadastro dentro do Titan. Para que seja criado um webhook seu parceiro de negócio irá precisa que você forneça:
 
-Vá para a seção de **"Cadastros"** e selecione **"Cessionárias"**. Em seguida, clique para **"Visualizar"** ou **"Editar"** a cessionária na qual você pretende gerar a chave.
+- **URL de destino:** o endereço para onde as notificações serão enviadas e recebidas (obrigatório);*(obrigatório)*;
+- **Cabeçalho(s):** fornecem detalhes extras sobre a solicitação HTTP enviada para o endpoint do webhook. Se desejar incluir, especifique a(s) **chave(s)** e o(s) **valor(es)** necessário(s) *(opcional)*;
 
-### Passo 2: Navegue até a aba Webhooks
+:::tip Dica
+Caso seu parceiro não esteja familiarizado com o processo de geração de um **webhook dentro do Titan**, instrua-o a acessar o link da nossa [Central de Ajuda](https://ajuda.titan.ceoslab.app) para visualizar o passo a passo de como criar um webhook.
+:::
 
-Dentro do registro da cessionária, dirija-se à aba **"Webhooks"** para administrar as credenciais associadas a essa cessionária.
+### Passo 2: Configuração do webhook
 
-![Imagem 1](./assets/listagem-webhook1.png)
+Certifique-se de que o webhook esteja configurado corretamente para atender aos requisitos da sua aplicação. Isso pode incluir URL de destino, método de envio, formato de dados, entre outros.
 
-### Passo 3: Crie um novo webhook
+:::warning Atenção!
+Verifique se as informações do webhook estão corretas antes de prosseguir.
+:::
 
-Pressione o botão **"Novo webhook"**. Será necessário fornecer um nome para sua credencial e uma URL obrigatoriamente. De forma opcional, você poderá cadastrar cabeçalhos.
+### Passo 3: Teste e integração
 
-![Imagem 2](./assets/novo-webhook.png)
+Antes de usar o webhook em produção, realize testes para garantir que as notificações estejam sendo recebidas conforme o esperado. Isso ajudará a evitar problemas durante o uso real do webhook.
 
-Após o preenchimento dos campos obrigatórios, clique em **"Criar webhook"**.
+---
 
-### Passo 4: Exibição
-
-Sua credencial já foi criada! Sua listagem irá atualizar e seu novo webhook será exibido.
-
-![Imagem 2](./assets/listagem-webhook2.png)
+Esperamos que este guia tenha sido útil. Se você tiver alguma dúvida ou encontrar problemas durante o processo, entre em contato com nossa equipe de suporte em *suporte@ceoslab.com.br*.

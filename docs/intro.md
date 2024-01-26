@@ -19,7 +19,9 @@ Nossa documentação está em constante evolução. Sua colaboração é fundame
 
 O Titan CaaS é uma solução moderna e flexível que permite se adaptar as necessidades de qualquer produto de crédito, oferecendo a gestão completa da sua operação.
 
+:::tip Um CaaS completo para sua instituição!
 **Input, análise, workflow e muito mais. Tudo para sua operação de crédito de ponta a ponta.**
+:::
 
 ## Como usar nossa documentação
 
@@ -27,15 +29,15 @@ Explore a documentação para encontrar guias detalhados, exemplos práticos e r
 
 ### Principais funcionalidades
 
-#### [Autenticação](/docs/autenticacao.md)
+#### [🔐 Autenticação](/docs/autenticacao.md)
 
 Esta seção da documentação é dedicada a orientá-lo no processo de autenticação no Titan CaaS. Garantimos que sua experiência seja suave e segura, permitindo que você se concentre no desenvolvimento de soluções financeiras inovadoras.
 
-#### [Webhook](/docs/webhook.md)
+#### [📢 Webhook](/docs/webhook.md)
 
 Esta seção da documentação é dedicada a orientá-lo no processo de integração com **Webhooks** no Titan CaaS. Principal objetivo aqui é que você se concentre na implementação de soluções inovadoras por meio de notificações e comunicações eficientes.
 
-#### [Operação](/category/-operação/)
+#### [💳 Operação](/category/-operação/)
 
 - [**Simulação de operação:**](/docs/operacao/simulacao.md) A funcionalidade de simulação de operação permite que você teste novos cenários operacionais de maneira intuitiva, fornecendo todos os recursos necessários para configurar parâmetros, definir etapas e simular processos operacionais de forma eficiente.
 - [**Criação de operação:**](/docs/operacao/criacao.md) A funcionalidade de criação de operação permite que você importe novas operações de maneira intuitiva, fornecendo todos os recursos necessários para configurar parâmetros, definir etapas e iniciar processos operacionais de forma eficiente;
