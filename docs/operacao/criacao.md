@@ -818,8 +818,7 @@ Para garantias de veículo, campo tipo de bem ```asset-type``` passar sempre o v
 
 ### Outras garantias
 
-| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
+Os seguintes campos pertencem ao objeto ```collaterals```, para listar quais identificadores você precisará para realizar o envio da sua requisição, consulte a seção de [Mapeamento de campos](#mapeamento-de-campos).
 
 ### Imóvel
 
@@ -1215,3 +1214,117 @@ Exemplo de resposta:
 	...
 ]	
 ```
+
+#### Tipo de outras garantias (```asset-types```):
+
+| Identificador | Correspondência |
+| ----- | ----- |
+| 151 | Celular/Eletrônicos |
+| 152 | Demais máquinas |
+| 153 | Equipamentos agrícolas |
+| 154 | Equipamentos alimentícios |
+| 155 | Equipamentos de som |
+| 156 | Equipamentos estéticos |
+| 157 | Equipamentos médicos |
+| 158 | Equipamentos odontológicos |
+| 159 | Equipamentos para academia |
+| 160 | Equipamentos veterinários |
+| 161 | Impressoras/Equipamentos gráficos |
+| 162 | Instrumentos musicais |
+| 163 | Máquinas CNC |
+| 164 | Materiais para veículos |
+| 165 | Móveis planejados |
+| 166 | Outro |
+| 167 | Veículos |
+| 168 | Imóveis |
+
+#### Marcas de veículos (```vehicle-brands```):
+
+Padrão de API:
+
+```js
+GET {{ _.base_url }}/api/vehicle-brands/list
+```
+
+Exemplo de requisição:
+
+```js
+GET https://{empresa}.titan.ceoslab.app/api/vehicle-brands/list
+```
+
+Exemplo de resposta:
+
+```bash showLineNumbers
+[
+	{
+# highlight-next-line		
+		"id": 428,
+		"text": "Renault",
+		"enabled": true,
+		"fipeBrandCode": 48,
+		"fipeVehicleType": "CAR",
+		"fipeReferenceTableCode": 305,
+		"fipeReferenceTable": {
+			"id": 1,
+			"createdAt": "2023-12-21T13:55:46.910126Z",
+			"updatedAt": "2024-01-02T15:03:34.833771Z",
+			"createdByID": null,
+			"updatedByID": null,
+			"enabled": true,
+			"referenceTable": 305,
+			"yearMonth": "2024-01"
+		}
+	},
+	{
+# highlight-next-line		
+		"id": 415,
+		"text": "Mercedes-Benz",
+		"enabled": true,
+		"fipeBrandCode": 39,
+		"fipeVehicleType": "CAR",
+		"fipeReferenceTableCode": 305,
+		"fipeReferenceTable": {
+			"id": 1,
+			"createdAt": "2023-12-21T13:55:46.910126Z",
+			"updatedAt": "2024-01-02T15:03:34.833771Z",
+			"createdByID": null,
+			"updatedByID": null,
+			"enabled": true,
+			"referenceTable": 305,
+			"yearMonth": "2024-01"
+		}
+	},
+	...
+]	
+```
+
+#### Tipos de combustíveis (```vehicle-fuel-types```):
+
+Padrão de API:
+
+```js
+GET {{ _.base_url }}/api/vehicle-fuel-types/list
+```
+
+Exemplo de requisição:
+
+```js
+GET https://{empresa}.titan.ceoslab.app/api/vehicle-fuel-types/list
+```
+
+Exemplo de resposta:
+
+```bash showLineNumbers
+[
+	{
+# highlight-next-line		
+		"id": 1,
+		"text": "GASOLINA",
+		"enabled": true,
+		"fipeFuelType": null
+	},
+	...
+]	
+```
+
+#### Tipos de combustíveis (```vehicle-fuel-types```):
