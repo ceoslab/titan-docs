@@ -18,7 +18,9 @@ Para inclusão de documentos em uma operação, consulte a página [Documentos](
 
 ## Operação
 
-Os atributos listados a seguir dizem respeito aos dados que precisarão ser fornecidos para a **criação de uma operação por meio da API**. Esteja atento à especificação dos objetos, distinguindo entre pessoa física e jurídica.
+Os atributos listados a seguir dizem respeito aos dados que precisarão ser fornecidos para a **criação de uma operação por meio da chave API**. Esteja atento à especificação dos objetos, distinguindo entre pessoa física e jurídica.
+
+Para listar quais identificadores você precisará para realizar o envio da sua requisição, consulte a seção de [Mapeamento de campos](#mapeamento-de-campos).
 
 ### Parâmetros de envio
 
@@ -33,23 +35,23 @@ Os atributos listados a seguir dizem respeito aos dados que precisarão ser forn
 | Financiar TFC | ```financeTFC``` | Sim | Boolean | ```true``` |
 | Financiar seguro prestamista | ```financeCreditLifeInsurance``` | Sim | Boolean | ```true``` |
 | Financiar seguro adicional | ```financeAdditionalInsurance``` | Sim | Boolean | ```true``` |
-| Venda presencial | ```inPersonSale``` | Sim | Boolean | ```false``` |
+| Venda presencial | ```inPersonSale``` | Não | Boolean | ```false``` |
 | Capitalização de taxa | ```growthType``` | Sim | ```EXPONENTIAL``` ou ```LINEAR``` | ```EXPONENTIAL``` |
 | Descrição do bem | ```assetDescription``` | Não | String | - |
-| Identificador da frequência de pagamento | ```paymentFrequencyID``` | Sim | Number | - |
-| Identificador do tipo de pagamento | ```paymentTypeID``` | Sim | Number | - |
-| Identificador do produto | ```productID``` | Sim | Number | - |
-| Identificador do status da operação | ```operationStatusID``` | Sim | Number | - |
+| [Identificador da frequência de pagamento](#frequência-de-pagamento-paymentfrequencyid) | ```paymentFrequencyID``` | Sim | Number | - |
+| [Identificador do tipo de pagamento](#tipo-de-pagamento-paymenttypeid) | ```paymentTypeID``` | Sim | Number | - |
+| [Identificador do produto](#produto-productid) | ```productID``` | Sim | Number | - |
+| [Identificador do status da operação](#status-da-operação-operationstatusid) | ```operationStatusID``` | Sim | Number | - |
 | Identificador da empresa | ```companyID``` | Sim | Number | - |
-| Tipo de empresa | ```companyType``` | Sim | String | ```MN``` |
+| [Tipo de empresa](#tipo-de-empresa-companytype) | ```companyType``` | Sim | String | ```MN``` |
 | Cliente | ```customer``` | Sim | Objeto | - |
 | Agente | ```agencyOffice``` | Não | - | ```null``` |
 | Anexos do cliente | ```customerAttachments``` | Não | - | ```null``` |
-| Avalistas | ```guarantors``` | Não | Array | [] |
-| Membros do comitê | ```committeeMembers``` | Não | Array | [] |
-| Garantias | ```collaterals``` | Não | Array | [] |
-| Pareceres | ```assessments``` | Não | Array | [] |
-| Desembolsos da operação | ```operationDisbursements``` | Não | Array | [] |
+| Avalistas | ```guarantors``` | Não | Array | - |
+| Membros do comitê | ```committeeMembers``` | Não | Array | - |
+| Garantias | ```collaterals``` | Não | Array | - |
+| Pareceres | ```assessments``` | Não | Array | - |
+| Desembolsos da operação | ```operationDisbursements``` | Não | Array | - |
 
 ### Exemplo de requisição
 
@@ -91,6 +93,8 @@ Os atributos listados a seguir dizem respeito aos dados que precisarão ser forn
 ## Cliente (Pessoa física)
 
 Os seguintes campos pertencem ao objeto ```customer```, dando prioridade às peculiaridades de **pessoa física**. Para utilizar as especificações de [pessoa jurídica](#cliente-pessoa-jurídica), acesse o objeto correspondente.
+
+Para listar quais identificadores você precisará para realizar o envio da sua requisição, consulte a seção de [Mapeamento de campos](#mapeamento-de-campos).
 
 #### Parâmetros de envio
 
@@ -134,6 +138,8 @@ Os campos abaixo são adicionados dentro do objeto ```customer```. Exemplo:
 
 Os seguintes campos pertencem ao objeto ```person```, dando prioridade às peculiaridades de **pessoa física**. Para utilizar as especificações de [pessoa jurídica](#cliente-pessoa-jurídica), acesse o objeto correspondente.
 
+Para listar quais identificadores você precisará para realizar o envio da sua requisição, consulte a seção de [Mapeamento de campos](#mapeamento-de-campos).
+
 | Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
 | ----- | ----- | ----- | ----- | ----- |
 | E-mail | ```email``` | Sim | String | - |
@@ -146,20 +152,20 @@ Os seguintes campos pertencem ao objeto ```person```, dando prioridade às pecul
 | Número de telefone fixo | ```landlinePhoneNumber``` | Não | String ou ```null``` | - |
 | Nome completo da mãe | ```mothersFullName``` | Não | String ou ```null``` | - |
 | Nome completo do pai | ```fathersFullName``` | Não | String ou ```null``` | - |
-| Identificador da nacionalidade | ```nationalityID``` | Não | Number ou ```null``` | - |
-| Identificador do Estado de nascimento | ```birthplaceLevel1AdminDivID``` | Não | Number ou ```null``` | - |
-| Identificador da Cidade de nascimento | ```birthplaceLevel2AdminDivID``` | Não | Number ou ```null``` | - |
+| [Identificador da nacionalidade](#nacionalidade-país-nationalityid-countryid) | ```nationalityID``` | Não | Number ou ```null``` | - |
+| [Identificador do Estado de nascimento](#nacionalidade-estado-identificador-do-estado-do-órgão-emissor-birthplacelevel1admindivid-ufid) | ```birthplaceLevel1AdminDivID``` | Não | Number ou ```null``` | - |
+| [Identificador da Cidade de nascimento](#nacionalidade-cidade-birthplacelevel2admindivid) | ```birthplaceLevel2AdminDivID``` | Não | Number ou ```null``` | - |
 | Data de nascimento | ```birthdate``` | Sim | Date | - |
-| Identificador do estado civil | ```civilStatusID``` | Sim | Number | - |
-| Identificador da escolaridade | ```educationLevelID``` | Não | Number ou ```null``` | - |
-| Identificador do sexo | ```sexID``` | Sim | Number | - |
+| [Identificador do estado civil](#estado-civil-civilstatusid) | ```civilStatusID``` | Sim | Number | - |
+| [Identificador da escolaridade](#escolaridade-educationlevelid) | ```educationLevelID``` | Não | Number ou ```null``` | - |
+| [Identificador do sexo](#sexo-sexid) | ```sexID``` | Sim | Number | - |
 | Patrimônio líquido | ```netWorth``` | Sim | Number | - |
 | Renda comprovada | ```provenIncome``` | Não | Number ou ```null``` | - |
 | Contas bancárias | ```accounts``` | Não | Objeto ou ```null``` | - |
 | Links sociais | ```socialNetworks``` | Não | Objeto ou ```null``` | - |
 | Documentos adicionais | ```additionalDocuments``` | Não | Objeto ou ```null``` | - |
 | Ocupações | ```occupations``` | Não | Objeto ou ```null``` | - |
-| Endereço | ```address``` | Não | Objeto ou ```null``` | - |
+| [Endereço](#endereço-estado-level1admindivid-cidade-level2admindivid) | ```address``` | Não | Objeto ou ```null``` | - |
 | Vinculo de empresas | ```linkedCompanies``` | Não | Objeto ou ```null``` | - |
 | Autenticação | ```hasAuth``` | Não | Boolean | ```false``` |
 | Identificador(es) dos anexos da pessoa | ```personAttachmentIDs``` | Não | Number | - |
@@ -242,15 +248,17 @@ Os campos abaixo são adicionados dentro do objeto ```person```, que se encontra
 
 Os seguintes campos pertencem ao objeto ```accounts```, dando prioridade às peculiaridades de **pessoa física**. Para utilizar as especificações de [pessoa jurídica](#cliente-pessoa-jurídica), acesse o objeto correspondente.
 
+Para listar quais identificadores você precisará para realizar o envio da sua requisição, consulte a seção de [Mapeamento de campos](#mapeamento-de-campos).
+
 | Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
 | ----- | ----- | ----- | ----- | ----- |
 | Número da agência | ```agencyNumber``` | Sim | String | - |
 | Número da conta | ```accountNumber``` | Sim | String | - |
 | Dígito da conta | ```accountNumberDigit``` | Sim | String | - |
-| Identificador do tipo de conta | ```accountTypeID``` | Sim | Number | - |
-| Identificador do tipo de chave PIX da conta | ```accountPixKeyTypeID``` | Não | Number ou ```null``` | ```null``` |
+| [Identificador do tipo de conta](#tipo-de-conta-accounttypeid) | ```accountTypeID``` | Sim | Number | - |
+| [Identificador do tipo de chave PIX da conta](#tipo-de-chave-pix-da-conta-accountpixkeytypeid) | ```accountPixKeyTypeID``` | Não | Number ou ```null``` | ```null``` |
 | Chave Pix da conta | ```accountPixKey``` | Não | String ou ```null``` | ```null``` |
-| Identificador do banco | ```bankID``` | Sim | Number | - |
+| [Identificador do banco](#banco-bankid) | ```bankID``` | Sim | Number | - |
 | Conta primária | ```primaryAccount``` | Não | Boolean | ```false``` |
 | Nome do titular | ```holderName``` | Sim | String | - |
 | Número do documento (CPF) | ```documentNumber``` | Sim | String | - |
@@ -728,9 +736,11 @@ Os campos abaixo são adicionados dentro do objeto ```customer```. Exemplo:
 "customer": {
 	"customerType": "COMPANY",
 	"person": null,
+# highlight-start	
 	"company": {
 		...,
-	}	
+	}
+# highlight-end		
 	"operationCount": 14,
 	"guarantorOperationCount": 1
 }
@@ -821,6 +831,12 @@ As garantias de imóvel estarão disponíveis em breve. ⏱️
 
 O processo de mapeamento de campos é essencial para compreender a relação entre os identificadores (IDs) utilizados nesta API e os campos específicos que cada ID representa. Nesta seção, apresentamos uma tabela abrangente que associa cada ID a uma descrição do respectivo campo correspondente. Essa abordagem visa simplificar a compreensão, fornecendo informações claras e significativas sobre a função de cada identificador no contexto da criação de uma operação dentro do Titan.
 
+#### Produto (```productID```);
+
+Peça ao seu parceiro de negócios que compartilhe o código do produto no painel dentro do Titan, a fim de incluir o identificador do produto em sua solicitação.
+
+![Teste](./../assets/products.png)
+
 #### Frequência de pagamento (```paymentFrequencyID```):
 
 | Identificador | Correspondência |
@@ -859,7 +875,7 @@ GET {{ _.base_url }}/api/operation-statuses/list
 Exemplo de requisição:
 
 ```js
-GET https://empresa.titan.ceoslab.app/api/operation-statuses/list
+GET https://{empresa}.titan.ceoslab.app/api/operation-statuses/list
 ```
 
 Exemplo de resposta:
@@ -867,6 +883,7 @@ Exemplo de resposta:
 ```bash showLineNumbers
 [
 	{
+# highlight-next-line
 		"id": 665,
 		"createdAt": "2023-12-21T19:26:10.473238Z",
 		"updatedAt": "2023-12-21T19:26:10.473243Z",
@@ -879,6 +896,7 @@ Exemplo de resposta:
 		"operationCount": 3
 	},
 	{
+# highlight-next-line		
 		"id": 710,
 		"createdAt": "2023-12-21T22:42:48.855745Z",
 		"updatedAt": "2023-12-21T22:42:48.85575Z",
@@ -919,7 +937,7 @@ GET {{ _.base_url }}/api/addresses/{cep}
 Exemplo de requisição:
 
 ```js
-GET https://empresa.titan.ceoslab.app/api/addresses/92025840
+GET https://{empresa}.titan.ceoslab.app/api/addresses/92025840
 ```
 
 Exemplo de resposta:
@@ -934,6 +952,7 @@ Exemplo de resposta:
 		"enabled": true
 	},
 	"line1": "Avenida Açucena",
+#highlight-start	
 	"level1AdminDivID": 23,
 	"level1AdminDiv": {
 		"id": 23,
@@ -941,7 +960,7 @@ Exemplo de resposta:
 		"countryID": 51,
 		"abbreviation": "RS",
 		"code": "43"
-	},
+	},	
 	"level2AdminDivID": 4686,
 	"level2AdminDiv": {
 		"id": 4686,
@@ -950,6 +969,7 @@ Exemplo de resposta:
 		"code": "4304606",
 		"level1AdminDivID": 23
 	},
+#highlight-end	
 	"neighborhood": "Estância Velha",
 	"latitude": -29.91714,
 	"longitude": -51.15487
@@ -973,7 +993,7 @@ GET {{ _.base_url }}/api/level-1-admin-divs/list
 Exemplo de requisição:
 
 ```js
-GET https://empresa.titan.ceoslab.app/api/level-1-admin-divs/list
+GET https://{empresa}.titan.ceoslab.app/api/level-1-admin-divs/list
 ```
 
 Exemplo de resposta:
@@ -981,6 +1001,7 @@ Exemplo de resposta:
 ```bash showLineNumbers
 [
 	{
+# highlight-next-line		
 		"id": 23,
 		"name": "Rio Grande do Sul",
 		"countryID": 51,
@@ -988,6 +1009,7 @@ Exemplo de resposta:
 		"code": "43"
 	},
 	{
+# highlight-next-line		
 		"id": 19,
 		"name": "Rio de Janeiro",
 		"countryID": 51,
@@ -1009,7 +1031,7 @@ GET {{ _.base_url }}/api/level-2-admin-divs/list?filters[level1AdminDivID][$eq]=
 Exemplo de requisição:
 
 ```js
-GET https://empresa.titan.ceoslab.app/api/level-2-admin-divs/list?filters[level1AdminDivID][$eq]=23
+GET https://{empresa}.titan.ceoslab.app/api/level-2-admin-divs/list?filters[level1AdminDivID][$eq]=23
 ```
 
 Exemplo de resposta:
@@ -1017,6 +1039,7 @@ Exemplo de resposta:
 ```bash showLineNumbers
 [
 	{
+# highlight-next-line		
 		"id": 4932,
 		"name": "PORTO ALEGRE",
 		"abbreviation": "RS",
@@ -1024,6 +1047,7 @@ Exemplo de resposta:
 		"level1AdminDivID": 23
 	},
 	{
+# highlight-next-line		
 		"id": 4789,
 		"name": "GRAMADO",
 		"abbreviation": "RS",
@@ -1115,7 +1139,7 @@ GET {{ _.base_url }}/api/banks/list
 Exemplo de requisição:
 
 ```js
-GET https://empresa.titan.ceoslab.app/api/banks/list
+GET https://{empresa}.titan.ceoslab.app/api/banks/list
 ```
 
 Exemplo de resposta:
@@ -1123,6 +1147,7 @@ Exemplo de resposta:
 ```bash showLineNumbers
 [
 	{
+# highlight-next-line
 		"id": 401,
 		"createdAt": "2023-10-09T12:41:37.243219Z",
 		"updatedAt": "2023-10-09T12:41:37.243225Z",
@@ -1135,6 +1160,7 @@ Exemplo de resposta:
 		"fullName": "Banco do Brasil S.A."
 	},
 	{
+# highlight-next-line		
 		"id": 410,
 		"createdAt": "2023-10-09T12:41:37.251317Z",
 		"updatedAt": "2023-10-09T12:41:37.251321Z",
@@ -1161,7 +1187,7 @@ GET {{ _.base_url }}/api/professions/list
 Exemplo de requisição:
 
 ```js
-GET https://empresa.titan.ceoslab.app/api/professions/list
+GET https://{empresa}.titan.ceoslab.app/api/professions/list
 ```
 
 Exemplo de resposta:
@@ -1169,16 +1195,19 @@ Exemplo de resposta:
 ```bash showLineNumbers
 [
 	{
+# highlight-next-line		
 		"id": 538,
 		"text": "REITOR",
 		"enabled": true
 	},
 	{
+# highlight-next-line		
 		"id": 318,
 		"text": "ELETRICISTA",
 		"enabled": true
 	},
 	{
+# highlight-next-line		
 		"id": 107,
 		"text": "BIBLIOTECÁRIO",
 		"enabled": true
