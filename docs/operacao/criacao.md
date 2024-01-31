@@ -1238,18 +1238,22 @@ Exemplo de resposta:
 | 167 | Veículos |
 | 168 | Imóveis |
 
-#### Marcas de veículos (```vehicle-brands```):
+### Garantias de veículo
+
+Nossa API para o envio de informações de veículos em garantia adere estritamente à [**tabela Fipe**](https://veiculos.fipe.org.br/). Portanto, por favor, siga esta sequência de ordenação para extrair os dados com precisão e formate sua requisição adequadamente.
+
+#### 1 - Tipo de veículo (```vehicle-types```):
 
 Padrão de API:
 
 ```js
-GET {{ _.base_url }}/api/vehicle-brands/list
+GET {{ _.base_url }}/api/fipe/vehicle-types
 ```
 
 Exemplo de requisição:
 
 ```js
-GET https://{empresa}.titan.ceoslab.app/api/vehicle-brands/list
+GET https://{empresa}.titan.ceoslab.app/api/fipe/vehicle-types
 ```
 
 Exemplo de resposta:
@@ -1258,28 +1262,45 @@ Exemplo de resposta:
 [
 	{
 # highlight-next-line		
-		"id": 428,
-		"text": "Renault",
-		"enabled": true,
-		"fipeBrandCode": 48,
-		"fipeVehicleType": "CAR",
-		"fipeReferenceTableCode": 305,
-		"fipeReferenceTable": {
-			"id": 1,
-			"createdAt": "2023-12-21T13:55:46.910126Z",
-			"updatedAt": "2024-01-02T15:03:34.833771Z",
-			"createdByID": null,
-			"updatedByID": null,
-			"enabled": true,
-			"referenceTable": 305,
-			"yearMonth": "2024-01"
-		}
+		"code": 1,
+		"text": "CAR"
 	},
 	{
 # highlight-next-line		
+		"code": 2,
+		"text": "MOTORCYCLE"
+	},
+	{
+# highlight-next-line		
+		"code": 3,
+		"text": "TRUCK"
+	}
+]	
+```
+
+#### 2 - Marca do veículo (```brands```):
+
+Padrão de API:
+
+```js
+GET {{ _.base_url }}/api/fipe/vehicle-types/{vehicleTypeCode}/brands
+```
+
+Exemplo de requisição:
+
+```js
+GET https://{empresa}.titan.ceoslab.app/api/fipe/vehicle-types/1/brands
+```
+
+Exemplo de resposta:
+
+```bash showLineNumbers
+[
+	{
 		"id": 415,
 		"text": "Mercedes-Benz",
 		"enabled": true,
+# highlight-next-line		
 		"fipeBrandCode": 39,
 		"fipeVehicleType": "CAR",
 		"fipeReferenceTableCode": 305,
@@ -1295,21 +1316,21 @@ Exemplo de resposta:
 		}
 	},
 	...
-]	
+]
 ```
 
-#### Tipos de combustíveis (```vehicle-fuel-types```):
+#### 3 - Modelo do veículo (```models```):
 
 Padrão de API:
 
 ```js
-GET {{ _.base_url }}/api/vehicle-fuel-types/list
+GET {{ _.base_url }}/api/fipe/vehicle-types/{vehicleTypeCode}/brands/{brandCode}/models
 ```
 
 Exemplo de requisição:
 
 ```js
-GET https://{empresa}.titan.ceoslab.app/api/vehicle-fuel-types/list
+GET https://{empresa}.titan.ceoslab.app/api/fipe/vehicle-types/1/brands/39/models
 ```
 
 Exemplo de resposta:
@@ -1317,14 +1338,166 @@ Exemplo de resposta:
 ```bash showLineNumbers
 [
 	{
-# highlight-next-line		
-		"id": 1,
-		"text": "GASOLINA",
+		"id": 1073,
+		"text": "C-250 CGI Sport 1.8 16V Aut.",
 		"enabled": true,
-		"fipeFuelType": null
+# highlight-next-line		
+		"fipeModelCode": 5500,
+		"fipeBrandCode": 39,
+		"fipeReferenceTableCode": 305,
+		"fipeBrand": {
+			"id": 415,
+			"text": "Mercedes-Benz",
+			"enabled": true,
+			"fipeBrandCode": 39,
+			"fipeVehicleType": "CAR",
+			"fipeReferenceTableCode": 305,
+			"fipeReferenceTable": {
+			"id": 1,
+			"createdAt": "2023-12-21T13:55:46.910126Z",
+			"updatedAt": "2024-01-02T15:03:34.833771Z",
+			"createdByID": null,
+			"updatedByID": null,
+			"enabled": true,
+			"referenceTable": 305,
+			"yearMonth": "2024-01"
+			}
+		},
+		"fipeReferenceTable": {
+			"id": 1,
+			"createdAt": "2023-12-21T13:55:46.910126Z",
+			"updatedAt": "2024-01-02T15:03:34.833771Z",
+			"createdByID": null,
+			"updatedByID": null,
+			"enabled": true,
+			"referenceTable": 305,
+			"yearMonth": "2024-01"
+		},
+		"fipeVehicleType": "CAR"
 	},
 	...
-]	
+]
 ```
 
-#### Tipos de combustíveis (```vehicle-fuel-types```):
+#### 4 - Ano do modelo do veículo (```years```):
+
+Padrão de API:
+
+```js
+GET {{ _.base_url }}/api/fipe/vehicle-types/{vehicleTypeCode}/brands/{brandCode}/models/{modelCode}/years
+```
+
+Exemplo de requisição:
+
+```js
+GET https://{empresa}.titan.ceoslab.app/api/fipe/vehicle-types/1/brands/39/models/5500/years
+```
+
+Exemplo de resposta:
+
+```bash showLineNumbers
+[
+	{
+		"id": 1001,
+		"text": "2014 Gasolina",
+		"enabled": true,
+# highlight-next-line
+		"fipeModelYear": 2014,
+# highlight-next-line		
+		"fipeFuelType": 1,
+		"fipeModelCode": 5500,
+		"fipeBrandCode": 39,
+		"fipeReferenceTableCode": 305,
+		"fipeBrand": {
+			"id": 415,
+			"text": "Mercedes-Benz",
+			"enabled": true,
+			"fipeBrandCode": 39,
+			"fipeVehicleType": "CAR",
+			"fipeReferenceTableCode": 305,
+			"fipeReferenceTable": {
+			"id": 1,
+			"createdAt": "2023-12-21T13:55:46.910126Z",
+			"updatedAt": "2024-01-02T15:03:34.833771Z",
+			"createdByID": null,
+			"updatedByID": null,
+			"enabled": true,
+			"referenceTable": 305,
+			"yearMonth": "2024-01"
+			}
+		},
+		"fipeModel": {
+			"id": 1073,
+			"text": "C-250 CGI Sport 1.8 16V Aut.",
+			"enabled": true,
+			"fipeModelCode": 5500,
+			"fipeBrandCode": 39,
+			"fipeReferenceTableCode": 305,
+			"fipeBrand": {
+			"id": 415,
+			"text": "Mercedes-Benz",
+			"enabled": true,
+			"fipeBrandCode": 39,
+			"fipeVehicleType": "CAR",
+			"fipeReferenceTableCode": 305,
+			"fipeReferenceTable": {
+				"id": 1,
+				"createdAt": "2023-12-21T13:55:46.910126Z",
+				"updatedAt": "2024-01-02T15:03:34.833771Z",
+				"createdByID": null,
+				"updatedByID": null,
+				"enabled": true,
+				"referenceTable": 305,
+				"yearMonth": "2024-01"
+			}
+			},
+			"fipeReferenceTable": {
+			"id": 1,
+			"createdAt": "2023-12-21T13:55:46.910126Z",
+			"updatedAt": "2024-01-02T15:03:34.833771Z",
+			"createdByID": null,
+			"updatedByID": null,
+			"enabled": true,
+			"referenceTable": 305,
+			"yearMonth": "2024-01"
+			},
+			"fipeVehicleType": "CAR"
+		},
+		"fipeReferenceTable": null,
+		"fipeVehicleType": "CAR"
+	},
+	...
+]
+```
+
+#### 5 - Tipo de combustível do veículo (```fuel-types```):
+
+Padrão de API:
+
+```js
+GET {{ _.base_url }}/api/fipe/vehicle-types/{vehicleTypeCode}/brands/{brandCode}/models/{modelCode}/years/{year}/fuel-types/{fuelTypeCode}
+```
+
+Exemplo de requisição:
+
+```js
+GET https://{empresa}.titan.ceoslab.app/api/fipe/vehicle-types/1/brands/39/models/5500/years/2014/fuel-types/1
+```
+
+Exemplo de resposta:
+
+```bash showLineNumbers
+{
+	"Valor": "R$ 102.306,00",
+	"Marca": "Mercedes-Benz",
+	"Modelo": "C-250 CGI Sport 1.8 16V Aut.",
+	"AnoModelo": 2014,
+	"Combustivel": "Gasolina",
+	"CodigoFipe": "021242-3",
+	"MesReferencia": "janeiro de 2024 ",
+	"Autenticacao": "f58vkjmrzpcsv",
+	"TipoVeiculo": 1,
+	"SiglaCombustivel": "G",
+	"DataConsulta": "quarta-feira, 31 de janeiro de 2024 11:39"
+}
+```
