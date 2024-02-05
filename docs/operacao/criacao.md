@@ -36,7 +36,7 @@ Para listar quais identificadores você precisará para realizar o envio da sua 
 | Financiar seguro prestamista | ```financeCreditLifeInsurance``` | Sim | Boolean | ```true``` |
 | Financiar seguro adicional | ```financeAdditionalInsurance``` | Sim | Boolean | ```true``` |
 | Venda presencial | ```inPersonSale``` | Não | Boolean | ```false``` |
-| Capitalização de taxa | ```growthType``` | Sim | ```EXPONENTIAL``` ou ```LINEAR``` | ```EXPONENTIAL``` |
+| [Capitalização de taxa](#capitalização-de-taxa-growthtype) | ```growthType``` | Sim | String | ```EXPONENTIAL``` |
 | Descrição do bem | ```assetDescription``` | Não | String | - |
 | [Identificador da frequência de pagamento](#frequência-de-pagamento-paymentfrequencyid) | ```paymentFrequencyID``` | Sim | Number | - |
 | [Identificador do tipo de pagamento](#tipo-de-pagamento-paymenttypeid) | ```paymentTypeID``` | Sim | Number | - |
@@ -50,7 +50,6 @@ Para listar quais identificadores você precisará para realizar o envio da sua 
 | Avalistas | ```guarantors``` | Não | Array | - |
 | Membros do comitê | ```committeeMembers``` | Não | Array | - |
 | Garantias | ```collaterals``` | Não | Array | - |
-| Pareceres | ```assessments``` | Não | Array | - |
 | Desembolsos da operação | ```operationDisbursements``` | Não | Array | - |
 
 ### Exemplo de requisição
@@ -80,11 +79,26 @@ Para listar quais identificadores você precisará para realizar o envio da sua 
 	}	
 	"agencyOffice": null,
 	"customerAttachments": null,
-	"guarantors": [],
-	"committeeMembers": [],
-	"collaterals": [],
-	"assessments": [],
-	"operationDisbursements": []
+	"guarantors": [
+		{
+			...
+		},
+	],
+	"committeeMembers": [
+		{
+			...
+		},
+	],
+	"collaterals": [
+		{
+			...
+		},
+	],
+	"operationDisbursements": [
+		{
+			...
+		},
+	]
 }
 ```
 
@@ -210,35 +224,41 @@ Os campos abaixo são adicionados dentro do objeto ```person```, que se encontra
 	"provenIncome": null,
 	"accounts": [
 		{
-			...,
-		}	
+			...
+		},	
 	]	
 	"socialNetworks": [
 		{
-			...,
-		}
+			...
+		},
 	]		
 	"additionalDocuments": [
 		{
-			...,
-		}
-	}		
-	"occupations":[
+			...
+		},
+	]		
+	"occupations": [
 		{
-			...,
-		}	
+			...
+		},	
 	]	
 	"address": {
-		...,
+		...
 	}	
 	"linkedCompanies": {
-		...,
+		...
 	}	
 	"hasAuth": false,
 	"personAttachmentIDs": [
-		...
+		{
+			...
+		},
 	],
-	"linkedCompanyCompanyIDs": []
+	"linkedCompanyCompanyIDs": [
+		{
+			...
+		},
+	]
 }
 ```
 
@@ -708,6 +728,9 @@ Os campos abaixo são adicionados dentro do objeto ```address```, que se ecnontr
 
 Os seguintes campos pertencem ao objeto ```customer```, dando prioridade às peculiaridades de **pessoa jurídica**. Para utilizar as especificações de [pessoa física](#cliente-pessoa-física), acesse o objeto correspondente.
 
+Para listar quais identificadores você precisará para realizar o envio da sua requisição, consulte a seção de [Mapeamento de campos](#mapeamento-de-campos).
+
+
 #### Parâmetros de envio
 
 | Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
@@ -715,7 +738,6 @@ Os seguintes campos pertencem ao objeto ```customer```, dando prioridade às pec
 | Tipo de cliente | ```customerType``` | Sim | ```PERSON``` ou ```COMPANY``` | ```COMPANY``` |
 | Pessoa | ```person``` | Não | Objeto ou ```null``` | ```null``` |
 | Empresa | ```company``` | Sim | Objeto ou ```null``` | - |
-| Contagem de operações | ```operationCount``` | Sim | Number | - |
 | Contagem de operações de Avalista | ```guarantorOperationCount``` | Sim | Number | - |
 
 #### Exemplo de requisição
@@ -740,8 +762,7 @@ Os campos abaixo são adicionados dentro do objeto ```customer```. Exemplo:
 	"company": {
 		...,
 	}
-# highlight-end		
-	"operationCount": 14,
+# highlight-end
 	"guarantorOperationCount": 1
 }
 ```
@@ -770,7 +791,40 @@ Os campos abaixo são adicionados dentro do objeto ```company```, que se encontr
 :::
 
 ```bash showLineNumbers
-	[CÓDIGO]
+"company": {
+	"documentNumber": "41000240000173",
+	"legalName": "CEOS LAB TECNOLOGIA LTDA",
+	"tradeName": "",
+	"email": "suporte@ceoslab.com.br",
+	"mobilePhoneNumber": "5133333333",
+	"incorporationDate": "2021-02-25",
+	"shareCapital": 5000.0,
+	"equity": 1000000.0,
+	"monthlyAverageRevenue": 434345.35,
+	"stateTaxNumber": null,
+	"cityTaxNumber": null,
+	"simplifiedTax": false,
+	"employeeCountRangeID": null,
+	"address": {
+		...
+	},
+	"companyHierarchyTypeID": null,
+	"accounts": [
+		{
+			...
+		},
+	]	
+	"socialNetworks": [
+		{
+			...
+		},
+	]	
+	"employees": [
+		{
+			...
+		}
+	]	
+}
 ```
 
 ### Exemplo de resposta
@@ -843,6 +897,15 @@ Peça ao seu parceiro de negócios que compartilhe o código do produto no paine
 | 51 | Mensal |
 | 52 | Trimestral |
 | 53 | Semestral |
+
+#### Capitalização de taxa (```growthType```):
+
+| Correspondência | Significado |
+| ----- | ----- |
+| LINEAR | Adota fórmulas de juros compostos na parte inteira do período e uma formação de juros simples na parte fracionária. Ex: 1 ano e 6 meses de contrato = 1 (JC) + 6(JS). |
+| EXPONENTIAL | Adota o regime de capitalização para todo o período, é mais usada porque emprega o juros compostos e taxas equivalentes para os períodos não inteiros, tornando o valor mais próximo da realidade. Ex: 1 ano e 6 meses de contrato = 1,6 (JC).
+
+*Legenda: JC = Juros compostos | JS = Juros simples.*
 
 #### Tipo de pagamento (```paymentTypeID```):
 
@@ -920,6 +983,24 @@ Exemplo de resposta:
 | AF | Conveniada |
 | CB | Correspondente bancário |
 | CS | Cessionária |
+
+#### Número de funcionários (```employeeCountRangeID```);
+
+| Identificador | Correspondência |
+| ----- | ----- |
+| 1 | Mais de 1000 |
+| 2 | 11 a 25 |
+| 3 | 25 a 50 |
+| 4 | 100 a 1000 |
+| 5 | 50 a 100 |
+| 6 | 1 a 10 |
+
+#### Tipo de empresa (```companyHierarchyTypeID```);
+
+| Identificador | Correspondência |
+| ----- | ----- |
+| 1 | Matriz |
+| 51 | Filial |
 
 #### Endereço: Estado (```level1AdminDivID```), Cidade (```level2AdminDivID```):
 
