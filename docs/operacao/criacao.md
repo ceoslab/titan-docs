@@ -45,7 +45,6 @@ Para listar quais identificadores você precisará para realizar o envio da sua 
 | Identificador da empresa | ```companyID``` | Sim | Number | - |
 | [Tipo de empresa](#tipo-de-empresa-companytype) | ```companyType``` | Sim | String | ```MN``` |
 | Cliente | ```customer``` | Sim | Objeto | - |
-| Agente | ```agencyOffice``` | Não | - | ```null``` |
 | Anexos do cliente | ```customerAttachments``` | Não | - | ```null``` |
 | Avalistas | ```guarantors``` | Não | Array | - |
 | Membros do comitê | ```committeeMembers``` | Não | Array | - |
@@ -76,8 +75,7 @@ Para listar quais identificadores você precisará para realizar o envio da sua 
 	"companyType": "MN",
 	"customer": {
 		...,
-	}	
-	"agencyOffice": null,
+	},
 	"customerAttachments": null,
 	"guarantors": [
 		{
@@ -114,11 +112,9 @@ Para listar quais identificadores você precisará para realizar o envio da sua 
 
 | Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
 | ----- | ----- | ----- | ----- | ----- |
-| Tipo de cliente | ```customerType``` | Sim | ```PERSON``` ou ```COMPANY``` | ```PERSON``` |
+| [Tipo de cliente](#tipo-de-cliente-customertype) | ```customerType``` | Sim | String | ```PERSON``` |
 | Pessoa | ```person``` | Sim | Objeto ou ```null``` | - |
 | Empresa | ```company``` | Não | Objeto ou ```null``` | ```null``` |
-| Contagem de operações | ```operationCount``` | Sim | Number | - |
-| Contagem de operações de Avalista | ```guarantorOperationCount``` | Sim | Number | - |
 
 #### Exemplo de requisição
 
@@ -141,8 +137,6 @@ Os campos abaixo são adicionados dentro do objeto ```customer```. Exemplo:
 		...,
 	}	
 	"company": null,
-	"operationCount": 14,
-	"guarantorOperationCount": 1
 }
 ```
 
@@ -712,7 +706,7 @@ Os campos abaixo são adicionados dentro do objeto ```address```, que se ecnontr
 	"committeeMembers": null,
 	"collaterals": null,
 	"assessments": null,
-	"operationDisbursements": [],
+	"operationDisbursements": null,
 	"installments": null,
 	"operationSignatures": null,
 	"operationMembers": null,
@@ -735,10 +729,9 @@ Para listar quais identificadores você precisará para realizar o envio da sua 
 
 | Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
 | ----- | ----- | ----- | ----- | ----- |
-| Tipo de cliente | ```customerType``` | Sim | ```PERSON``` ou ```COMPANY``` | ```COMPANY``` |
+| [Tipo de cliente](#tipo-de-cliente-customertype) | ```customerType``` | Sim | String | ```COMPANY``` |
 | Pessoa | ```person``` | Não | Objeto ou ```null``` | ```null``` |
 | Empresa | ```company``` | Sim | Objeto ou ```null``` | - |
-| Contagem de operações de Avalista | ```guarantorOperationCount``` | Sim | Number | - |
 
 #### Exemplo de requisição
 
@@ -763,7 +756,6 @@ Os campos abaixo são adicionados dentro do objeto ```customer```. Exemplo:
 		...,
 	}
 # highlight-end
-	"guarantorOperationCount": 1
 }
 ```
 
@@ -837,11 +829,52 @@ Os campos abaixo são adicionados dentro do objeto ```company```, que se encontr
 
 ## Avalista(s)
 
+Os seguintes campos pertencem ao array ```guarantors```, para listar quais identificadores você precisará para realizar o envio da sua requisição, consulte a seção de [Mapeamento de campos](#mapeamento-de-campos).
+
 :::info Inclusão de avalistas em uma operação
 
 A inclusão de Avalistas em uma operação não é estritamente obrigatória; no entanto, se optar por incluí-los, é vital enviar alguns campos obrigatórios para garantir uma análise mais precisa.
 
 :::
+
+#### Parâmetros de envio
+
+| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+| Avalista - Pessoa física | ```person``` | Sim | Objeto ou ```null``` | - |
+| Avalista - Pessoa jurídica | ```company``` | Sim | Objeto ou ```null``` | - |
+| [Identificador do tipo de vínculo](#tipo-de-vínculo-relationshiptypeid) | ```relationshipTypeID``` | Sim | Number | - |
+
+#### Exemplo de requisição
+
+:::warning Atenção!
+
+Os campos abaixo são adicionados dentro do array ```guarantors```. Exemplo:
+
+```bash showLineNumbers
+{
+	"guarantors": [
+		{
+			...
+		}
+	]	
+}    
+```
+:::
+
+```bash showLineNumbers
+[
+	{
+		"person": {
+			...
+		},
+		"company:" {
+			...
+		},
+		"relationshipTypeID": 54
+	}
+]
+```	
 
 ### Pessoa física
 
@@ -859,20 +892,191 @@ A inclusão de Avalistas em uma operação não é estritamente obrigatória; no
 
 ### Veículo
 
-| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
-
-<br />
+Os seguintes campos pertencem ao array ```collaterals```, para listar quais identificadores você precisará para realizar o envio da sua requisição, consulte a seção de [Mapeamento de campos](#mapeamento-de-campos).
 
 :::info Tipo de bem
 
-Para garantias de veículo, campo tipo de bem ```asset-type``` passar sempre o valor: *Veículo* obrigatoriamente.
+Para garantias de veículo, campo tipo de bem [```asset-type```](#tipo-de-outras-garantias-asset-types) passar sempre o valor: *"Veículo"* obrigatoriamente.
 
 :::
 
+#### Parâmetros de envio
+
+| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+| Fiél depositário | ```custodian``` | Não | String | ```null``` |
+| Número do documento de identificação | ```documentNumber``` | Sim | Number | - |
+| Valor da garantia | ```value``` | Sim | Number | - |
+| Descrição da garantia | ```description``` | Não | String | - |
+| [Identificador da modalidade de garantia](#modalidade-de-garantia-collateraltypeid) | ```collateralTypeID``` | Sim | Number | ```1``` |
+| [Identificador do tipo de outras garantias](#tipo-de-outras-garantias-asset-types) | ```assetTypeID``` | Sim | Number | - |
+| Veículo | ```vehicle``` | Sim | Objeto | - |
+| [Endereço da garantia](#endereço-estado-level1admindivid-cidade-level2admindivid) | ```address``` | Não | Objeto | - |
+| Bem a ser financiado | ```financed``` | Sim | Boolean | ```true``` |
+| Documentos da garantia | ```collateralAttachmentIDs``` | Não | Objeto | - |
+
+#### Exemplo de requisição
+
+:::warning Atenção!
+
+Os campos abaixo são adicionados dentro do array ```collaterals```. Exemplo:
+
+```bash showLineNumbers
+{
+	"collaterals": [
+		{
+			...
+		}
+	]	
+}    
+```
+
+:::
+
+```bash showLineNumbers
+[
+	{
+		"custodian": null,
+		"documentNumber": "1234567890",
+		"value": 60847.0,
+		"description": null,
+		"collateralTypeID": 1,
+		"assetTypeID": 167,
+		"vehicle": {
+			...
+		}
+		"financed": true,
+		"collateralAttachmentIDs": []
+	}
+]
+```	
+
+#### ```vehicle```: Parâmetros de envio
+
+| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+| [Identificador do tipo de veículo](#1---tipo-de-veículo-vehicle-types) | ```vehicleTypeID``` | Sim | Number | - |
+| [Identificador da marca do veículo](#2---marca-do-veículo-brands) | ```brandID``` | Sim | Number | - |
+| [Identificador do modelo do veículo](#3---modelo-do-veículo-models) | ```modelID``` | Sim | Number | - |
+| Cor do veículo | ```color``` | Sim | String | - |
+| Placa do veículo | ```licensePlate``` | Não | String | - |
+| Chassi do veículo | ```chassisNumber``` | Não | String | - |
+| Renavam do veículo | ```vehicleDocumentNumber``` | Não | String | - |
+| [Identificador do estado do Renavam do veículo](#nacionalidade-estado-estado-do-órgão-emissor-estado-do-gravame-birthplacelevel1admindivid-ufid-lienstateid) | ```lienStateID``` | Não | Number | - |
+| Número da nota fiscal | ```invoiceNumber``` | Não | Number | - |
+| [Identificador do tipo de combustível do veículo](#5---tipo-de-combustível-do-veículo-fuel-types) | ```fuelTypeID``` | Sim | Number | - |
+| Ano de fabricação do veículo | ```manufacturingYear``` | Sim | Number | - |
+| [Identificador do ano do modelo do veículo](#4---ano-do-modelo-do-veículo-years) | ```vehicleModelYearID``` | Sim | Number | - |
+| Proprietário(a) do veículo - Pessoa física | ```person``` | Sim | Objeto ou ```null``` | - |
+| Proprietário(a) do veículo - Pessoa jurídica | ```company``` | Sim | Objeto ou ```null``` | - |
+
+#### ```vehicle```: Exemplo de requisição
+
+:::warning Atenção!
+
+Os campos abaixo são adicionados dentro do objeto ```vehicle```, que se encontram dentro do array ```collaterals```. Exemplo:
+
+```bash showLineNumbers
+{
+	"collaterals": [
+		{
+			"vehicle": {
+				...
+			}	
+		}
+	]	
+}    
+```
+:::
+
+```bash showLineNumbers
+{
+	"vehicleTypeID": 101,
+	"brandID": 419,
+	"modelID": 5557,
+	"color": "VERDE MUSGO",
+	"licensePlate": "87dffd8",
+	"chassisNumber": "23423542235348348",
+	"vehicleDocumentNumber": "81238442374",
+	"lienStateID": 23,
+	"invoiceNumber": null,
+	"fuelTypeID": 51,
+	"manufacturingYear": "2015",
+	"vehicleModelYearID": 1551,
+	"person": {
+		...
+	}
+	"company": {
+		...
+	}	
+}
+```
+
 ### Outras garantias
 
-Os seguintes campos pertencem ao objeto ```collaterals```, para listar quais identificadores você precisará para realizar o envio da sua requisição, consulte a seção de [Mapeamento de campos](#mapeamento-de-campos).
+Os seguintes campos pertencem ao array ```collaterals```, para listar quais identificadores você precisará para realizar o envio da sua requisição, consulte a seção de [Mapeamento de campos](#mapeamento-de-campos).
+
+#### Parâmetros de envio
+
+| Campo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+| Fiél depositário | ```custodian``` | Sim | String | - |
+| Número do documento de identificação | ```documentNumber``` | Sim | Number | - |
+| Valor da garantia | ```value``` | Sim | Number | - |
+| Descrição da garantia | ```description``` | Não | String | - |
+| [Identificador da modalidade de garantia](#modalidade-de-garantia-collateraltypeid) | ```collateralTypeID``` | Sim | Number | ```1``` |
+| [Identificador do tipo de outras garantias](#tipo-de-outras-garantias-asset-types) | ```assetTypeID``` | Sim | Number | - |
+| [Endereço da garantia](#endereço-estado-level1admindivid-cidade-level2admindivid) | ```address``` | Não | Objeto | - |
+| Bem a ser financiado | ```financed``` | Sim | Boolean | ```true``` |
+| Documentos da garantia | ```collateralAttachmentIDs``` | Não | Objeto | - |
+
+#### Exemplo de requisição
+
+:::warning Atenção!
+
+Os campos abaixo são adicionados dentro do array ```collaterals```. Exemplo:
+
+```bash showLineNumbers
+{
+	"collaterals": [
+		{
+			...
+		}
+	]	
+}    
+```
+
+:::
+
+```bash showLineNumber
+[
+	{
+		"custodian": "PESSOA TESTE DA SILVA",
+		"documentNumber": "1234567890",
+		"value": 2000.0,
+		"description": "Máquina de arar terra",
+		"collateralTypeID": 1,
+		"assetTypeID": 153,
+		"address": {
+			"postalCode": null,
+			"countryID": null,
+			"level1AdminDivID": null,
+			"level1AdminDiv": null,
+			"level2AdminDivID": null,
+			"level2AdminDiv": null,
+			"level3AdminDivID": null,
+			"line1": null,
+			"line2": null,
+			"houseNumber": null,
+			"neighborhood": null,
+			"latitude": null,
+			"longitude": null
+		},
+		"financed": true,
+		"collateralAttachmentIDs": []
+	}
+]
+```
 
 ### Imóvel
 
@@ -884,11 +1088,18 @@ As garantias de imóvel estarão disponíveis em breve. ⏱️
 
 O processo de mapeamento de campos é essencial para compreender a relação entre os identificadores (IDs) utilizados nesta API e os campos específicos que cada ID representa. Nesta seção, apresentamos uma tabela abrangente que associa cada ID a uma descrição do respectivo campo correspondente. Essa abordagem visa simplificar a compreensão, fornecendo informações claras e significativas sobre a função de cada identificador no contexto da criação de uma operação dentro do Titan.
 
+#### Tipo de cliente (```customerType```);
+
+| Correspondência | Significado |
+| ----- | ----- |
+| PERSON | Pessoa física |
+| COMPANY | Pessoa jurídica |
+
 #### Produto (```productID```);
 
 Peça ao seu parceiro de negócios que compartilhe o código do produto no painel dentro do Titan, a fim de incluir o identificador do produto em sua solicitação.
 
-![Teste](./../assets/products.png)
+![Produtos](./../assets/products.png)
 
 #### Frequência de pagamento (```paymentFrequencyID```):
 
@@ -902,7 +1113,7 @@ Peça ao seu parceiro de negócios que compartilhe o código do produto no paine
 
 | Correspondência | Significado |
 | ----- | ----- |
-| LINEAR | Adota fórmulas de juros compostos na parte inteira do período e uma formação de juros simples na parte fracionária. Ex: 1 ano e 6 meses de contrato = 1 (JC) + 6(JS). |
+| LINEAR | Adota fórmulas de juros compostos na parte inteira do período e uma formação de juros simples na parte fracionária. Ex: 1 ano e 6 meses de contrato = 1 (JC) + 0,6 (JS). |
 | EXPONENTIAL | Adota o regime de capitalização para todo o período, é mais usada porque emprega o juros compostos e taxas equivalentes para os períodos não inteiros, tornando o valor mais próximo da realidade. Ex: 1 ano e 6 meses de contrato = 1,6 (JC).
 
 *Legenda: JC = Juros compostos | JS = Juros simples.*
@@ -1062,7 +1273,7 @@ Exemplo de resposta:
 | ----- | ----- |
 | 51 | Brasil |
 
-#### Nacionalidade (Estado), Identificador do estado do órgão emissor (```birthplaceLevel1AdminDivID```, ```ufID```):
+#### Nacionalidade (Estado), Estado do órgão emissor, Estado do Gravame (```birthplaceLevel1AdminDivID```, ```ufID```, ```lienStateID```):
 
 Padrão de API:
 
@@ -1295,6 +1506,33 @@ Exemplo de resposta:
 	...
 ]	
 ```
+
+#### Tipo de vínculo (```relationshipTypeID```):
+
+| Identificador | Correspondência | Tipo de Avalista |
+| ----- | ----- | ----- |
+| 1 | Sobrinho ou sobrinha | PERSON |
+| 2 | Cônjuge | PERSON |
+| 3 | Bisneto ou bisneta | PERSON |
+| 4 | Neto ou neta | PERSON |
+| 5 | Outro | COMPANY |
+| 6 | Tio ou tia | PERSON |
+| 7 | Pai ou mãe | PERSON |
+| 8 | Avô ou avó | PERSON |
+| 9 | Irmão ou irmã | PERSON |
+| 10 | Filho ou filha | PERSON |
+| 11 | Bisavô ou bisavó | PERSON |
+| 52 | Sócio | COMPANY |
+| 53 | Outro | PERSON |
+| 54 | Sócio | PERSON |
+
+
+#### Modalidade de garantia (```collateralTypeID```):
+
+| Identificador | Correspondência |
+| ----- | ----- |
+| 1 | Alienação fiduciária |
+
 
 #### Tipo de outras garantias (```asset-types```):
 
