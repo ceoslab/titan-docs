@@ -693,12 +693,6 @@ Os atributos abaixo são adicionados dentro do objeto ```company```, que se enco
 }
 ```
 
-### Exemplo de resposta
-
-```bash showLineNumbers
-	[CÓDIGO]
-```
-
 ---
 
 ## Avalista(s)
