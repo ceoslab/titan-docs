@@ -906,7 +906,7 @@ Os atributos abaixo são adicionados dentro do array ```collaterals```. Exemplo:
 
 :::
 
-```bash showLineNumber
+```bash showLineNumbers
 [
 	{
 		"custodian": "PESSOA TESTE DA SILVA",
@@ -946,16 +946,18 @@ As garantias de imóvel estarão disponíveis em breve. ⏱️
 
 O processo de mapeamento de atributos é essencial para compreender a relação entre os identificadores (IDs) utilizados nesta API e os atributos específicos que cada ID representa. Nesta seção, apresentamos uma tabela abrangente que associa cada ID a uma descrição do respectivo atributo correspondente. Essa abordagem visa simplificar a compreensão, fornecendo informações claras e significativas sobre a função de cada identificador no contexto da criação de uma operação dentro do Titan.
 
-#### Tipo de cliente (```customerType```);
+#### Tipo de cliente (```customerType```):
 
 | Correspondência | Significado |
 | ----- | ----- |
 | PERSON | Pessoa física |
 | COMPANY | Pessoa jurídica |
 
-#### Produto (```productID```);
+#### Produto (```productID```):
 
 Peça ao seu parceiro de negócios que compartilhe o código do produto no painel dentro do Titan, a fim de incluir o identificador do produto em sua solicitação.
+
+**Caminho:** Cadastros > Produtos
 
 ![Produtos](./../assets/products.png)
 
@@ -1168,7 +1170,7 @@ Exemplo de resposta:
 | CB | Correspondente bancário |
 | CS | Cessionária |
 
-#### Número de funcionários (```employeeCountRangeID```);
+#### Número de funcionários (```employeeCountRangeID```):
 
 | Identificador | Correspondência |
 | ----- | ----- |
@@ -1179,7 +1181,7 @@ Exemplo de resposta:
 | 5 | 50 a 100 |
 | 6 | 1 a 10 |
 
-#### Tipo de empresa (```companyHierarchyTypeID```);
+#### Tipo de empresa (```companyHierarchyTypeID```):
 
 | Identificador | Correspondência |
 | ----- | ----- |
