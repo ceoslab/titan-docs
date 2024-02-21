@@ -379,6 +379,142 @@ GET https://{empresa}.titan.ceoslab.app/api/operations-attachments
 ```
 -->
 
+### Documentos assinados
+
+Este procedimento refere-se ao momento em que a fase de assinatura do contrato da operação deve ser autorizada para **envio externo ao Titan** ([veja como definir o processo de assinatura externo ao Titan aqui](#assinante-subscriberid)). Portanto, é imprescindível que o contrato assinado referente à operação seja devolvido, seguindo os passos abaixo:
+
+#### Parâmetros de envio
+
+| Atributo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+| Arquivo | ```file``` | Sim | Binary | - |
+| [Identificador da categoria do arquivo](#categoria-do-arquivo-attachmenttypeid) | ```attachmentTypeID``` | Sim | Number | - |
+| Data de vencimento | ```dueDate``` | Não | Date | - |
+| [Identificador do assinante](#assinante-subscriberid) | ```subscriberID``` | Sim | Number | - |
+
+#### Padrão de API:
+
+```js
+GET {{ _.base_url }}/api/operations-signatures-attachments/upload
+```
+
+#### Exemplo de requisição:
+
+```js
+GET https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments/upload
+```
+
+##### ```Header```:
+
+```bash showLineNumbers
+{
+    "Content-Type": "multipart/form-data;",
+    "Titan-Api-Key": "{Sua chave API}"
+}
+```
+
+##### ```Body```:
+
+```bash showLineNumbers
+{
+    "file": "FILE(form-data)",
+    "attachmentTypeID": 51,
+    "dueDate": "2025-01-01",
+    "visible": true,
+    "subscriberID": 2052
+}
+```
+
+#### Exemplo de resposta
+
+```bash showLineNumbers
+{
+# highlight-next-line
+    "id": 2052,
+    "createdAt": null,
+    "updatedAt": null,
+    "createdByID": 2760,
+    "updatedByID": 2760,
+    "enabled": true,
+    "attachmentID": 7674,
+    "attachment": null,
+    "visible": null,
+# highlight-next-line
+    "operationSignatureID": 2204,
+    "unicoDocumentType": null,
+    "personID": 2760,
+    "person": null
+}
+```
+
+:::tip Listagem dos documentos contratuais
+
+Após o envio dos documentos contratuais, você pode listar os anexos referente aquela operação. Veja como utilizar a API de ```operations-signatures-attachments```.
+
+#### Padrão de API:
+
+```js
+GET {{ _.base_url }}/api/operations-signatures-attachments?filters[operationSignatureID][$eq]:{operationSignatureID}
+```
+
+#### Exemplo de requisição:
+
+```js
+GET https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments?filters[operationSignatureID][$eq]:2204
+```
+
+#### Exemplo de resposta
+
+```bash showLineNumbers
+{
+    "content": [
+        {
+            "id": 2052,
+            "createdAt": "2024-02-21T19:54:44.398221Z",
+            "updatedAt": "2024-02-21T19:54:44.398226Z",
+            "createdByID": 2760,
+            "updatedByID": 2760,
+            "enabled": true,
+#highlight-start
+            "attachmentID": 7674,
+            "attachment": {
+                "id": 7674,
+                "createdAt": "2024-02-21T19:54:44.394935Z",
+                "updatedAt": "2024-02-21T19:54:44.394939Z",
+                "createdByID": 2760,
+                "updatedByID": 2760,
+                "enabled": true,
+                "dueDate": "2025-01-01",
+                "uid": "1708545284-5d50c78b-241b-40f0-b4bd-77b4ff9d555e",
+                "filename": "Contrato-assinado.pdf",
+                "size": 32440,
+                "mimeType": "application/pdf",
+                "attachmentTypeID": 51,
+                "attachmentType": {
+                    "id": 51,
+                    "text": "OUTRO",
+                    "enabled": true
+                },
+                "visible": false,
+                "sha256sum": "206f0a8588f64bc7183794725fbcf5b5dd0ee2cd1c9e675c2c4b11e912ae1d2a"
+            },
+#highlight-end
+            "visible": null,
+            "operationSignatureID": 2204,
+            "unicoDocumentType": null,
+            "personID": 2760,
+            "person": {
+                ...
+            }
+        },
+        ...
+    ],
+    ...
+}
+```
+
+:::
+
 ---
 
 ## Mapeamento de atributos
@@ -498,5 +634,85 @@ Exemplo de resposta:
         },
         ...
     ] 
+}
+```
+
+#### Assinante (```subscriberID```):
+
+Para obter o identificador do assinante, é necessário listar os assinantes associadas à operação em questão, definindo o processo de assinatura para **envio externo ao Titan**. Para isso, inicialmente, é necessário ter o [**identificador da operação**](#operação-operationid), citado nos tópicos anteriores. Com o identificador da operação em que seu assinante desejado está associada, siga os passos a seguir:
+
+1. Definir o envio de contrato externo ao Titan e obter o identificador da etapa de envio externo da operação.
+
+Padrão de API:
+
+```js
+GET {{ _.base_url }}/api/operation-signatures/{operationID}/send-contract-externally
+```
+
+Exemplo de requisição:
+
+```js
+GET https://{empresa}.titan.ceoslab.app/api/operation-signatures/5401/send-contract-externally
+```
+
+Exemplo de resposta:
+
+```bash showLineNumbers
+{
+    "id": 2204,
+    "createdAt": null,
+    "updatedAt": null,
+    "createdByID": 2760,
+    "updatedByID": 2760,
+    "enabled": true,
+    "operationID": 5401,
+    "subscribers": null,
+    "envelopeUUID": null,
+#highlight-next-line
+    "sendMethod": "EXTERNAL"
+}
+```
+
+2. Listar os assinantes da operação.
+
+Padrão de API:
+
+```js
+GET {{ _.base_url }}/api/operation-signature-subscribers?filters[operationID][$eq]:{operationID}
+```
+
+Exemplo de requisição:
+
+```js
+GET https://{empresa}.titan.ceoslab.app/api/operation-signature-subscribers?filters[operationID][$eq]:5401
+```
+
+Exemplo de resposta:
+
+```bash showLineNumbers
+{
+    "content": [
+        {
+# highlight-next-line
+            "id": 4401,
+            "createdAt": "2024-01-12T13:24:50.121637Z",
+            "updatedAt": "2024-02-21T19:53:45.408554Z",
+            "createdByID": 2760,
+            "updatedByID": 2760,
+            "enabled": true,
+            "operationID": 5401,
+            "processID": null,
+            "operationSignatureID": 2204,
+            "unicoCheckSignatureFinished": false,
+            "personID": 5551,
+            "person": {
+                ...
+            },
+            "type": "BUSINESS_PARTNER",
+            "action": null,
+            "actionID": null
+        },
+        ...
+    ]
 }
 ```
