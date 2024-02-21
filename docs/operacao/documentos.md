@@ -325,7 +325,7 @@ GET https://{empresa}.titan.ceoslab.app/api/operations-attachments
 }
 ```
 
-### Garantia
+<!-- ### Garantia
 
 #### Parâmetros de envio
 
@@ -377,6 +377,7 @@ GET https://{empresa}.titan.ceoslab.app/api/operations-attachments
     "collateral": null
 }
 ```
+-->
 
 ---
 
@@ -423,7 +424,7 @@ Exemplo de resposta:
 
 #### Pessoa (```personID```):
 
-Peça ao seu parceiro de negócios que compartilhe o identificador da pessoa no painel dentro do Titan, a fim de incluir o identificador em sua solicitação.
+Peça ao seu parceiro de negócios que compartilhe o identificador da pessoa no painel dentro do Titan, a fim de incluir em sua solicitação.
 
 **Caminho:** Cadastros > Central de pessoas > Visualizar/editar pessoa
 
@@ -431,7 +432,7 @@ Peça ao seu parceiro de negócios que compartilhe o identificador da pessoa no 
 
 #### Empresa (```companyID```):
 
-Peça ao seu parceiro de negócios que compartilhe o identificador da empresa no painel dentro do Titan, a fim de incluir o identificador em sua solicitação.
+Peça ao seu parceiro de negócios que compartilhe o identificador da empresa no painel dentro do Titan, a fim de incluir em sua solicitação.
 
 **Caminho:** Cadastros > Central de empresas > Visualizar/editar empresa
 
@@ -439,7 +440,7 @@ Peça ao seu parceiro de negócios que compartilhe o identificador da empresa no
 
 #### Operação (```operationID```):
 
-Peça ao seu parceiro de negócios que compartilhe o identificador da operação no painel dentro do Titan, a fim de incluir o identificador em sua solicitação.
+Peça ao seu parceiro de negócios que compartilhe o identificador da operação no painel dentro do Titan, a fim de incluir em sua solicitação.
 
 **Caminho:** Operações
 
