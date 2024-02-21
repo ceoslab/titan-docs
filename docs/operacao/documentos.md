@@ -639,7 +639,7 @@ Exemplo de resposta:
 
 #### Assinante (```subscriberID```):
 
-Para obter o identificador do assinante, é necessário listar os assinantes associadas à operação em questão, definindo o processo de assinatura para **envio externo ao Titan**. Para isso, inicialmente, é necessário ter o [**identificador da operação**](#operação-operationid), citado nos tópicos anteriores. Com o identificador da operação em que seu assinante desejado está associada, siga os passos a seguir:
+Para obter o identificador do assinante, é necessário listar os assinantes associadas à operação em questão, definindo o processo de assinatura para **envio externo ao Titan**. Para isso, inicialmente, é necessário ter o [**identificador da operação**](#operação-operationid), citado nos tópicos anteriores. Com o identificador da operação em que seu assinante desejado está associado, siga os passos a seguir:
 
 1. Definir o envio de contrato externo ao Titan e obter o identificador da etapa de envio externo da operação.
 
@@ -694,7 +694,7 @@ Exemplo de resposta:
     "content": [
         {
 # highlight-next-line
-            "id": 4401,
+            "id": 2052,
             "createdAt": "2024-01-12T13:24:50.121637Z",
             "updatedAt": "2024-02-21T19:53:45.408554Z",
             "createdByID": 2760,
@@ -704,7 +704,7 @@ Exemplo de resposta:
             "processID": null,
             "operationSignatureID": 2204,
             "unicoCheckSignatureFinished": false,
-            "personID": 5551,
+            "personID": 2760,
             "person": {
                 ...
             },
