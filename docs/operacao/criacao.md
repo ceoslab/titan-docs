@@ -49,6 +49,18 @@ Para listar quais identificadores você precisará para realizar o envio da sua 
 | [Avalistas](#avalistas) | ```guarantors``` | Não | Array | - |
 | [Garantias](#garantias) | ```collaterals``` | Não | Array | - |
 
+#### Padrão de API:
+
+```js
+GET {{ _.base_url }}/api/operations/new
+```
+
+#### Exemplo de requisição:
+
+```js
+GET https://{empresa}.titan.ceoslab.app/api/operations/new
+```
+
 ### Exemplo de requisição
 
 ```bash showLineNumbers
@@ -56,7 +68,7 @@ Para listar quais identificadores você precisará para realizar o envio da sua 
 	"acceptanceDate": "2024-01-21",
 	"firstDueDate": "2024-02-20",
 	"installmentQuantity": 24,
-	"requestedValue": 20000.00,
+	"requestedValue": 12000.00,
 	"downPayment": 0.00,
 	"financeIOF": true,
 	"financeTFC": true,
@@ -85,6 +97,84 @@ Para listar quais identificadores você precisará para realizar o envio da sua 
 			...
 		},
 	]
+}
+```
+
+### Exemplo de resposta
+
+```bash showLineNumbers
+{
+# highlight-next-line
+	"id": 5906,
+	"createdAt": "2024-01-21T17:37:14.289497Z",
+	"updatedAt": "2024-01-21T17:37:14.289502Z",
+	"createdByID": 1,
+	"updatedByID": 1,
+	"enabled": true,
+	"operationCode": 277,
+	"workflowExecutionID": null,
+	"acceptanceDate": "2024-01-21",
+	"firstDueDate": "2024-02-20",
+	"lastDueDate": null,
+	"installmentQuantity": 24,
+	"tfc": 240.00000000000000,
+	"tfcPct": null,
+	"monthlyInterestRate": 0.050000000000,
+	"iofRate": 0.000041,
+	"additionalIOFRate": 0.0038,
+	"totalIOFValue": 197.590971934024045982974670329167631,
+	"financedIOFValue": 200.7189494329220275629034343420733,
+	"gracePeriod": 1,
+	"monthlyTEC": 0.058152680863598267212077063108483,
+	"yearlyTEC": 0.970516332873393416368241079897261,
+	"disbursementAmount": 12000.00,
+	"totalDisbursementAmount": 1.2E+4,
+	"requestedValue": 12000.00,
+	"totalValue": 21486.96,
+	"downPayment": 0.00,
+	"creditLifeInsurancePct": 0.036600000000,
+	"creditLifeInsurance": 439.2,
+	"additionalInsuranceValue": 0,
+	"financeIOF": true,
+	"financeTFC": true,
+	"financeCreditLifeInsurance": true,
+	"financeAdditionalInsurance": false,
+	"inPersonSale": false,
+	"growthType": "EXPONENTIAL",
+	"installmentFactor": 14.3863825300408088853289666071015297,
+	"coefficient": 0.06951017727436748250753027882831058,
+	"installmentValueWithoutIOF": 881.33,
+	"installmentValueWithIOF": 895.29,
+	"financedValue": 12879.91894943292202756290343434207,
+	"assetDescription": null,
+	"paymentFrequencyID": 51,
+	"paymentFrequency": null,
+	"paymentTypeID": 1,
+	"paymentType": null,
+	"productVariantID": 1403,
+	"productID": 1403,
+	"customerID": 3003,
+	"operationStatusID": 554,
+	"operationStatus": null,
+	"originatingCompanyID": 1551,
+	"originatingCompanyType": "MN",
+	"companyID": 1551,
+	"companyType": "MN",
+	"productVariant": null,
+	"product": null,
+	"customer": null,
+	"agencyOffice": null,
+	"customerAttachments": null,
+	"guarantors": null,
+	"collaterals": null,
+	"assessments": null,
+	"operationDisbursements": [],
+	"installments": null,
+	"operationSignatures": null,
+	"operationMembers": null,
+	"conversationID": null,
+	"yearlyInterestRate": 0.795856326022129150390625,
+	"operationAttachmentIDs": null
 }
 ```
 
