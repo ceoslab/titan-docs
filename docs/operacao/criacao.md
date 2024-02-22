@@ -22,7 +22,25 @@ Os atributos listados a seguir dizem respeito aos dados que precisarão ser forn
 
 Para listar quais identificadores você precisará para realizar o envio da sua requisição, consulte a seção de [Mapeamento de atributos](#mapeamento-de-atributos).
 
-### Parâmetros de envio
+Em nossa API ```operations``` temos duas formas de uma operação ser criada:
+
+1. #### ```calculate/create```: [Utilizando o motor de crédito do Titan](#1-utilizando-o-motor-de-crédito-do-titan-calculatecreate)
+
+```js
+POST {{ _.base_url }}/api/operations/calculate/create
+```
+
+2. #### ```create```: [Calculando externamente](#2-calculando-externamente-create)
+
+```js
+POST {{ _.base_url }}/api/operations/create
+```
+
+---
+
+### 1. Utilizando o motor de crédito do Titan (```calculate/create```)
+
+#### ```calculate/create```: Parâmetros de envio
 
 | Atributo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
 | ----- | ----- | ----- | ----- | ----- |
@@ -49,38 +67,32 @@ Para listar quais identificadores você precisará para realizar o envio da sua 
 | [Avalistas](#avalistas) | ```guarantors``` | Não | Array | - |
 | [Garantias](#garantias) | ```collaterals``` | Não | Array | - |
 
-#### Padrão de API:
+#### ```calculate/create```: Exemplo de rota:
 
 ```js
-GET {{ _.base_url }}/api/operations/new
+POST https://{empresa}.titan.ceoslab.app/api/operations/calculate/create
 ```
 
-#### Exemplo de requisição:
-
-```js
-GET https://{empresa}.titan.ceoslab.app/api/operations/new
-```
-
-### Exemplo de requisição
+#### ```calculate/create```: Exemplo de requisição
 
 ```bash showLineNumbers
 {
-	"acceptanceDate": "2024-01-21",
-	"firstDueDate": "2024-02-20",
-	"installmentQuantity": 24,
-	"requestedValue": 12000.00,
+	"acceptanceDate": "2024-01-22",
+	"firstDueDate": "2024-01-23",
+	"installmentQuantity": 18,
+	"requestedValue": 20000.0,
 	"downPayment": 0.00,
 	"financeIOF": true,
 	"financeTFC": true,
 	"financeCreditLifeInsurance": true,
-	"financeAdditionalInsurance": true,
+	"financeAdditionalInsurance": false,
 	"inPersonSale": false,
 	"growthType": "EXPONENTIAL",
 	"assetDescription": null,
 	"paymentFrequencyID": 51,
 	"paymentTypeID": 1,
-	"productID": 1403,
-	"operationStatusID": 554,
+	"productID": 1401,
+	"operationStatusID": 552,
 	"companyID": 1551,
 	"companyType": "MN",
 	"customer": {
@@ -100,89 +112,113 @@ GET https://{empresa}.titan.ceoslab.app/api/operations/new
 }
 ```
 
-### Exemplo de resposta
+#### ```calculate/create```: Exemplo de resposta
 
 ```bash showLineNumbers
 {
 # highlight-next-line
-	"id": 5906,
-	"createdAt": "2024-01-21T17:37:14.289497Z",
-	"updatedAt": "2024-01-21T17:37:14.289502Z",
-	"createdByID": 1,
-	"updatedByID": 1,
+	"id": 5651,
+	"createdAt": "2024-01-22T20:45:44.179683Z",
+	"updatedAt": "2024-01-22T20:45:44.179688Z",
+	"createdByID": 2760,
+	"updatedByID": 2760,
 	"enabled": true,
-	"operationCode": 277,
-	"workflowExecutionID": null,
-	"acceptanceDate": "2024-01-21",
-	"firstDueDate": "2024-02-20",
-	"lastDueDate": null,
-	"installmentQuantity": 24,
-	"tfc": 240.00000000000000,
+	"operationCode": 262,
+	"workflowExecutionID": 10552,
+	"acceptanceDate": "2024-01-22",
+	"firstDueDate": "2024-01-23",
+	"lastDueDate": "2025-07-23",
+	"installmentQuantity": 18,
+	"tfc": 400.0,
 	"tfcPct": null,
-	"monthlyInterestRate": 0.050000000000,
+	"monthlyInterestRate": 0.05,
 	"iofRate": 0.000041,
 	"additionalIOFRate": 0.0038,
-	"totalIOFValue": 197.590971934024045982974670329167631,
-	"financedIOFValue": 200.7189494329220275629034343420733,
+	"totalIOFValue": 298.72,
+	"financedIOFValue": 303.0,
 	"gracePeriod": 1,
-	"monthlyTEC": 0.058152680863598267212077063108483,
-	"yearlyTEC": 0.970516332873393416368241079897261,
-	"disbursementAmount": 12000.00,
-	"totalDisbursementAmount": 1.2E+4,
-	"requestedValue": 12000.00,
-	"totalValue": 21486.96,
-	"downPayment": 0.00,
-	"creditLifeInsurancePct": 0.036600000000,
-	"creditLifeInsurance": 439.2,
-	"additionalInsuranceValue": 0,
+	"monthlyTEC": 0.060165796732,
+	"yearlyTEC": 1.01597650294,
+	"disbursementAmount": 20000.0,
+	"totalDisbursementAmount": 20000.0,
+	"requestedValue": 20000.0,
+	"totalValue": 31641.83,
+	"downPayment": 0.0,
+	"creditLifeInsurancePct": 0.0366,
+	"creditLifeInsurance": 732,
+	"additionalInsuranceValue": 0.0,
 	"financeIOF": true,
 	"financeTFC": true,
 	"financeCreditLifeInsurance": true,
 	"financeAdditionalInsurance": false,
 	"inPersonSale": false,
 	"growthType": "EXPONENTIAL",
-	"installmentFactor": 14.3863825300408088853289666071015297,
-	"coefficient": 0.06951017727436748250753027882831058,
-	"installmentValueWithoutIOF": 881.33,
-	"installmentValueWithIOF": 895.29,
-	"financedValue": 12879.91894943292202756290343434207,
-	"assetDescription": null,
+	"installmentFactor": 12.193669437642,
+	"coefficient": 0.082009767865,
+	"installmentValueWithoutIOF": 1733.03,
+	"installmentValueWithIOF": 1757.88,
+	"financedValue": 21435.0,
+	"assetDescription": "teste de bem",
 	"paymentFrequencyID": 51,
-	"paymentFrequency": null,
+	"paymentFrequency": {
+		...
+	},
 	"paymentTypeID": 1,
-	"paymentType": null,
-	"productVariantID": 1403,
-	"productID": 1403,
-	"customerID": 3003,
-	"operationStatusID": 554,
-	"operationStatus": null,
+		...
+	},
+	"productVariantID": 1402,
+	"productID": 1401,
+	"customerID": 2851,
+	"operationStatusID": 552,
+	"operationStatus": {
+		...
+	},
 	"originatingCompanyID": 1551,
 	"originatingCompanyType": "MN",
 	"companyID": 1551,
 	"companyType": "MN",
-	"productVariant": null,
-	"product": null,
-	"customer": null,
+	"productVariant": {
+		...
+	},
+	"product": {
+		...
+	},
+	"customer": {
+		...
+	},
 	"agencyOffice": null,
 	"customerAttachments": null,
-	"guarantors": null,
-	"collaterals": null,
-	"assessments": null,
+	"guarantors": [
+		...
+	],
+	"committeeMembers": [],
+	"collaterals": [
+		...
+	],
+	"assessments": [],
 	"operationDisbursements": [],
-	"installments": null,
-	"operationSignatures": null,
-	"operationMembers": null,
-	"conversationID": null,
+	"installments": [
+		...
+	],
+	"operationSignatures": [],
+	"operationMembers": [
+		...
+	],
+	"conversationID": 3851,
 	"yearlyInterestRate": 0.795856326022129150390625,
-	"operationAttachmentIDs": null
+	"operationAttachmentIDs": [1201, 1202]
 }
 ```
 
 :::info Atributos importantes na resposta da requisição
 
-Não se esqueça de anotar o identificador da resposta desta requisição. Você vai precisar do ```operationID``` para [adicionar documentação](documentos.md) relacionada a essa operação.
+Não se esqueça de anotar o **identificador** (em destaque) da resposta desta requisição. Você vai precisar do ```operationID``` para [adicionar documentação](documentos.md) relacionada a essa operação.
 
 :::
+
+### 2. Calculando externamente (```create```)
+
+Parâmetros estarão disponíveis em breve. ⏱️
 
 ---
 
@@ -1083,7 +1119,7 @@ Padrão de API:
 GET {{ _.base_url }}/api/companies/documentNumber/{cnpj}
 ```
 
-Exemplo de requisição:
+Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/companies/documentNumber/00000000000191
@@ -1228,7 +1264,7 @@ Padrão de API:
 GET {{ _.base_url }}/api/operation-statuses/list
 ```
 
-Exemplo de requisição:
+Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/operation-statuses/list
@@ -1308,7 +1344,7 @@ Padrão de API:
 GET {{ _.base_url }}/api/addresses/{cep}
 ```
 
-Exemplo de requisição:
+Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/addresses/92025840
@@ -1364,7 +1400,7 @@ Padrão de API:
 GET {{ _.base_url }}/api/level-1-admin-divs/list
 ```
 
-Exemplo de requisição:
+Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/level-1-admin-divs/list
@@ -1402,7 +1438,7 @@ Padrão de API:
 GET {{ _.base_url }}/api/level-2-admin-divs/list?filters[level1AdminDivID][$eq]={id}
 ```
 
-Exemplo de requisição:
+Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/level-2-admin-divs/list?filters[level1AdminDivID][$eq]=23
@@ -1510,7 +1546,7 @@ Padrão de API:
 GET {{ _.base_url }}/api/banks/list
 ```
 
-Exemplo de requisição:
+Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/banks/list
@@ -1558,7 +1594,7 @@ Padrão de API:
 GET {{ _.base_url }}/api/professions/list
 ```
 
-Exemplo de requisição:
+Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/professions/list
@@ -1659,7 +1695,7 @@ Padrão de API:
 GET {{ _.base_url }}/api/fipe/vehicle-types
 ```
 
-Exemplo de requisição:
+Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/fipe/vehicle-types
@@ -1695,7 +1731,7 @@ Padrão de API:
 GET {{ _.base_url }}/api/fipe/vehicle-types/{vehicleTypeCode}/brands
 ```
 
-Exemplo de requisição:
+Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/fipe/vehicle-types/1/brands
@@ -1736,7 +1772,7 @@ Padrão de API:
 GET {{ _.base_url }}/api/fipe/vehicle-types/{vehicleTypeCode}/brands/{brandCode}/models
 ```
 
-Exemplo de requisição:
+Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/fipe/vehicle-types/1/brands/39/models
@@ -1796,7 +1832,7 @@ Padrão de API:
 GET {{ _.base_url }}/api/fipe/vehicle-types/{vehicleTypeCode}/brands/{brandCode}/models/{modelCode}/years
 ```
 
-Exemplo de requisição:
+Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/fipe/vehicle-types/1/brands/39/models/5500/years
@@ -1887,7 +1923,7 @@ Padrão de API:
 GET {{ _.base_url }}/api/fipe/vehicle-types/{vehicleTypeCode}/brands/{brandCode}/models/{modelCode}/years/{year}/fuel-types/{fuelTypeCode}
 ```
 
-Exemplo de requisição:
+Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/fipe/vehicle-types/1/brands/39/models/5500/years/2014/fuel-types/1

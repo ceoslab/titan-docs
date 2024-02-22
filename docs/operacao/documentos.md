@@ -32,7 +32,7 @@ Antes de vincular a documentação em uma operação, é necessário carregar o 
 POST {{ _.base_url }}/api/person-attachments/{personID}/upload
 ```
 
-#### Exemplo de requisição:
+#### Exemplo de rota:
 
 ```js
 POST https://{empresa}.titan.ceoslab.app/api/person-attachments/2760/upload
@@ -99,7 +99,7 @@ POST https://{empresa}.titan.ceoslab.app/api/person-attachments/2760/upload
 POST {{ _.base_url }}/api/company-attachments/{companyID}/upload
 ```
 
-#### Exemplo de requisição:
+#### Exemplo de rota:
 
 ```js
 POST https://{empresa}.titan.ceoslab.app/api/company-attachments/1551/upload
@@ -166,7 +166,7 @@ POST https://{empresa}.titan.ceoslab.app/api/company-attachments/1551/upload
 POST {{ _.base_url }}/api/collateral-attachments/{collateralID}/upload
 ```
 
-#### Exemplo de requisição:
+#### Exemplo de rota:
 
 ```js
 POST https://{empresa}.titan.ceoslab.app/api/collateral-attachments/1298/upload
@@ -232,14 +232,16 @@ Depois de enviar e vincular o documento às entidades mencionadas anteriormente,
 #### Padrão de API:
 
 ```js
-GET {{ _.base_url }}/api/operations-attachments
+POST {{ _.base_url }}/api/operations-attachments
+```
+
+#### Exemplo de rota:
+
+```js
+POST https://{empresa}.titan.ceoslab.app/api/operations-attachments
 ```
 
 #### Exemplo de requisição:
-
-```js
-GET https://{empresa}.titan.ceoslab.app/api/operations-attachments
-```
 
 ```bash showLineNumbers
 {
@@ -285,14 +287,16 @@ GET https://{empresa}.titan.ceoslab.app/api/operations-attachments
 #### Padrão de API:
 
 ```js
-GET {{ _.base_url }}/api/operations-attachments
+POST {{ _.base_url }}/api/operations-attachments
+```
+
+#### Exemplo de rota:
+
+```js
+POST https://{empresa}.titan.ceoslab.app/api/operations-attachments
 ```
 
 #### Exemplo de requisição:
-
-```js
-GET https://{empresa}.titan.ceoslab.app/api/operations-attachments
-```
 
 ```bash showLineNumbers
 {
@@ -404,11 +408,13 @@ Se o ```subscriberID``` não for fornecido na requisição, o documento contratu
 POST {{ _.base_url }}/api/operations-signatures-attachments/upload
 ```
 
-#### Exemplo de requisição:
+#### Exemplo de rota:
 
 ```js
 POST https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments/upload
 ```
+
+#### Exemplo de requisição:
 
 ##### ```Header```:
 
@@ -462,7 +468,7 @@ Após o envio dos documentos contratuais, você pode listar os anexos referente 
 GET {{ _.base_url }}/api/operations-signatures-attachments?filters[operationSignatureID][$eq]:{operationSignatureID}
 ```
 
-#### Exemplo de requisição:
+#### Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments?filters[operationSignatureID][$eq]:2204
@@ -534,7 +540,7 @@ Padrão de API:
 GET {{ _.base_url }}/api/attachment-types/list
 ```
 
-Exemplo de requisição:
+Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/attachment-types/list
@@ -603,7 +609,7 @@ Padrão de API:
 GET {{ _.base_url }}/api/collaterals?filters[operationID][$eq]={operationID}
 ```
 
-Exemplo de requisição:
+Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/collaterals?filters[operationID][$eq]=5401
@@ -660,7 +666,7 @@ Padrão de API:
 GET {{ _.base_url }}/api/operation-signatures/{operationID}/send-contract-externally
 ```
 
-Exemplo de requisição:
+Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/operation-signatures/5401/send-contract-externally
@@ -692,7 +698,7 @@ Padrão de API:
 GET {{ _.base_url }}/api/operation-signature-subscribers?filters[operationID][$eq]:{operationID}
 ```
 
-Exemplo de requisição:
+Exemplo de rota:
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/operation-signature-subscribers?filters[operationID][$eq]:5401
