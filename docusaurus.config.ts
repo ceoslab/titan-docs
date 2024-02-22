@@ -50,7 +50,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/titan-docs.jpg',
+    image: 'img/titan-docs.png',
     navbar: {
       title: "",
       logo: {
