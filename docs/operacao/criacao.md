@@ -88,6 +88,12 @@ Para listar quais identificadores você precisará para realizar o envio da sua 
 }
 ```
 
+:::info Atributos importantes na resposta da requisição
+
+Não se esqueça de anotar o identificador da resposta desta requisição. Você vai precisar do ```operationID``` para [adicionar documentação](documentos.md) relacionada a essa operação.
+
+:::
+
 ---
 
 ## Cliente (Pessoa física)
@@ -225,6 +231,12 @@ Os atributos abaixo são adicionados dentro do objeto ```person```, que se encon
 	]
 }
 ```
+
+:::info Atributos importantes na resposta da requisição
+
+Não se esqueça de anotar o identificador da resposta desta requisição. Você vai precisar do ```personID``` para [adicionar documentação](documentos.md) relacionada a essa pessoa.
+
+:::
 
 ---
 
@@ -692,6 +704,12 @@ Os atributos abaixo são adicionados dentro do objeto ```company```, que se enco
 	]	
 }
 ```
+
+:::info Atributos importantes na resposta da requisição
+
+Não se esqueça de anotar o identificador da resposta desta requisição. Você vai precisar do ```companyID``` para [adicionar documentação](documentos.md) relacionada a essa empresa.
+
+:::
 
 ---
 
