@@ -29,13 +29,13 @@ Antes de vincular a documentação em uma operação, é necessário carregar o 
 #### Padrão de API:
 
 ```js
-GET {{ _.base_url }}/api/person-attachments/{personID}/upload
+POST {{ _.base_url }}/api/person-attachments/{personID}/upload
 ```
 
 #### Exemplo de requisição:
 
 ```js
-GET https://{empresa}.titan.ceoslab.app/api/person-attachments/2760/upload
+POST https://{empresa}.titan.ceoslab.app/api/person-attachments/2760/upload
 ```
 
 ##### ```Header```:
@@ -96,13 +96,13 @@ GET https://{empresa}.titan.ceoslab.app/api/person-attachments/2760/upload
 #### Padrão de API:
 
 ```js
-GET {{ _.base_url }}/api/company-attachments/{companyID}/upload
+POST {{ _.base_url }}/api/company-attachments/{companyID}/upload
 ```
 
 #### Exemplo de requisição:
 
 ```js
-GET https://{empresa}.titan.ceoslab.app/api/company-attachments/1551/upload
+POST https://{empresa}.titan.ceoslab.app/api/company-attachments/1551/upload
 ```
 
 ##### ```Header```:
@@ -163,13 +163,13 @@ GET https://{empresa}.titan.ceoslab.app/api/company-attachments/1551/upload
 #### Padrão de API:
 
 ```js
-GET {{ _.base_url }}/api/collateral-attachments/{collateralID}/upload
+POST {{ _.base_url }}/api/collateral-attachments/{collateralID}/upload
 ```
 
 #### Exemplo de requisição:
 
 ```js
-GET https://{empresa}.titan.ceoslab.app/api/collateral-attachments/1298/upload
+POST https://{empresa}.titan.ceoslab.app/api/collateral-attachments/1298/upload
 ```
 
 ##### ```Header```:
@@ -390,18 +390,24 @@ Este procedimento refere-se ao momento em que a fase de assinatura do contrato d
 | Arquivo | ```file``` | Sim | Binary | - |
 | [Identificador da categoria do arquivo](#categoria-do-arquivo-attachmenttypeid) | ```attachmentTypeID``` | Sim | Number | - |
 | Data de vencimento | ```dueDate``` | Não | Date | - |
-| [Identificador do assinante](#assinante-subscriberid) | ```subscriberID``` | Sim | Number | - |
+| [Identificador do assinante](#assinante-subscriberid) | ```subscriberID``` | Não | Number | - |
+
+:::info ```subscriberID``` é opcional, entenda:
+
+Se o ```subscriberID``` não for fornecido na requisição, o documento contratual assinado fica vinculado à operação em si, sem uma ligação direta a um assinante.
+
+:::
 
 #### Padrão de API:
 
 ```js
-GET {{ _.base_url }}/api/operations-signatures-attachments/upload
+POST {{ _.base_url }}/api/operations-signatures-attachments/upload
 ```
 
 #### Exemplo de requisição:
 
 ```js
-GET https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments/upload
+POST https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments/upload
 ```
 
 ##### ```Header```:
@@ -420,7 +426,6 @@ GET https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments/up
     "file": "FILE(form-data)",
     "attachmentTypeID": 51,
     "dueDate": "2025-01-01",
-    "visible": true,
     "subscriberID": 2052
 }
 ```
@@ -560,27 +565,33 @@ Exemplo de resposta:
 
 #### Pessoa (```personID```):
 
-Peça ao seu parceiro de negócios que compartilhe o identificador da pessoa no painel dentro do Titan, a fim de incluir em sua solicitação.
+No processo de [criação de operação via API](criacao.md), na resposta da requisição você tem acesso ao ```personID```.
+
+<!-- Peça ao seu parceiro de negócios que compartilhe o identificador da pessoa no painel dentro do Titan, a fim de incluir em sua solicitação.
 
 **Caminho:** Cadastros > Central de pessoas > Visualizar/editar pessoa
 
-![Pessoa](./../assets/personid.png)
+![Pessoa](./../assets/personid.png) -->
 
 #### Empresa (```companyID```):
 
-Peça ao seu parceiro de negócios que compartilhe o identificador da empresa no painel dentro do Titan, a fim de incluir em sua solicitação.
+No processo de [criação de operação via API](criacao.md), na resposta da requisição você tem acesso ao ```companyID```.
+
+<!-- Peça ao seu parceiro de negócios que compartilhe o identificador da empresa no painel dentro do Titan, a fim de incluir em sua solicitação.
 
 **Caminho:** Cadastros > Central de empresas > Visualizar/editar empresa
 
-![Empresa](./../assets/companyid.png)
+![Empresa](./../assets/companyid.png) -->
 
 #### Operação (```operationID```):
 
-Peça ao seu parceiro de negócios que compartilhe o identificador da operação no painel dentro do Titan, a fim de incluir em sua solicitação.
+No processo de [criação de operação via API](criacao.md), na resposta da requisição você tem acesso ao ```operationID```.
+
+<!-- Peça ao seu parceiro de negócios que compartilhe o identificador da operação no painel dentro do Titan, a fim de incluir em sua solicitação.
 
 **Caminho:** Operações
 
-![Operações](./../assets/operationid.png)
+![Operações](./../assets/operationid.png) -->
 
 #### Garantia (```collateralID```):
 
