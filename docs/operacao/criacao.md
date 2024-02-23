@@ -40,6 +40,16 @@ POST {{ _.base_url }}/api/operations/create
 
 ### 1. Utilizando o motor de crédito do Titan (```calculate/create```)
 
+Neste formato inicial, você envia uma solicitação enxuta ao motor de cálculo do Titan, que retorna um conjunto abrangente de informações relacionadas aos dados da operação criada.
+
+Para listar quais identificadores você precisará para realizar o envio da sua requisição, consulte a seção de [Mapeamento de atributos](#mapeamento-de-atributos).
+
+:::warning Faça uma simulação prévia
+
+**Certifique-se de realizar uma simulação prévia** para evitar erros durante a criação da operação. [Você pode simular uma operação aqui](simulacao.md).
+
+:::
+
 #### ```calculate/create```: Parâmetros de envio
 
 | Atributo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
@@ -63,7 +73,6 @@ POST {{ _.base_url }}/api/operations/create
 | Identificador da empresa | ```companyID``` | Sim | Number | - |
 | [Tipo de empresa](#tipo-de-empresa-companytype) | ```companyType``` | Sim | String | ```MN``` |
 | [Cliente](#cliente-pessoa-física) | ```customer``` | Sim | Object | - |
-| Anexos do cliente | ```customerAttachments``` | Não | - | ```null``` |
 | [Avalistas](#avalistas) | ```guarantors``` | Não | Array | - |
 | [Garantias](#garantias) | ```collaterals``` | Não | Array | - |
 
@@ -88,7 +97,7 @@ POST https://{empresa}.titan.ceoslab.app/api/operations/calculate/create
 	"financeAdditionalInsurance": false,
 	"inPersonSale": false,
 	"growthType": "EXPONENTIAL",
-	"assetDescription": null,
+	"assetDescription": "Bem Teste",
 	"paymentFrequencyID": 51,
 	"paymentTypeID": 1,
 	"productID": 1401,
@@ -98,7 +107,6 @@ POST https://{empresa}.titan.ceoslab.app/api/operations/calculate/create
 	"customer": {
 		...,
 	},
-	"customerAttachments": null,
 	"guarantors": [
 		{
 			...
@@ -158,7 +166,7 @@ POST https://{empresa}.titan.ceoslab.app/api/operations/calculate/create
 	"installmentValueWithoutIOF": 1733.03,
 	"installmentValueWithIOF": 1757.88,
 	"financedValue": 21435.0,
-	"assetDescription": "teste de bem",
+	"assetDescription": "Bem Teste",
 	"paymentFrequencyID": 51,
 	"paymentFrequency": {
 		...
@@ -218,7 +226,239 @@ Não se esqueça de anotar o **identificador** (em destaque) da resposta desta r
 
 ### 2. Calculando externamente (```create```)
 
-Parâmetros estarão disponíveis em breve. ⏱️
+Neste segundo formato, o resultado do cálculo da operação **não é processado pelo motor de cálculo do Titan**, transferindo a responsabilidade pelas informações fornecidas para quem envia a requisição.
+
+Para listar quais identificadores você precisará para realizar o envio da sua requisição, consulte a seção de [Mapeamento de atributos](#mapeamento-de-atributos).
+
+#### ```create```: Parâmetros de envio
+
+| Atributo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+| Data do aceite | ```acceptanceDate``` | Sim | Date | - |
+| Data do primeiro vencimento | ```firstDueDate``` | Sim | Date | - |
+| Data do último vencimento | ```lastDueDate``` | Sim | Date | - |
+| Quantidade de parcelas | ```installmentQuantity``` | Sim | Number | - |
+| Tarifa de Ficha Cadastral ($) | ```tfc``` | Sim | Number | - |
+| Tarifa de Ficha Cadastral (%) | ```tfcPct``` | Sim | Number | - |
+| Taxa de juros mensal | ```monthlyInterestRate``` | Sim | Number | - |
+| Taxa IOF | ```iofRate``` | Sim | Number | - |
+| Taxa IOF adicional | ```additionalIOFRate``` | Sim | Number | - |
+| Valor total do IOF | ```totalIOFValue``` | Sim | Number | - |
+| Valor do IOF financiado | ```financedIOFValue``` | Sim | Number | - |
+| Período de carência | ```gracePeriod``` | Sim | Number | - |
+| CET ao mês | ```monthlyTEC``` | Sim | Number | - |
+| CET ao ano | ```yearlyTEC``` | Sim | Number | - |
+| Valor de desembolso | ```disbursementAmount``` | Sim | Number | - |
+| Valor total de desembolso | ```totalDisbursementAmount``` | Sim | Number | - |
+| Valor solicitado | ```requestedValue``` | Sim | Number | - |
+| Valor total | ```totalValue``` | Sim | Number | - |
+| Entrada | ```downPayment``` | Sim | Number | - |
+| Seguro prestamista (%) | ```creditLifeInsurancePct``` | Sim | Number | - |
+| Seguro prestamista ($) | ```creditLifeInsurance``` | Sim | Number | - |
+| Valor do seguro adicional ($) | ```additionalInsuranceValue``` | Sim | Number | - |
+| Financiar IOF | ```financeIOF``` | Sim |  Boolean | ```true``` |
+| Financiar TFC | ```financeTFC``` | Sim | Boolean | ```true``` |
+| Financiar seguro prestamista | ```financeCreditLifeInsurance``` | Sim | Boolean | ```true``` |
+| Financiar seguro adicional | ```financeAdditionalInsurance``` | Sim | Boolean | ```true``` |
+| Venda presencial | ```inPersonSale``` | Não | Boolean | ```false``` |
+| [Capitalização de taxa](#capitalização-de-taxa-growthtype) | ```growthType``` | Sim | String | ```EXPONENTIAL``` |
+| Fator de parcelamento | ```installmentFactor``` | Sim | Number | - |
+| Coeficiente | ```coefficient``` | Sim | Number | - |
+| Valor da parcela sem IOF | ```installmentValueWithoutIOF``` | Sim | Number | - |
+| Valor da parcela com IOF | ```installmentValueWithIOF``` | Sim | Number | - |
+| Valor financiado | ```financedValue``` | Sim | Number | - |
+| Descrição do bem | ```assetDescription``` | Não | String | - |
+| [Identificador da frequência de pagamento](#frequência-de-pagamento-paymentfrequencyid) | ```paymentFrequencyID``` | Sim | Number | - |
+| [Identificador do tipo de pagamento](#tipo-de-pagamento-paymenttypeid) | ```paymentTypeID``` | Sim | Number | - |
+| [Identificador do produto](#produto-productid) | ```productID``` | Sim | Number | - |
+| Identificador da empresa originadora | ```originatingCompanyID``` | Sim | Number | - |
+| Tipo da empresa originadora | ```originatingCompanyType``` | Sim | String | ```MN``` |
+| [Identificador do status da operação](#status-da-operação-operationstatusid) | ```operationStatusID``` | Sim | Number | - |
+| Identificador da empresa | ```companyID``` | Sim | Number | - |
+| [Tipo de empresa](#tipo-de-empresa-companytype) | ```companyType``` | Sim | String | ```MN``` |
+| [Cliente](#cliente-pessoa-física) | ```customer``` | Sim | Object | - |
+| [Avalistas](#avalistas) | ```guarantors``` | Não | Array | - |
+| [Garantias](#garantias) | ```collaterals``` | Não | Array | - |
+| Parcelas | ```installments``` | Sim | Array | - |
+| Taxa de juros anual | ```yearlyInterestRate``` | Sim | Number | - |
+
+#### ```create```: Exemplo de rota:
+
+```js
+POST https://{empresa}.titan.ceoslab.app/api/operations/create
+```
+
+#### ```create```: Exemplo de requisição
+
+```bash showLineNumbers
+{
+	"acceptanceDate": "2024-01-22",
+	"firstDueDate": "2024-01-23",
+	"installmentQuantity": 18,
+	# Caso você opte pelo TFC em percentual(%), passar "null" no atributo abaixo.
+	"tfc": 400.0,
+	# Caso você opte pelo TFC em valor($), passar "null" no atributo abaixo.
+	"tfcPct": null,
+	"monthlyInterestRate": 0.05,
+	"iofRate": 0.000041,
+	"additionalIOFRate": 0.0038,
+	"totalIOFValue": 298.72,
+	"financedIOFValue": 303.0,
+	"gracePeriod": 1,
+	"monthlyTEC": 0.060165796732,
+	"yearlyTEC": 1.01597650294,
+	"disbursementAmount": 20000.0,
+	"totalDisbursementAmount": 20000.0,
+	"requestedValue": 20000.0,
+	"totalValue": 31641.83,
+	"downPayment": 0.00,
+	"creditLifeInsurancePct": 0.0366,
+	"creditLifeInsurance": 732,
+	"additionalInsuranceValue": 0.0,
+	"financeIOF": true,
+	"financeTFC": true,
+	"financeCreditLifeInsurance": true,
+	"financeAdditionalInsurance": false,
+	"inPersonSale": false,
+	"assetDescription": "Bem Teste",
+	"paymentFrequencyID": 51,
+	"paymentTypeID": 1,
+	"productID": 1401,
+	"operationStatusID": 552,
+	"companyID": 1551,
+	"companyType": "MN",
+	"company": {
+		...
+	},
+	"customer": {
+		...
+	},
+	"guarantors": [
+		{
+			...
+		},
+	],
+	"collaterals": [
+		{
+			...
+		},
+	],
+	"operationDisbursements": [
+		{
+			...
+		}
+	],
+	"installments": [
+		{
+			...
+		}
+	]
+}
+```
+
+#### ```create```: Exemplo de resposta
+
+```bash showLineNumbers
+{
+# highlight-next-line
+	"id": 5651,
+	"createdAt": "2024-01-22T20:45:44.179683Z",
+	"updatedAt": "2024-01-22T20:45:44.179688Z",
+	"createdByID": 2760,
+	"updatedByID": 2760,
+	"enabled": true,
+	"operationCode": 262,
+	"workflowExecutionID": 10552,
+	"acceptanceDate": "2024-01-22",
+	"firstDueDate": "2024-01-23",
+	"lastDueDate": "2025-07-23",
+	"installmentQuantity": 18,
+	"tfc": 400.0,
+	"tfcPct": null,
+	"monthlyInterestRate": 0.05,
+	"iofRate": 0.000041,
+	"additionalIOFRate": 0.0038,
+	"totalIOFValue": 298.72,
+	"financedIOFValue": 303.0,
+	"gracePeriod": 1,
+	"monthlyTEC": 0.060165796732,
+	"yearlyTEC": 1.01597650294,
+	"disbursementAmount": 20000.0,
+	"totalDisbursementAmount": 20000.0,
+	"requestedValue": 20000.0,
+	"totalValue": 31641.83,
+	"downPayment": 0.0,
+	"creditLifeInsurancePct": 0.0366,
+	"creditLifeInsurance": 732,
+	"additionalInsuranceValue": 0.0,
+	"financeIOF": true,
+	"financeTFC": true,
+	"financeCreditLifeInsurance": true,
+	"financeAdditionalInsurance": false,
+	"inPersonSale": false,
+	"growthType": "EXPONENTIAL",
+	"installmentFactor": 12.193669437642,
+	"coefficient": 0.082009767865,
+	"installmentValueWithoutIOF": 1733.03,
+	"installmentValueWithIOF": 1757.88,
+	"financedValue": 21435.0,
+	"assetDescription": "Bem Teste",
+	"paymentFrequencyID": 51,
+	"paymentFrequency": {
+		...
+	},
+	"paymentTypeID": 1,
+		...
+	},
+	"productVariantID": 1402,
+	"productID": 1401,
+	"customerID": 2851,
+	"operationStatusID": 552,
+	"operationStatus": {
+		...
+	},
+	"originatingCompanyID": 1551,
+	"originatingCompanyType": "MN",
+	"companyID": 1551,
+	"companyType": "MN",
+	"productVariant": {
+		...
+	},
+	"product": {
+		...
+	},
+	"customer": {
+		...
+	},
+	"agencyOffice": null,
+	"customerAttachments": null,
+	"guarantors": [
+		...
+	],
+	"committeeMembers": [],
+	"collaterals": [
+		...
+	],
+	"assessments": [],
+	"operationDisbursements": [],
+	"installments": [
+		...
+	],
+	"operationSignatures": [],
+	"operationMembers": [
+		...
+	],
+	"conversationID": 3851,
+	"yearlyInterestRate": 0.795856326022129150390625,
+	"operationAttachmentIDs": [1201, 1202]
+}
+```
+
+:::info Atributos importantes na resposta da requisição
+
+Não se esqueça de anotar o **identificador** (em destaque) da resposta desta requisição. Você vai precisar do ```operationID``` para [adicionar documentação](documentos.md) relacionada a essa operação.
+
+:::
 
 ---
 
