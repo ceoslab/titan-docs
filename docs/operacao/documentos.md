@@ -663,13 +663,13 @@ Para obter o identificador do assinante, é necessário listar os assinantes ass
 Padrão de API:
 
 ```js
-GET {{ _.base_url }}/api/operation-signatures/{operationID}/send-contract-externally
+POST {{ _.base_url }}/api/operation-signatures/{operationID}/send-contract-externally
 ```
 
 Exemplo de rota:
 
 ```js
-GET https://{empresa}.titan.ceoslab.app/api/operation-signatures/5401/send-contract-externally
+POST https://{empresa}.titan.ceoslab.app/api/operation-signatures/5401/send-contract-externally
 ```
 
 Exemplo de resposta:
