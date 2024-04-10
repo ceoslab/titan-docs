@@ -118,12 +118,6 @@ const config: Config = {
       apiKey: "f3963282d7630d98239b5b9a3c4fdceb",
 
       indexName: "titan",
-
-      replaceSearchResultPathname: {
-        from: "/docs/", // or as RegExp: /\/docs\//
-        to: "/",
-      },
-      searchPagePath: "search",
     },
   } satisfies Preset.ThemeConfig,
 };
