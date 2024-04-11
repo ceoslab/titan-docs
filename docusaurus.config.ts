@@ -61,6 +61,7 @@ const config: Config = {
       apiKey: "f609699fb8d680a1e12428178176b728",
       indexName: "titan",
       contextualSearch: false,
+      searchPagePath: "buscar",
     },
     image: "img/titan-docs.png",
     navbar: {
