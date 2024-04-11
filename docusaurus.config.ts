@@ -60,6 +60,7 @@ const config: Config = {
       appId: "7K1FIAODF5",
       apiKey: "f609699fb8d680a1e12428178176b728",
       indexName: "titan",
+      contextualSearch: false,
     },
     image: "img/titan-docs.png",
     navbar: {
