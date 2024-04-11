@@ -58,10 +58,9 @@ const config: Config = {
     // Replace with your project's social card
     algolia: {
       appId: "7K1FIAODF5",
-
       apiKey: "f3963282d7630d98239b5b9a3c4fdceb",
       contextualSearch: true,
-      indexName: "Documentação Titan",
+      indexName: "titan",
     },
     image: "img/titan-docs.png",
     navbar: {
