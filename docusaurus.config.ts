@@ -47,7 +47,7 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
-
+  themes: ['@docusaurus/theme-search-algolia'],
   themeConfig: {
     // Replace with your project's social card
     image: "img/titan-docs.png",
@@ -118,6 +118,8 @@ const config: Config = {
       apiKey: "f3963282d7630d98239b5b9a3c4fdceb",
 
       indexName: "titan",
+      
+      contextualSearch: true,
     },
   } satisfies Preset.ThemeConfig,
 };
