@@ -45,17 +45,30 @@ const config: Config = {
           customCss: "./src/css/custom.css",
         },
         sitemap: {
-          lastmod: 'date',
-          changefreq: 'weekly',
+          lastmod: "date",
+          changefreq: "weekly",
           priority: 0.5,
           ignorePatterns: [],
-          filename: 'sitemap.xml',
+          filename: "sitemap.xml",
         },
       } satisfies Preset.Options,
     ],
   ],
   themeConfig: {
     // Replace with your project's social card
+    algolia: {
+      appId: "7K1FIAODF5",
+
+      apiKey: "f3963282d7630d98239b5b9a3c4fdceb",
+      contextualSearch: true,
+      indexName: "titan",
+      replaceSearchResultPathname: {
+        from: "/docs/",
+        to: "/",
+      },
+
+      searchPagePath: "search",
+    },
     image: "img/titan-docs.png",
     navbar: {
       title: "",
@@ -115,17 +128,6 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
       additionalLanguages: ["bash", "json"],
-    },
-    algolia: {
-      // The application ID provided by Algolia
-      appId: "7K1FIAODF5",
-
-      // Public API key: it is safe to commit it
-      apiKey: "f3963282d7630d98239b5b9a3c4fdceb",
-
-      indexName: "titan",
-      
-      contextualSearch: true,
     },
   } satisfies Preset.ThemeConfig,
 };
