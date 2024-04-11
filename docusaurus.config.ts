@@ -25,8 +25,8 @@ const config: Config = {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: "pt-br",
-    locales: ["pt-br"],
+    defaultLocale: "pt-BR",
+    locales: ["pt-BR"],
   },
 
   presets: [
@@ -55,13 +55,12 @@ const config: Config = {
     ],
   ],
   themeConfig: {
-    // Replace with your project's social card
     algolia: {
       appId: "7K1FIAODF5",
       apiKey: "f609699fb8d680a1e12428178176b728",
       indexName: "titan",
       contextualSearch: false,
-      searchPagePath: "buscar",
+      searchPagePath: false,
     },
     image: "img/titan-docs.png",
     navbar: {
