@@ -61,13 +61,7 @@ const config: Config = {
 
       apiKey: "f3963282d7630d98239b5b9a3c4fdceb",
       contextualSearch: true,
-      indexName: "titan",
-      replaceSearchResultPathname: {
-        from: "/docs/",
-        to: "/",
-      },
-
-      searchPagePath: "search",
+      indexName: "Documentação Titan",
     },
     image: "img/titan-docs.png",
     navbar: {
