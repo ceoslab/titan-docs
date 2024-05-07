@@ -526,6 +526,44 @@ GET https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments?fi
 
 :::
 
+## Lastro
+
+O lastro da operação corresponde a toda documentação das entidades envolvidas na operação. Entre os documentos que podem estar incluídos dentro do lastro, estão:
+- Documentação completa vinculada ao cliente;
+- Documentação completa vinculada ao(s) avalista(s);
+- Documentação completa vinculada a(s) garantia(s);
+- Documentação completa vinculada a operação;
+- Documentos de assinatura.
+
+<!--
+- Termo(s) de cessão (caso a operação tenha sido cedida a uma cessionária);
+- CNAB (caso a operação tenha sido cedida a uma cessionária).
+-->
+
+#### Parâmetros de envio
+
+| Atributo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+| [Identificador da operação](#operação-operationid) | ```operationID``` | Sim | Number | - |
+
+#### Padrão de API:
+
+```js
+GET {{ _.base_url }}/api/operations/{operationID}/ballast
+```
+
+#### Exemplo de requisição:
+
+```js
+GET https://{empresa}.titan.ceoslab.app/api/operations/1002/ballast
+```
+
+#### Tipo de resposta:
+
+```js
+📁 application/zip
+```
+
 ---
 
 ## Mapeamento de atributos
