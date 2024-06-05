@@ -76,7 +76,7 @@ Para listar quais identificadores você precisará para realizar o envio da sua 
 | [Avalistas](#avalistas)                                                                 | `guarantors`                 | Não             | Array        | -             |
 | [Garantias](#garantias)                                                                 | `collaterals`                | Não             | Array        | -             |
 
-#### `calculate/create`: Exemplo de rota:
+#### `calculate/create`: Exemplo de rota
 
 ```js
 POST https://{empresa}.titan.ceoslab.app/api/operations/calculate/create
@@ -282,7 +282,7 @@ Para listar quais identificadores você precisará para realizar o envio da sua 
 | Parcelas                                                                                | `installments`               | Sim             | Array        | -             |
 | Taxa de juros anual                                                                     | `yearlyInterestRate`         | Sim             | Number       | -             |
 
-#### `create`: Exemplo de rota:
+#### `create`: Exemplo de rota
 
 ```js
 POST https://{empresa}.titan.ceoslab.app/api/operations/create
@@ -475,7 +475,7 @@ POST https://{empresa}.titan.ceoslab.app/api/operations/create
 | Data de vencimento     | `dueDate`            | Sim             | Date         | -            |
 | Status da parcela      | `installmentStatus`  | Não             | String       | -            |
 
-#### `installments`: Exemplo de requisição:
+#### `installments`: Exemplo de requisição
 
 :::warning Atenção!
 
@@ -516,7 +516,7 @@ Os atributos abaixo são adicionados dentro do array `installments`, que se enco
 ]
 ```
 
-#### `installments`: Exemplo de resposta:
+#### `installments`: Exemplo de resposta
 
 ```bash showLineNumbers
 "installments": [
@@ -1498,14 +1498,14 @@ Você vai precisar listar as [pessoas relacionadas](#pessoas-relacionadas-da-ope
 
 O processo de mapeamento de atributos é essencial para compreender a relação entre os identificadores (IDs) utilizados nesta API e os atributos específicos que cada ID representa. Nesta seção, apresentamos uma tabela abrangente que associa cada ID a uma descrição do respectivo atributo correspondente. Essa abordagem visa simplificar a compreensão, fornecendo informações claras e significativas sobre a função de cada identificador no contexto da criação de uma operação dentro do Titan.
 
-#### Tipo de cliente (`customerType`):
+#### Tipo de cliente (`customerType`)
 
 | Correspondência | Significado     |
 | --------------- | --------------- |
 | PERSON          | Pessoa física   |
 | COMPANY         | Pessoa jurídica |
 
-#### Produto (`productID`):
+#### Produto (`productID`)
 
 Peça ao seu parceiro de negócios que compartilhe o código do produto no painel dentro do Titan, a fim de incluir o identificador do produto em sua solicitação.
 
@@ -1513,7 +1513,7 @@ Peça ao seu parceiro de negócios que compartilhe o código do produto no paine
 
 ![Produtos](./../assets/products.png)
 
-#### Dados empresariais extraídos da Receita Federal (`documentNumber`):
+#### Dados empresariais extraídos da Receita Federal (`documentNumber`)
 
 :::warning Atenção!
 
@@ -1628,7 +1628,7 @@ Exemplo de resposta:
 }
 ```
 
-#### Frequência de pagamento (`paymentFrequencyID`):
+#### Frequência de pagamento (`paymentFrequencyID`)
 
 | Identificador | Correspondência |
 | ------------- | --------------- |
@@ -1636,7 +1636,7 @@ Exemplo de resposta:
 | 52            | Trimestral      |
 | 53            | Semestral       |
 
-#### Capitalização de taxa (`growthType`):
+#### Capitalização de taxa (`growthType`)
 
 | Correspondência | Significado                                                                                                                                                                                                                                    |
 | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1645,14 +1645,14 @@ Exemplo de resposta:
 
 _Legenda: JC = Juros compostos | JS = Juros simples._
 
-#### Tipo de pagamento (`paymentTypeID`):
+#### Tipo de pagamento (`paymentTypeID`)
 
 | Identificador | Correspondência |
 | ------------- | --------------- |
 | 1             | Boleto          |
 | 2             | Débito em conta |
 
-#### Tipo de documento adicional (`typeID`):
+#### Tipo de documento adicional (`typeID`)
 
 | Identificador | Correspondência |
 | ------------- | --------------- |
@@ -1660,7 +1660,7 @@ _Legenda: JC = Juros compostos | JS = Juros simples._
 | 2             | Passaporte      |
 | 3             | RG              |
 
-#### Status da operação (`operationStatusID`):
+#### Status da operação (`operationStatusID`)
 
 :::info Atente-se
 Os status listados nesta API Rest variam de acordo com os status criados pela Organização.
@@ -1712,7 +1712,7 @@ Exemplo de resposta:
 ]
 ```
 
-#### Tipo de empresa (`companyType`):
+#### Tipo de empresa (`companyType`)
 
 | Identificador | Correspondência         |
 | ------------- | ----------------------- |
@@ -1722,7 +1722,7 @@ Exemplo de resposta:
 | CB            | Correspondente bancário |
 | CS            | Cessionária             |
 
-#### Número de funcionários (`employeeCountRangeID`):
+#### Número de funcionários (`employeeCountRangeID`)
 
 | Identificador | Correspondência |
 | ------------- | --------------- |
@@ -1733,14 +1733,14 @@ Exemplo de resposta:
 | 5             | 50 a 100        |
 | 6             | 1 a 10          |
 
-#### Tipo de empresa (`companyHierarchyTypeID`):
+#### Tipo de empresa (`companyHierarchyTypeID`)
 
 | Identificador | Correspondência |
 | ------------- | --------------- |
 | 1             | Matriz          |
 | 51            | Filial          |
 
-#### Endereço: Estado (`level1AdminDivID`), Cidade (`level2AdminDivID`):
+#### Endereço: Estado (`level1AdminDivID`), Cidade (`level2AdminDivID`)
 
 :::info Atente-se
 Esta API é utilizada para os casos em que é necessário fornecer o endereço completo.
@@ -1794,13 +1794,13 @@ Exemplo de resposta:
 }
 ```
 
-#### Nacionalidade, País (`nationalityID`, `countryID`):
+#### Nacionalidade, País (`nationalityID`, `countryID`)
 
 | Identificador | Correspondência |
 | ------------- | --------------- |
 | 51            | Brasil          |
 
-#### Nacionalidade (Estado), Estado do órgão emissor, Estado do Gravame (`birthplaceLevel1AdminDivID`, `ufID`, `lienStateID`):
+#### Nacionalidade (Estado), Estado do órgão emissor, Estado do Gravame (`birthplaceLevel1AdminDivID`, `ufID`, `lienStateID`)
 
 Padrão de API:
 
@@ -1838,7 +1838,7 @@ Exemplo de resposta:
 ]
 ```
 
-#### Nacionalidade (Cidade) (`birthplaceLevel2AdminDivID`):
+#### Nacionalidade (Cidade) (`birthplaceLevel2AdminDivID`)
 
 Padrão de API:
 
@@ -1876,7 +1876,7 @@ Exemplo de resposta:
 ]
 ```
 
-#### Estado civil (`civilStatusID`):
+#### Estado civil (`civilStatusID`)
 
 | Identificador | Correspondência                     |
 | ------------- | ----------------------------------- |
@@ -1890,7 +1890,7 @@ Exemplo de resposta:
 | 53            | Casado com separação total de bens  |
 | 54            | União estável                       |
 
-#### Escolaridade (`educationLevelID`):
+#### Escolaridade (`educationLevelID`)
 
 | Identificador | Correspondência        |
 | ------------- | ---------------------- |
@@ -1904,7 +1904,7 @@ Exemplo de resposta:
 | 8             | Analfabeto             |
 | 9             | Doutorado              |
 
-#### Sexo (`sexID`):
+#### Sexo (`sexID`)
 
 | Identificador | Correspondência      |
 | ------------- | -------------------- |
@@ -1912,7 +1912,7 @@ Exemplo de resposta:
 | 2             | Prefiro não informar |
 | 3             | Feminino             |
 
-#### Tipo de link social (`social-network-types`):
+#### Tipo de link social (`social-network-types`)
 
 | Identificador | Correspondência      |
 | ------------- | -------------------- |
@@ -1925,7 +1925,7 @@ Exemplo de resposta:
 | 57            | Pinterest            |
 | 58            | X (Twitter)          |
 
-#### Tipo de conta (`accountTypeID`):
+#### Tipo de conta (`accountTypeID`)
 
 | Identificador | Correspondência     |
 | ------------- | ------------------- |
@@ -1936,7 +1936,7 @@ Exemplo de resposta:
 | 5             | Conta de pagamento  |
 | 6             | Conta universitária |
 
-#### Tipo de chave PIX da conta (`accountPixKeyTypeID`):
+#### Tipo de chave PIX da conta (`accountPixKeyTypeID`)
 
 | Identificador | Correspondência |
 | ------------- | --------------- |
@@ -1946,7 +1946,7 @@ Exemplo de resposta:
 | 4             | CPF             |
 | 5             | Chave aleatória |
 
-#### Banco (`bankID`):
+#### Banco (`bankID`)
 
 Padrão de API:
 
@@ -1994,7 +1994,7 @@ Exemplo de resposta:
 ]
 ```
 
-#### Profissão (`professionID`):
+#### Profissão (`professionID`)
 
 Padrão de API:
 
@@ -2034,14 +2034,14 @@ Exemplo de resposta:
 ]
 ```
 
-#### Tipo de vínculo societário (businessPartnerTypeID):
+#### Tipo de vínculo societário (`businessPartnerTypeID`)
 
 | Identificador | Correspondência |
 | ------------- | --------------- |
 | 1             | Representante   |
 | 2             | Sócio           |
 
-#### Tipo de vínculo (`relationshipTypeID`):
+#### Tipo de vínculo (`relationshipTypeID`)
 
 | Identificador | Correspondência      | Tipo de Avalista |
 | ------------- | -------------------- | ---------------- |
@@ -2060,13 +2060,13 @@ Exemplo de resposta:
 | 53            | Outro                | PERSON           |
 | 54            | Sócio                | PERSON           |
 
-#### Modalidade de garantia (`collateralTypeID`):
+#### Modalidade de garantia (`collateralTypeID`)
 
 | Identificador | Correspondência      |
 | ------------- | -------------------- |
 | 1             | Alienação fiduciária |
 
-#### Tipo de outras garantias (`asset-types`):
+#### Tipo de outras garantias (`asset-types`)
 
 | Identificador | Correspondência                   |
 | ------------- | --------------------------------- |
@@ -2093,7 +2093,7 @@ Exemplo de resposta:
 
 Nossa API para o envio de informações de veículos em garantia adere estritamente à [**tabela Fipe**](https://veiculos.fipe.org.br/). Portanto, por favor, siga esta sequência de ordenação para extrair os dados com precisão e formate sua requisição adequadamente.
 
-#### 1 - Tipo de veículo (`vehicle-types`):
+#### 1 - Tipo de veículo (`vehicle-types`)
 
 Padrão de API:
 
@@ -2129,7 +2129,7 @@ Exemplo de resposta:
 ]
 ```
 
-#### 2 - Marca do veículo (`brands`):
+#### 2 - Marca do veículo (`brands`)
 
 Padrão de API:
 
@@ -2170,7 +2170,7 @@ Exemplo de resposta:
 ]
 ```
 
-#### 3 - Modelo do veículo (`models`):
+#### 3 - Modelo do veículo (`models`)
 
 Padrão de API:
 
@@ -2230,7 +2230,7 @@ Exemplo de resposta:
 ]
 ```
 
-#### 4 - Ano do modelo do veículo (`years`):
+#### 4 - Ano do modelo do veículo (`years`)
 
 Padrão de API:
 
@@ -2321,7 +2321,7 @@ Exemplo de resposta:
 ]
 ```
 
-#### 5 - Tipo de combustível do veículo (`fuel-types`):
+#### 5 - Tipo de combustível do veículo (`fuel-types`)
 
 Padrão de API:
 
@@ -2353,7 +2353,7 @@ Exemplo de resposta:
 }
 ```
 
-#### Pessoas relacionadas da operação:
+#### Pessoas relacionadas da operação
 
 :::info Atributos importantes para requisição
 
