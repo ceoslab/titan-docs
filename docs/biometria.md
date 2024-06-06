@@ -31,7 +31,7 @@ Para o cadastro básico de uma pessoa dentro do Titan, siga os parâmetros de en
 | [Identificador da nacionalidade](#nacionalidade-país-nationalityid-countryid) | `nationalityID` | Não | Number | - |
 | [Identificador do Estado de nascimento](#nacionalidade-estado-estado-do-órgão-emissor-estado-do-gravame-birthplacelevel1admindivid-ufid-lienstateid) | `birthplaceLevel1AdminDivID` | Não | Number | - |
 | [Identificador da Cidade de nascimento](#nacionalidade-cidade-birthplacelevel2admindivid) | `birthplaceLevel2AdminDivID` | Não | Number | - |
-| Patrimônio líquido | `netWorth` | Sim | Number | - |
+| Patrimônio líquido | `netWorth` | Não | Number | - |
 | [Contas bancárias](#accounts-parâmetros-de-envio) | `accounts` | Não | Array | - |
 | [Links sociais](#socialnetworks-parâmetros-de-envio) | `socialNetworks` | Não | Array | - |
 | [Documentos adicionais](#additionaldocuments-parâmetros-de-envio) | `additionalDocuments` | Não | Array | - |
@@ -300,7 +300,7 @@ Para uma compreensão mais clara de cada ID mencionado acima, visite a seção d
 
 ### 🔗 Link da jornada de validação biométrica
 
-Por padrão, ao enviar a solicitação de validação biométrica, a pessoa que você deseja validar receberá automaticamente o link em seu e-mail cadastrado. Você também pode obter o link da jornada que a pessoa deve percorrer para compartilhamento externo. Siga as instruções abaixo:
+Por padrão, ao enviar a solicitação de validação biométrica, a pessoa que você deseja validar receberá automaticamente o link em seu e-mail e telefone celular cadastrados <b>(caso você opte por não enviar automaticamente o e-mail e SMS, entre em contato com *suporte@ceoslab.com.br* para tal configuração)</b>. Você também pode obter o link da jornada que a pessoa deve percorrer para compartilhamento externo. Siga as instruções abaixo:
 
 #### Padrão de API
 
@@ -326,25 +326,169 @@ GET https://{empresa}.titan.ceoslab.app/api/operation-signatures/7602/biometry/l
 
 Para validar a prova de vida, o CPF Match e a Biometria, pode ser necessário solicitar alguns documentos à pessoa que irá realizar o processo. Após a conclusão da jornada, você pode acessar essa documentação seguindo as rotas indicadas abaixo:
 
-#### Padrão de API
+#### Passo 1: Consultar os identificadores de cada documento
+
+##### Padrão de API
 
 ```js
 GET {{ _.base_url }}/api/operations-signatures-attachments?filters[operationSignatureID][$eq]={operation-signature-id}
 ```
 
-#### Exemplo de rota
+##### Exemplo de rota
 
 ```js
 GET https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments?filters[operationSignatureID][$eq]=4252
 ```
 
-#### Exemplo de resposta
+##### Exemplo de resposta
 
 ```bash showLineNumbers
 {
-    Em desenvolvimento...
+	"content": [
+		{
+			# highlight-next-line
+			"id": 4251,
+			"createdAt": "2024-06-06T13:52:59.692966Z",
+			"updatedAt": "2024-06-06T13:52:59.692971Z",
+			"createdByID": null,
+			"updatedByID": null,
+			"enabled": true,
+			"attachmentID": 12101,
+			"attachment": {
+				"id": 12101,
+				"createdAt": "2024-06-06T13:52:59.689091Z",
+				"updatedAt": "2024-06-06T13:52:59.689096Z",
+				"createdByID": null,
+				"updatedByID": null,
+				"enabled": true,
+				"dueDate": null,
+				"uid": "1717681979-511b4545-821a-48c8-8731-3d18f1cd2264",
+				"filename": "CNH.pdf",
+				"size": 169017,
+				"mimeType": "application/pdf",
+				"attachmentTypeID": null,
+				"attachmentType": null,
+				"visible": true,
+				"sha256sum": "b5029f69d5ec18f678862745947c2d9157792e16aef4562dad5996efe9507ff4"
+			},
+			"visible": null,
+			"operationSignatureID": 4351,
+			# highlight-next-line
+			"unicoDocumentType": "DRIVER_LICENSE",
+			"personID": null,
+			"person": null
+		},
+		{
+			# highlight-next-line
+			"id": 4252,
+			"createdAt": "2024-06-06T13:53:00.217097Z",
+			"updatedAt": "2024-06-06T13:53:00.217102Z",
+			"createdByID": null,
+			"updatedByID": null,
+			"enabled": true,
+			"attachmentID": 12102,
+			"attachment": {
+				"id": 12102,
+				"createdAt": "2024-06-06T13:53:00.213725Z",
+				"updatedAt": "2024-06-06T13:53:00.213731Z",
+				"createdByID": null,
+				"updatedByID": null,
+				"enabled": true,
+				"dueDate": null,
+				"uid": "1717681980-29357e94-e7e2-45a6-89a0-de0fd26872bb",
+				"filename": "Termo de Consentimento.pdf",
+				"size": 102742,
+				"mimeType": "application/pdf",
+				"attachmentTypeID": null,
+				"attachmentType": null,
+				"visible": true,
+				"sha256sum": "3827671813af4ba79a103b7eb344624fb6e883b6cdae12031ad39f0cb743c9a6"
+			},
+			"visible": null,
+			"operationSignatureID": 4351,
+			# highlight-next-line
+			"unicoDocumentType": "CONSENT_TERM",
+			"personID": null,
+			"person": null
+		},
+		{
+			# highlight-next-line
+			"id": 4253,
+			"createdAt": "2024-06-06T13:53:00.611733Z",
+			"updatedAt": "2024-06-06T13:53:00.611737Z",
+			"createdByID": null,
+			"updatedByID": null,
+			"enabled": true,
+			"attachmentID": 12103,
+			"attachment": {
+				"id": 12103,
+				"createdAt": "2024-06-06T13:53:00.610683Z",
+				"updatedAt": "2024-06-06T13:53:00.610688Z",
+				"createdByID": null,
+				"updatedByID": null,
+				"enabled": true,
+				"dueDate": null,
+				"uid": "1717681980-f159745e-2dc2-417d-ab63-f680842cc2f2",
+				"filename": "Foto do Cliente.png",
+				"size": 35790,
+				"mimeType": "image/png",
+				"attachmentTypeID": null,
+				"attachmentType": null,
+				"visible": true,
+				"sha256sum": "4a06074aa842907175eb310cae69e079a02e7f3a4fcbefebfbde75940828e571"
+			},
+			"visible": null,
+			"operationSignatureID": 4351,
+			# highlight-next-line
+			"unicoDocumentType": "CUSTOMER_PHOTO",
+			"personID": null,
+			"person": null
+		}
+	],
+	"pageable": {
+		"pageNumber": 0,
+		"pageSize": 20,
+		"sort": {
+			"empty": true,
+			"sorted": false,
+			"unsorted": true
+		},
+		"paged": true,
+		"unpaged": false
+	},
+	"totalElements": 3,
+	"numberOfElements": 3,
+	"totalPages": 1,
+	"size": 20,
+	"first": true,
+	"last": true,
+	"number": 0
 }
 ```
+
+:::warning Atenção
+
+Para fazer o download dos documentos, será necessário ter em mãos o identificador de cada um (`documentID`), conforme destacado no exemplo de resposta acima. No objeto, você também encontrará o tipo de documento especificado, identificado como `unicoDocumentType`. Consulte todos os possíveis tipos de retorno desse atributo [aqui](#tipos-de-documentos-unicodocumenttype).
+
+:::
+
+#### Passo 2: Baixar o documento através do seu identificador
+
+##### Padrão de API
+
+```js
+GET {{ _.base_url }}/api/operations-signatures-attachments/{documentID}/download
+```
+
+##### Exemplo de rota
+
+```js
+GET https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments/4251/download
+```
+
+##### Exemplo de resposta
+
+![Exemplo de CNH](./assets/cnh-exemple.png)
 
 ---
 
@@ -519,3 +663,43 @@ Na tabela a seguir tem-se o detalhamento de cada faixa do score com as respectiv
 | Neutro | 0 | Não fornece provas suficientes para concluir que a pessoa da foto é a proprietária do CPF | Negar o cadastro e solicitar ao cliente uma nova captura com a foto do titular do CPF |
 | Negativo | Entre -1 e -39	| Fornece menos evidências de que a pessoa da foto não é a proprietária do CPF | Avaliar os riscos envolvidos para tomar uma decisão |
 | Negativo | Entre -40 e -100 | Fornece evidências suficientes de que o registro não pertence ao titular do CPF	| Negar o cadastro |
+
+#### Tipos de documentos (`unicoDocumentType`)
+
+| Identificador | Correspondência |
+| ----- | ----- |
+| `ADDRESS_PROOF` | Comprovante de Endereço |
+| `BIRTH_CERTIFICATE` | Certidão de Nascimento |
+| `CNPJ_CARD` | Cartão CNPJ |
+| `CONSENT_TERM` | Termo de Consentimento |
+| `CONTRACT_PROPOSAL` | Proposta de Contrato |
+| `CPF` | CPF |
+| `CTPS` | CTPS |
+| `CUSTOMER_PHOTO` | Foto do Cliente |
+| `DEATH_CERTIFICATE` | Certidão de Óbito |
+| `DIGITAL_DRIVER_LICENSE` | CNH Digital |
+| `DIGITAL_SIGNATURE` | Assinatura Digital |
+| `DRIVER_LICENSE` | CNH |
+| `DRIVER_LICENSE_BACK` | CNH Verso |
+| `DRIVER_LICENSE_FRONT` | CNH Frente |
+| `GUARANTEE_PROPOSAL` | Proposta de Garantia |
+| `IDENTITY_CARD` | RG |
+| `IDENTITY_CARD_BACK` | RG Verso |
+| `IDENTITY_CARD_FRONT` | RG Frente |
+| `INCOME_PROOF` | Comprovante de Renda |
+| `INCOME_TAX` | Imposto de Renda |
+| `INSURANCE_PROPOSAL` | Proposta de Seguro |
+| `MARRIAGE_CERTIFICATE` | Certidão de Casamento |
+| `MEDICAL_LICENSE_BACK` | CRM Verso |
+| `MEDICAL_LICENSE_FRONT` | CRM Frente |
+| `MILITARY_ID_BACK` | Identidade Militar Verso |
+| `MILITARY_ID_FRONT` | Identidade Militar Frente |
+| `PAC` | Pac |
+| `PASSPORT` | Passaporte |
+| `PROFESSIONAL_ID` | Identidade de Classe |
+| `PROPOSAL` | Proposta |
+| `SOCIAL_CONTRACT` | Contrato Social |
+| `TAD` | TAD |
+| `UNKNOWN` | Desconhecido |
+| `VOUCHER` | Voucher |
+| `WORK_ID` | Carteira de Trabalho |
