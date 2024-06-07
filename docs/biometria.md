@@ -39,6 +39,12 @@ Para o cadastro básico de uma pessoa dentro do Titan, siga os parâmetros de en
 | [Endereço](#address-parâmetros-de-envio) | `address` | Não | Object | - |
 | Identificador(es) dos anexos da pessoa | `personAttachmentIDs` | Não | Number | - |
 
+:::warning Atenção
+
+Os campos `email` e `mobilePhoneNumber` não são obrigatórios para a criação da pessoa. No entanto, para o envio da biometria, é necessário que pelo menos um desses campos esteja preenchido, garantindo assim que a biometria possa ser entregue ao destinatário.
+
+:::
+
 #### Padrão de API
 
 ```js
