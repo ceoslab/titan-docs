@@ -535,13 +535,13 @@ Dentro do seu ambiente, na interface do Titan, você pode configurar o padrão d
 ##### Padrão de API
 
 ```js
-POST {{ _.base_url }}/api/operation-signature-subscribers/{operationSignatureSubscriberID}/evaluation-biometry
+POST {{ _.base_url }}/api/operation-signature-subscribers/{operationSignatureSubscriberID}/evaluate-biometry
 ```
 
 ##### Exemplo de rota
 
 ```js
-POST https://{empresa}.titan.ceoslab.app/api/operation-signature-subscribers/7602/evaluation-biometry
+POST https://{empresa}.titan.ceoslab.app/api/operation-signature-subscribers/7602/evaluate-biometry
 ```
 
 ##### Exemplo de requisição
