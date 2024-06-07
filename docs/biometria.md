@@ -283,8 +283,18 @@ GET https://{empresa}.titan.ceoslab.app/api/operation-signatures/4252/status
 			"createdAt": "2024-06-05T16:54:12.451026Z",
 			"updatedAt": "2024-06-05T16:54:12.451031Z",
 			"createdByID": null,
-			"updatedByID": null
-		}
+			"updatedByID": null,
+			"biometryProcessID": 10001,
+			"biometryProcess": {
+				"id": 10001,
+				"processID": "43d09cbc-e09f-4abd-805b-e1393807b8ab",
+				# highlight-next-line
+				"operationSignatureSubscriberID": 7602,
+				"parametrizationResult": "A",
+				"manualResult": null,
+				"resolvedManuallyByID": 2761,
+				"completedAt": "2024-06-05T16:58:45.451026Z"
+			}
 	],
 	"envelopeStatus": null,
 	"envelopeUUID": null,
@@ -294,7 +304,7 @@ GET https://{empresa}.titan.ceoslab.app/api/operation-signatures/4252/status
 
 :::info Representação dos campos
 
-Para uma compreensão mais clara de cada ID mencionado acima, visite a seção de [Mapeamento de atributos](#etapa-atual-currentstep) para obter a representação exata dos tipos de resposta dessa API.
+Para uma compreensão mais clara de cada identificador mencionado acima, visite a seção de [Mapeamento de atributos](#etapa-atual-currentstep) para obter a representação exata dos tipos de resposta dessa API.
 
 :::
 
@@ -490,6 +500,116 @@ GET https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments/42
 
 ![Exemplo de CNH](./assets/cnh-exemple.png)
 
+### 📋 Avaliação da biometria com base na parametrização de Score configurada
+
+:::warning Atenção!
+
+Você terá a opção de avaliar a biometria recebida quando o atributo `parametrizationResult` for igual a `E` = Avaliar risco, na [resposta da consulta](#exemplo-de-resposta-2).
+
+:::
+
+Dentro do seu ambiente, na interface do Titan, você pode configurar o padrão de análise dos Scores biométricos através do valor obtido em uma validação. Em seu menu, vá em <b><u>Configurações > Score biométrico</u></b>.
+
+##### Os padrões são:
+
+| Score | Ação |
+| ----- | ----- |
+| Entre +50 e +100 | Aprovado |
+| Entre +1 e +49 | Avaliar risco |
+| 0 | Negado |
+| Entre -1 e -39 | Avaliar risco |
+| Entre -40 e -100 | Negado |
+
+##### Parâmetros de envio
+
+| Atributo| Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+| [Ação a ser tomada](#ações-action) | `action` | Sim | `A` ou `R` | - |
+
+##### Padrão de API
+
+```js
+POST {{ _.base_url }}/api/operation-signature-subscribers/{operationSignatureSubscriberID}/evaluation-biometry
+```
+
+##### Exemplo de rota
+
+```js
+POST https://{empresa}.titan.ceoslab.app/api/operation-signature-subscribers/7602/evaluation-biometry
+```
+
+##### Exemplo de requisição
+
+```bash showLineNumbers
+{
+	"action": "A"
+}
+```
+
+##### Exemplo de resposta
+
+```bash showLineNumbers
+{
+	"id": 10001,
+	"processID": "43d09cbc-e09f-4abd-805b-e1393807b8ab",
+	"operationSignatureSubscriberID": 7602,
+	"parametrizationResult": “E”,
+	"manualResult": "A",
+	"resolvedManuallyByID": 2761,
+	"completedAt": "2024-05-29T14:37:52.486863Z"
+}
+```
+
+:::info Mapeamento dos atributos
+
+Consulte todos os possíveis tipos de retorno dos atributos `parametrizationResult` e `manualResult` [aqui](#ações-action).
+
+:::
+
+### 🔄 Reenviar validação de biometria
+
+Se alguma validação biométrica chegou de forma suspeita, se a validação já realizada expirou conforme o prazo estipulado pela instituição, ou se você deseja que seja feita uma nova validação, você pode reenviar a validação biométrica para qualquer pessoa a qualquer momento, seguindo as diretrizes abaixo:
+
+##### Parâmetros de envio
+
+| Atributo| Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+| Template | `template` | Sim | String | - |
+
+##### Padrão de API
+
+```js
+POST {{ _.base_url }}/api/operation-signature-subscribers/{operationSignatureSubscriberID}/resend-biometry
+```
+
+##### Exemplo de rota
+
+```js
+POST https://{empresa}.titan.ceoslab.app/api/operation-signature-subscribers/7602/resend-biometry
+```
+
+##### Exemplo de requisição
+
+```bash showLineNumbers
+{
+	"template": "EMPRESA_VALIDACAO_BIOMETRICA_ONBOARDING"
+}
+```
+
+##### Exemplo de resposta
+
+```bash showLineNumbers
+{
+	"id": 10001,
+	"processID": "c561a6f2-2d46-4a3d-89e6-7d07d95c6d54",
+	"operationSignatureSubscriberID": 7602,
+	"parametrizationResult": null,
+	"manualResult": null,
+	"resolvedManuallyByID": null,
+	"completedAt": null
+}
+```
+
 ---
 
 ## Mapeamento de atributos
@@ -642,7 +762,7 @@ Este atributo corresponde a qual etapa da jornada de validação biométrica a p
 
 :::warning Atenção
 
-Lembrando que o Score só é exibido após o `currentStep` constar como "Processo finalizado".
+Lembrando que o <b>Score</b> só é exibido após o `currentStep` constar como `99` = Processo finalizado.
 
 :::
 
@@ -703,3 +823,18 @@ Na tabela a seguir tem-se o detalhamento de cada faixa do score com as respectiv
 | `UNKNOWN` | Desconhecido |
 | `VOUCHER` | Voucher |
 | `WORK_ID` | Carteira de Trabalho |
+
+#### Resultado obtido conforme parametrização (`parametrizationResult`)
+
+| Identificador | Correspondência |
+| ----- | ----- |
+| A | Aprovado |
+| E | Pendente Validação Biométrica |
+| R | Negado |
+
+#### Ações (`action`)
+
+| Identificador | Correspondência |
+| ----- | ----- |
+| A | Aprovado |
+| R | Negado |
