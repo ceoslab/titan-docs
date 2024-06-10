@@ -214,7 +214,6 @@ O template para uso externo nas operações de crédito é fornecido aos adminis
 
 ```bash showLineNumbers
 {
-    # highlight-next-line
 	"id": 4252,
 	"createdAt": "2024-03-10T16:54:11.964333Z",
 	"updatedAt": "2024-03-10T16:54:11.964339Z",
@@ -233,6 +232,7 @@ O template para uso externo nas operações de crédito é fornecido aos adminis
 			"enabled": true,
 			"operationID": null,
 			"processID": "43d09cbc-e09f-4abd-805b-e1393807b8ab",
+			# highlight-next-line
 			"operationSignatureID": 4252,
 			"unicoCheckSignatureFinished": null,
 			"envelopeStatus": null,
@@ -510,7 +510,7 @@ GET https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments/42
 
 :::warning Atenção!
 
-Você terá a opção de avaliar a biometria recebida quando o atributo `parametrizationResult` for igual a `E` = Avaliar risco, na [resposta da consulta](#exemplo-de-resposta-2).
+Você deverá avaliar a biometria recebida quando o atributo `parametrizationResult` for igual a `E` = Avaliar risco, na [resposta da consulta](#exemplo-de-resposta-2). Isso garantirá que o cadastro biométrico da pessoa não fique bloqueado.
 
 :::
 
