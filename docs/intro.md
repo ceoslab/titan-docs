@@ -33,9 +33,9 @@ Explore a documentação para encontrar guias detalhados, exemplos práticos e r
 
 Esta seção da documentação é dedicada a orientá-lo no processo de autenticação no Titan CaaS. Garantimos que sua experiência seja suave e segura, permitindo que você se concentre no desenvolvimento de soluções financeiras inovadoras.
 
-#### [📢 Webhook](/docs/webhook.md)
+#### [🔍 Biometria](/docs/biometria.md)
 
-Esta seção da documentação é dedicada a orientá-lo no processo de integração com **Webhooks** no Titan CaaS. Principal objetivo aqui é que você se concentre na implementação de soluções inovadoras por meio de notificações e comunicações eficientes.
+Esta seção tem como propósito detalhar os atributos essenciais para a ativação da validação biométrica e da prova de vida. Confira o fluxo necessário para o envio e como coletar os dados resultantes dessa solicitação.
 
 #### [💳 Operação](/operacao/)
 
@@ -44,3 +44,7 @@ Esta seção da documentação é dedicada a orientá-lo no processo de integra�
 - [**Documentos da operação:**](/docs/operacao/documentos.md) Incorporação de documentação em uma operação específica, fornecendo anexos informativos para aprofundar a compreensão das pessoas ou empresas envolvidas na operação, juntamente com suas particularidades.
 
 Estes recursos visam tornar a experiência de gerenciamento de operações no Titan CaaS mais intuitiva, ágil e adaptável às demandas específicas da sua operação financeira.
+
+#### [📢 Webhook](/docs/webhook.md)
+
+Esta seção da documentação é dedicada a orientá-lo no processo de integração com **Webhooks** no Titan CaaS. Principal objetivo aqui é que você se concentre na implementação de soluções inovadoras por meio de notificações e comunicações eficientes.

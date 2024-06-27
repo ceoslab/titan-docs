@@ -514,7 +514,7 @@ Você deverá avaliar a biometria recebida quando o atributo `parametrizationRes
 
 :::
 
-Dentro do seu ambiente, na interface do Titan, você pode configurar o padrão de análise dos Scores biométricos através do valor obtido em uma validação. Em seu menu, vá em <b><u>Configurações > Score biométrico</u></b>.
+Dentro do seu ambiente, na interface do Titan, você pode configurar o padrão de análise dos Scores biométricos através do valor obtido em uma validação. Em seu menu, vá em <b><u>Configurações > Biometria</u></b>.
 
 ##### Os padrões são:
 
