@@ -52,7 +52,7 @@ POST https://{empresa}.titan.ceoslab.app/api/person-attachments/2760/upload
 ```bash showLineNumbers
 {
     "file": "FILE(form-data)",
-    "attachmentTypeID": 51,
+    "attachmentTypeID": 18,
     "dueDate": "2025-01-01",
     "visible": true
 }
@@ -74,7 +74,7 @@ POST https://{empresa}.titan.ceoslab.app/api/person-attachments/2760/upload
     "filename": "imagem-pessoa-teste.jpeg",
     "size": 262009,
     "mimeType": "image/jpeg",
-    "attachmentTypeID": 51,
+    "attachmentTypeID": 18,
     "attachmentType": null,
     "visible": true,
     "sha256sum": "ee8d0b3fe537830ae4665824fb35d11944d7a937ecc0d5b16a3d2d4b8c0765f8"
@@ -119,7 +119,7 @@ POST https://{empresa}.titan.ceoslab.app/api/company-attachments/1551/upload
 ```bash showLineNumbers
 {
     "file": "FILE(form-data)",
-    "attachmentTypeID": 51,
+    "attachmentTypeID": 18,
     "dueDate": "2025-01-01",
     "visible": true
 }
@@ -141,7 +141,7 @@ POST https://{empresa}.titan.ceoslab.app/api/company-attachments/1551/upload
     "filename": "imagem-empresa-teste.jpeg",
     "size": 647284,
     "mimeType": "image/jpeg",
-    "attachmentTypeID": 51,
+    "attachmentTypeID": 18,
     "attachmentType": null,
     "visible": true,
     "sha256sum": "io8d0b3fe537830ae4665824fb35d11944d7a937ecc0d5b16a3d2d4b8c0765f8"
@@ -186,7 +186,7 @@ POST https://{empresa}.titan.ceoslab.app/api/collateral-attachments/1298/upload
 ```bash showLineNumbers
 {
     "file": "FILE(form-data)",
-    "attachmentTypeID": 51,
+    "attachmentTypeID": 18,
     "dueDate": "2025-01-01",
     "visible": true
 }
@@ -208,7 +208,7 @@ POST https://{empresa}.titan.ceoslab.app/api/collateral-attachments/1298/upload
     "filename": "imagem-garantia-teste.jpeg",
     "size": 206017,
     "mimeType": "image/jpeg",
-    "attachmentTypeID": 51,
+    "attachmentTypeID": 18,
     "attachmentType": null,
     "visible": true,
     "sha256sum": "fg8d0b3fe537830ae4665824fb35d11944d7a937ecc0d5b16a3d2d4b8c0765f8"
@@ -430,7 +430,7 @@ POST https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments/u
 ```bash showLineNumbers
 {
     "file": "FILE(form-data)",
-    "attachmentTypeID": 51,
+    "attachmentTypeID": 18,
     "dueDate": "2025-01-01",
     "subscriberID": 2052
 }
@@ -500,9 +500,9 @@ GET https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments?fi
                 "filename": "Contrato-assinado.pdf",
                 "size": 32440,
                 "mimeType": "application/pdf",
-                "attachmentTypeID": 51,
+                "attachmentTypeID": 18,
                 "attachmentType": {
-                    "id": 51,
+                    "id": 18,
                     "text": "OUTRO",
                     "enabled": true
                 },
@@ -589,17 +589,17 @@ Exemplo de resposta:
 ```bash showLineNumbers
 [
     {
-        "id": 10,
-        "text": "COMPROVANTE DE RENDA",
+        "id": 1,
+        "text": "EXTRATO BANCÁRIO",
         "enabled": true
     },
     {
-        "id": 16,
-        "text": "DOCUMENTO COM FOTO",
+        "id": 2,
+        "text": "SELFIE COM DOCUMENTO",
         "enabled": true
     },
     {
-        "id": 51,
+        "id": 18,
         "text": "OUTRO",
         "enabled": true
     },
