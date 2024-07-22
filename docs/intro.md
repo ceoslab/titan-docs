@@ -45,6 +45,10 @@ Esta seção tem como propósito detalhar os atributos essenciais para a ativaç
 
 Estes recursos visam tornar a experiência de gerenciamento de operações no Titan CaaS mais intuitiva, ágil e adaptável às demandas específicas da sua operação financeira.
 
+#### [🗂️ Cessão](/docs/cessao.md)
+
+Esta seção tem o objetivo de detalhar o processo de criação de uma Cessão de Crédito. Aqui, você aprenderá a selecionar a cessionária para a qual deseja ceder uma ou várias operações, além de enviar as taxas, encargos, a documentação necessária e todos os passos envolvidos na cessão de crédito por meio do Titan.
+
 #### [📢 Webhook](/docs/webhook.md)
 
 Esta seção da documentação é dedicada a orientá-lo no processo de integração com **Webhooks** no Titan CaaS. Principal objetivo aqui é que você se concentre na implementação de soluções inovadoras por meio de notificações e comunicações eficientes.

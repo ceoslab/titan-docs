@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # 🚩 Criação
 
-No contexto do Titan CaaS, a **criação de operação** representa o ponto de partida para a originação de solicitações de crédito, empréstimos e outras transações financeiras.
+No contexto do Titan, a **criação de operação** representa o ponto de partida para a originação de solicitações de crédito, empréstimos e outras transações financeiras.
 
 Essa funcionalidade permite que as instituições financeiras iniciem e personalizem cada operação de maneira singular, estabelecendo parâmetros específicos e requisitos detalhados para o processo em questão.
 
@@ -1437,13 +1437,13 @@ Você vai precisar listar as [pessoas relacionadas](#pessoas-relacionadas-da-ope
 
 | Atributo               | Correspondência    | Obrigatoriedade | Tipo de dado                                                                                       | Valor padrão |
 | ---------------------- | ------------------ | --------------- | -------------------------------------------------------------------------------------------------- | ------------ |
-| ID da operação         | `operationID`      | Sim             | Number                                                                                             | -            |
+| Identificador da operação         | `operationID`      | Sim             | Number                                                                                             | -            |
 | Valor                  | `value`            | Sim             | Number                                                                                             | -            |
-| ID da pessoa           | `personID`         | Não             | Number                                                                                             | `null`       |
-| ID da empresa          | `companyID`        | Não             | Number                                                                                             | `null`       |
+| Identificador da pessoa           | `personID`         | Não             | Number                                                                                             | `null`       |
+| Identificador da empresa          | `companyID`        | Não             | Number                                                                                             | `null`       |
 | Favorecido             | `type`             | Sim             | `MAIN_COMPANY`, `CUSTOMER`, `GUARANTOR`, `INSURANCE_COMPANY`, `AGENCY_OFFICE`, `BROKERAGE_COMPANY` | -            |
-| ID da conta da pessoa  | `personAccountID`  | Não             | Number                                                                                             | `null`       |
-| ID da conta da empresa | `companyAccountID` | Não             | Number                                                                                             | `null`       |
+| Identificador da conta da pessoa  | `personAccountID`  | Não             | Number                                                                                             | `null`       |
+| Identificador da conta da empresa | `companyAccountID` | Não             | Number                                                                                             | `null`       |
 
 #### Exemplo de requisição
 
@@ -1493,6 +1493,113 @@ Você vai precisar listar as [pessoas relacionadas](#pessoas-relacionadas-da-ope
     "companyAccountID": 801
 }
 ```
+
+---
+
+## Status
+
+Com esta rota, você pode alterar o status de uma operação. É importante observar que alguns status executam automaticamente ações de validação e/ou geração de contas a pagar/receber. Confira mais detalhes [aqui](#status-da-operação-operationstatusid).
+
+#### Parâmetros de envio
+
+| Atributo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ----- | ----- | ----- | ----- | ----- |
+| [Identificador do status da operação](#status-da-operação-operationstatusid) | `operationStatusID` | Sim | Number | - |
+
+
+#### Padrão de API
+
+```js
+PUT {{ _.base_url }}/api/operations/{operationID}/status
+```
+
+#### Exemplo de rota
+
+```js
+PUT https://{empresa}.titan.ceoslab.app/api/operations/9351/status
+```
+
+#### Exemplo de requisição
+
+```bash showLineNumbers
+{
+	operationStatusID: 17;
+}
+```
+
+#### Exemplo de resposta
+
+```bash showLineNumbers
+{
+	"id": 9351,
+	"createdAt": "2024-07-12T17:30:33.65733Z",
+	"updatedAt": "2024-07-22T15:10:26.504029Z",
+	"createdByID": 2766,
+	"updatedByID": 2766,
+	"enabled": true,
+	"operationStatusID": 17,
+	"acceptanceDate": "2024-07-12",
+	"firstDueDate": "2024-07-15",
+	"installmentQuantity": 12,
+	"tfc": 300.00,
+	"tfcPct": null,
+	"monthlyInterestRate": 0.030000000000,
+	"iofRate": 0.000082000000,
+	"additionalIOFRate": 0.003800000000,
+	"totalIOFValue": 188.69,
+	"financedIOFValue": 192.21,
+	"gracePeriod": 3,
+	"monthlyTEC": 0.038915861252,
+	"yearlyTEC": 0.581118866793,
+	"requestedValue": 10000.00,
+	"totalValue": 12321.00,
+	"downPayment": 0.00,
+	"creditLifeInsurancePct": 0E-12,
+	"additionalInsuranceValue": 0.00,
+	"financeIOF": true,
+	"financeTFC": true,
+	"financeCreditLifeInsurance": true,
+	"financeAdditionalInsurance": false,
+	"inPersonSale": false,
+	"growthType": "EXPONENTIAL",
+	"installmentFactor": 10.222363330170,
+	"coefficient": 0.097824736580,
+	"installmentValueWithoutIOF": 1007.95,
+	"installmentValueWithIOF": 1026.75,
+	"financedValue": 10495.86,
+	"assetDescription": null,
+	"paymentFrequencyID": 51,
+	"paymentMethodID": 2,
+	"productVariantID": 4101,
+	"customerID": 1552,
+	"companyID": 1551,
+	"operationCode": 428,
+	"workflowExecutionID": 17054,
+	"lastDueDate": "2025-06-15",
+	"disbursementAmount": 10000.00,
+	"totalDisbursementAmount": 10000.00,
+	"creditLifeInsurance": 0.00,
+	"operationStatus": {
+		# highlight-next-line
+		"id": 17,
+		"createdAt": null,
+		"updatedAt": null,
+		"createdByID": null,
+		"updatedByID": null,
+		"enabled": true,
+		"text": "EM ASSINATURA",
+		"code": "EM_ASSINATURA",
+		"colorHex": "dcedf8",
+		"userChangeable": true,
+		"userSettable": true,
+		"enumCode": "ISG",
+		"index": 14
+	},
+	...
+}
+```
+
+---
 
 ## Mapeamento de atributos
 
@@ -1690,7 +1797,7 @@ Exemplo de resposta:
 		"createdByID": null,
 		"updatedByID": null,
 		"enabled": true,
-		"text": "Em análise",
+		"text": "EM ANÁLISE",
 		"code": "EM_ANALISE_ZXHDERO",
 		"colorHex": "4573ec33",
 		"operationCount": 3
@@ -1711,6 +1818,18 @@ Exemplo de resposta:
 	...
 ]
 ```
+
+:::warning Importante!
+
+Os seguintes status possuem ações automáticas associadas a eles, conforme o descritivo abaixo: 
+
+| Identificador | Correspondência | Ação |
+| ----- | ----- | ----- |
+| 17 | ASSINADO | Verifica se a operação estava "Em assinatura" e se foram anexados documentos referentes a ela. |
+| 22 | A PAGAR | Cria contas a pagar a partir do desembolso e contas a receber a partir das parcelas. É obrigatório que a operação tenha desembolso. |
+| 29 | CANCELADO | Cancela as contas a pagar/receber vinculadas se nenhuma delas tiver sido paga ainda. |
+
+:::
 
 #### Tipo de empresa (`companyType`)
 
