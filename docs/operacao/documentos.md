@@ -465,13 +465,13 @@ Após o envio dos documentos contratuais, você pode listar os anexos referente 
 #### Padrão de API:
 
 ```js
-GET {{ _.base_url }}/api/operations-signatures-attachments?filters[operationSignatureID][$eq]:{operationSignatureID}
+GET {{ _.base_url }}/api/operations-signatures-attachments?filters[operationSignatureID][$eq]={operationSignatureID}
 ```
 
 #### Exemplo de rota:
 
 ```js
-GET https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments?filters[operationSignatureID][$eq]:2204
+GET https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments?filters[operationSignatureID][$eq]=2204
 ```
 
 #### Exemplo de resposta
@@ -733,13 +733,13 @@ Exemplo de resposta:
 Padrão de API:
 
 ```js
-GET {{ _.base_url }}/api/operation-signature-subscribers?filters[operationID][$eq]:{operationID}
+GET {{ _.base_url }}/api/operation-signature-subscribers?filters[operationID][$eq]={operationID}
 ```
 
 Exemplo de rota:
 
 ```js
-GET https://{empresa}.titan.ceoslab.app/api/operation-signature-subscribers?filters[operationID][$eq]:5401
+GET https://{empresa}.titan.ceoslab.app/api/operation-signature-subscribers?filters[operationID][$eq]=5401
 ```
 
 Exemplo de resposta:
