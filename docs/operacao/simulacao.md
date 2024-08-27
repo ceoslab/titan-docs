@@ -19,7 +19,7 @@ Ao utilizar a criação de operação, as organizações podem adaptar estrategi
 | Tipo de cliente | ```customerType``` | Sim | ```PERSON``` ou ```COMPANY``` | - |
 | Valor solicitado | ```requestedValue``` | Sim | Number | - |
 | Quantidade de parcelas | ```installmentQuantity``` | Sim | Number | - |
-| Data do primeiro vencimento | ```firstDuoDate``` | Sim | Date | - |
+| Data do primeiro vencimento | ```firstDueDate``` | Sim | Date | - |
 | Optante por Simples Nacional | ```simplifiedTax``` | Não | ```true``` ou ```false``` | ```false``` |
 | Data de admissão | ```admissionDate``` | Não | Date | - |
 | Renda | ```income``` | Não | Number | - |
@@ -44,7 +44,7 @@ curl --request POST \
 	"customerType": "PERSON",
 	"requestedValue": 133.33,
 	"installmentQuantity": 12,
-	"firstDuoDate": "2024-01-16",
+	"firstDueDate": "2024-01-16",
 	"simplifiedTax": false,
 	"admissionDate": null,
 	"income": null,
@@ -68,7 +68,7 @@ curl --request POST \
 | Valor de parcela sem IOF | ```installmentValueWithoutIOF``` | Number |
 | Valor de parcela com IOF | ```installmentValueWithIOF``` | Number |
 | Quantidade de parcelas | ```installmentQuantity``` | Number |
-| Data do primeiro vencimento | ```firstDuoDate``` | Date |
+| Data do primeiro vencimento | ```firstDueDate``` | Date |
 | Data do último vencimento | ```lastDueDate``` | Date |
 | Taxa IOF | ```iofRate``` | Number |
 | Taxa adicinoal do IOF | ```additionalIOFRate``` | Number |
@@ -92,7 +92,7 @@ curl --request POST \
 	"installmentValueWithoutIOF": 13.67,
 	"installmentValueWithIOF": 13.9243,
 	"installmentQuantity": 12,
-	"firstDuoDate": "2024-01-16",
+	"firstDueDate": "2024-01-16",
 	"lastDueDate": "2024-12-16",
 	"iofRate": 0.000082,
 	"additionalIOFRate": 0.0038,
@@ -115,7 +115,7 @@ curl --request POST \
 | Tipo de cliente | ```customerType``` | Sim | ```PERSON``` ou ```COMPANY``` | - |
 | Valor solicitado | ```requestedValue``` | Sim | Number | - |
 | Quantidade de parcelas | ```installmentQuantity``` | Sim | Number | - |
-| Data do primeiro vencimento | ```firstDuoDate``` | Sim | Date | - |
+| Data do primeiro vencimento | ```firstDueDate``` | Sim | Date | - |
 | Optante por Simples Nacional | ```simplifiedTax``` | Não | ```true``` ou ```false``` | ```false``` |
 | Data de admissão | ```admissionDate``` | Não | Date | - |
 | Renda | ```income``` | Não | Number | - |
@@ -140,7 +140,7 @@ curl --request POST \
 	"customerType": "PERSON",
 	"installmentValue": 2500,
 	"requestedValue": 0,
-	"firstDuoDate": "2024-01-17",
+	"firstDueDate": "2024-01-17",
 	"simplifiedTax": false,
 	"admissionDate": null,
 	"originDate": "2000-02-01",
