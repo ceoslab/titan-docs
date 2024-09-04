@@ -615,10 +615,10 @@ Para listar quais identificadores você precisará para realizar o envio da sua 
 | [Identificador do Estado de nascimento](#nacionalidade-estado-identificador-do-estado-do-órgão-emissor-birthplacelevel1admindivid-ufid) | `birthplaceLevel1AdminDivID` | Não             | Number       | -            |
 | [Identificador da Cidade de nascimento](#nacionalidade-cidade-birthplacelevel2admindivid)                                               | `birthplaceLevel2AdminDivID` | Não             | Number       | -            |
 | Data de nascimento                                                                                                                      | `birthdate`                  | Sim             | Date         | -            |
-| [Identificador do estado civil](#estado-civil-civilstatusid)                                                                            | `civilStatusID`              | Sim             | Number       | -            |
+| [Identificador do estado civil](#estado-civil-civilstatusid)                                                                            | `civilStatusID`              | Não             | Number       | -            |
 | [Identificador da escolaridade](#escolaridade-educationlevelid)                                                                         | `educationLevelID`           | Não             | Number       | -            |
 | [Identificador do sexo](#sexo-sexid)                                                                                                    | `sexID`                      | Sim             | Number       | -            |
-| Patrimônio líquido                                                                                                                      | `netWorth`                   | Sim             | Number       | -            |
+| Patrimônio líquido                                                                                                                      | `netWorth`                   | Não             | Number       | -            |
 | [Contas bancárias](#accounts-parâmetros-de-envio)                                                                                       | `accounts`                   | Não             | Array        | -            |
 | [Links sociais](#socialnetworks-parâmetros-de-envio)                                                                                    | `socialNetworks`             | Não             | Array        | -            |
 | [Documentos adicionais](#additionaldocuments-parâmetros-de-envio)                                                                       | `additionalDocuments`        | Não             | Array        | -            |
@@ -1435,13 +1435,13 @@ Você vai precisar listar as [pessoas relacionadas](#pessoas-relacionadas-da-ope
 
 #### Parâmetros de envio
 
-| Atributo               | Correspondência    | Obrigatoriedade | Tipo de dado                                                                                       | Valor padrão |
-| ---------------------- | ------------------ | --------------- | -------------------------------------------------------------------------------------------------- | ------------ |
+| Atributo                          | Correspondência    | Obrigatoriedade | Tipo de dado                                                                                       | Valor padrão |
+| --------------------------------- | ------------------ | --------------- | -------------------------------------------------------------------------------------------------- | ------------ |
 | Identificador da operação         | `operationID`      | Sim             | Number                                                                                             | -            |
-| Valor                  | `value`            | Sim             | Number                                                                                             | -            |
+| Valor                             | `value`            | Sim             | Number                                                                                             | -            |
 | Identificador da pessoa           | `personID`         | Não             | Number                                                                                             | `null`       |
 | Identificador da empresa          | `companyID`        | Não             | Number                                                                                             | `null`       |
-| Favorecido             | `type`             | Sim             | `MAIN_COMPANY`, `CUSTOMER`, `GUARANTOR`, `INSURANCE_COMPANY`, `AGENCY_OFFICE`, `BROKERAGE_COMPANY` | -            |
+| Favorecido                        | `type`             | Sim             | `MAIN_COMPANY`, `CUSTOMER`, `GUARANTOR`, `INSURANCE_COMPANY`, `AGENCY_OFFICE`, `BROKERAGE_COMPANY` | -            |
 | Identificador da conta da pessoa  | `personAccountID`  | Não             | Number                                                                                             | `null`       |
 | Identificador da conta da empresa | `companyAccountID` | Não             | Number                                                                                             | `null`       |
 
@@ -1502,10 +1502,9 @@ Com esta rota, você pode alterar o status de uma operação. É importante obse
 
 #### Parâmetros de envio
 
-| Atributo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
-| [Identificador do status da operação](#status-da-operação-operationstatusid) | `operationStatusID` | Sim | Number | - |
-
+| Atributo                                                                     | Correspondência     | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ---------------------------------------------------------------------------- | ------------------- | --------------- | ------------ | ------------ |
+| [Identificador do status da operação](#status-da-operação-operationstatusid) | `operationStatusID` | Sim             | Number       | -            |
 
 #### Padrão de API
 
@@ -1821,13 +1820,13 @@ Exemplo de resposta:
 
 :::warning Importante!
 
-Os seguintes status possuem ações automáticas associadas a eles, conforme o descritivo abaixo: 
+Os seguintes status possuem ações automáticas associadas a eles, conforme o descritivo abaixo:
 
-| Identificador | Correspondência | Ação |
-| ----- | ----- | ----- |
-| 17 | ASSINADO | Verifica se a operação estava "Em assinatura" e se foram anexados documentos referentes a ela. |
-| 22 | A PAGAR | Cria contas a pagar a partir do desembolso e contas a receber a partir das parcelas. É obrigatório que a operação tenha desembolso. |
-| 29 | CANCELADO | Cancela as contas a pagar/receber vinculadas se nenhuma delas tiver sido paga ainda. |
+| Identificador | Correspondência | Ação                                                                                                                                |
+| ------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| 17            | ASSINADO        | Verifica se a operação estava "Em assinatura" e se foram anexados documentos referentes a ela.                                      |
+| 22            | A PAGAR         | Cria contas a pagar a partir do desembolso e contas a receber a partir das parcelas. É obrigatório que a operação tenha desembolso. |
+| 29            | CANCELADO       | Cancela as contas a pagar/receber vinculadas se nenhuma delas tiver sido paga ainda.                                                |
 
 :::
 
