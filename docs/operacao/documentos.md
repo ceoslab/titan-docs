@@ -18,13 +18,13 @@ Antes de vincular a documentação em uma operação, é necessário carregar o 
 
 #### Parâmetros de envio
 
-| Atributo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
-| Arquivo | ```file``` | Sim | Binary | - |
-| [Identificador da categoria do arquivo](#categoria-do-arquivo-attachmenttypeid) | ```attachmentTypeID``` | Sim | Number | - |
-| Data de vencimento | ```dueDate``` | Não | Date | - |
-| Visibilidade na esteira de crédito | ```visible``` | Sim | Boolean | - |
-| [Identificador da pessoa](#pessoa-personid) | ```personID``` | Sim | Number | - |
+| Atributo                                                                        | Correspondência    | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ------------------------------------------------------------------------------- | ------------------ | --------------- | ------------ | ------------ |
+| Arquivo                                                                         | `file`             | Sim             | Binary       | -            |
+| [Identificador da categoria do arquivo](#categoria-do-arquivo-attachmenttypeid) | `attachmentTypeID` | Sim             | Number       | -            |
+| Data de vencimento                                                              | `dueDate`          | Não             | Date         | -            |
+| Visibilidade na esteira de crédito                                              | `visible`          | Sim             | Boolean      | -            |
+| [Identificador da pessoa](#pessoa-personid)                                     | `personID`         | Sim             | Number       | -            |
 
 #### Padrão de API:
 
@@ -38,7 +38,7 @@ POST {{ _.base_url }}/api/person-attachments/{personID}/upload
 POST https://{empresa}.titan.ceoslab.app/api/person-attachments/2760/upload
 ```
 
-##### ```Header```:
+##### `Header`:
 
 ```bash showLineNumbers
 {
@@ -47,7 +47,7 @@ POST https://{empresa}.titan.ceoslab.app/api/person-attachments/2760/upload
 }
 ```
 
-##### ```Body```:
+##### `Body`:
 
 ```bash showLineNumbers
 {
@@ -85,13 +85,13 @@ POST https://{empresa}.titan.ceoslab.app/api/person-attachments/2760/upload
 
 #### Parâmetros de envio
 
-| Atributo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
-| Arquivo | ```file``` | Sim | Binary | - |
-| [Identificador da categoria do arquivo](#categoria-do-arquivo-attachmenttypeid) | ```attachmentTypeID``` | Sim | Number | - |
-| Data de vencimento | ```dueDate``` | Não | Date | - |
-| Visibilidade na esteira de crédito | ```visible``` | Sim | Boolean | - |
-| [Identificador da empresa](#empresa-companyid) | ```companyID``` | Sim | Number | - |
+| Atributo                                                                        | Correspondência    | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ------------------------------------------------------------------------------- | ------------------ | --------------- | ------------ | ------------ |
+| Arquivo                                                                         | `file`             | Sim             | Binary       | -            |
+| [Identificador da categoria do arquivo](#categoria-do-arquivo-attachmenttypeid) | `attachmentTypeID` | Sim             | Number       | -            |
+| Data de vencimento                                                              | `dueDate`          | Não             | Date         | -            |
+| Visibilidade na esteira de crédito                                              | `visible`          | Sim             | Boolean      | -            |
+| [Identificador da empresa](#empresa-companyid)                                  | `companyID`        | Sim             | Number       | -            |
 
 #### Padrão de API:
 
@@ -105,7 +105,7 @@ POST {{ _.base_url }}/api/company-attachments/{companyID}/upload
 POST https://{empresa}.titan.ceoslab.app/api/company-attachments/1551/upload
 ```
 
-##### ```Header```:
+##### `Header`:
 
 ```bash showLineNumbers
 {
@@ -114,7 +114,7 @@ POST https://{empresa}.titan.ceoslab.app/api/company-attachments/1551/upload
 }
 ```
 
-##### ```Body```:
+##### `Body`:
 
 ```bash showLineNumbers
 {
@@ -152,13 +152,13 @@ POST https://{empresa}.titan.ceoslab.app/api/company-attachments/1551/upload
 
 #### Parâmetros de envio
 
-| Atributo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
-| Arquivo | ```file``` | Sim | Binary | - |
-| [Identificador da categoria do arquivo](#categoria-do-arquivo-attachmenttypeid) | ```attachmentTypeID``` | Sim | Number | - |
-| Data de vencimento | ```dueDate``` | Não | Date | - |
-| Visibilidade na esteira de crédito | ```visible``` | Sim | Boolean | - |
-| [Identificador da garantia](#garantia-collateralid) | ```collateralID``` | Sim | Number | - |
+| Atributo                                                                        | Correspondência    | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ------------------------------------------------------------------------------- | ------------------ | --------------- | ------------ | ------------ |
+| Arquivo                                                                         | `file`             | Sim             | Binary       | -            |
+| [Identificador da categoria do arquivo](#categoria-do-arquivo-attachmenttypeid) | `attachmentTypeID` | Sim             | Number       | -            |
+| Data de vencimento                                                              | `dueDate`          | Não             | Date         | -            |
+| Visibilidade na esteira de crédito                                              | `visible`          | Sim             | Boolean      | -            |
+| [Identificador da garantia](#garantia-collateralid)                             | `collateralID`     | Sim             | Number       | -            |
 
 #### Padrão de API:
 
@@ -172,7 +172,7 @@ POST {{ _.base_url }}/api/collateral-attachments/{collateralID}/upload
 POST https://{empresa}.titan.ceoslab.app/api/collateral-attachments/1298/upload
 ```
 
-##### ```Header```:
+##### `Header`:
 
 ```bash showLineNumbers
 {
@@ -181,7 +181,7 @@ POST https://{empresa}.titan.ceoslab.app/api/collateral-attachments/1298/upload
 }
 ```
 
-##### ```Body```:
+##### `Body`:
 
 ```bash showLineNumbers
 {
@@ -217,28 +217,28 @@ POST https://{empresa}.titan.ceoslab.app/api/collateral-attachments/1298/upload
 
 ## Passo 2: Vinculo do documento com uma operação
 
-Depois de enviar e vincular o documento às entidades mencionadas anteriormente, utilizando o ```id``` gerado na resposta da API, você será capaz de associar a documentação à sua operação.
+Depois de enviar e vincular o documento às entidades mencionadas anteriormente, utilizando o `id` gerado na resposta da API, você será capaz de associar a documentação à sua operação.
 
 ### Pessoa física
 
 #### Parâmetros de envio
 
-| Atributo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
-| Identificador do documento | ```attachmentID``` | Sim | Number | - |
-| [Identificador da operação](#operação-operationid) | ```operationID``` | Sim | Number | - |
-| [Identificador da pessoa](#pessoa-personid) | ```personID``` | Sim | Number | - |
+| Atributo                                           | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| -------------------------------------------------- | --------------- | --------------- | ------------ | ------------ |
+| Identificador do documento                         | `attachmentID`  | Sim             | Number       | -            |
+| [Identificador da operação](#operação-operationid) | `operationID`   | Sim             | Number       | -            |
+| [Identificador da pessoa](#pessoa-personid)        | `personID`      | Sim             | Number       | -            |
 
 #### Padrão de API:
 
 ```js
-POST {{ _.base_url }}/api/operations-attachments
+POST {{ _.base_url }}/api/operation-attachments
 ```
 
 #### Exemplo de rota:
 
 ```js
-POST https://{empresa}.titan.ceoslab.app/api/operations-attachments
+POST https://{empresa}.titan.ceoslab.app/api/operation-attachments
 ```
 
 #### Exemplo de requisição:
@@ -278,22 +278,22 @@ POST https://{empresa}.titan.ceoslab.app/api/operations-attachments
 
 #### Parâmetros de envio
 
-| Atributo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
-| Identificador do documento | ```attachmentID``` | Sim | Number | - |
-| [Identificador da operação](#operação-operationid) | ```operationID``` | Sim | Number | - |
-| [Identificador da empresa](#empresa-companyid) | ```companyID``` | Sim | Number | - |
+| Atributo                                           | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| -------------------------------------------------- | --------------- | --------------- | ------------ | ------------ |
+| Identificador do documento                         | `attachmentID`  | Sim             | Number       | -            |
+| [Identificador da operação](#operação-operationid) | `operationID`   | Sim             | Number       | -            |
+| [Identificador da empresa](#empresa-companyid)     | `companyID`     | Sim             | Number       | -            |
 
 #### Padrão de API:
 
 ```js
-POST {{ _.base_url }}/api/operations-attachments
+POST {{ _.base_url }}/api/operation-attachments
 ```
 
 #### Exemplo de rota:
 
 ```js
-POST https://{empresa}.titan.ceoslab.app/api/operations-attachments
+POST https://{empresa}.titan.ceoslab.app/api/operation-attachments
 ```
 
 #### Exemplo de requisição:
@@ -342,13 +342,13 @@ POST https://{empresa}.titan.ceoslab.app/api/operations-attachments
 #### Padrão de API:
 
 ```js
-GET {{ _.base_url }}/api/operations-attachments
+GET {{ _.base_url }}/api/operation-attachments
 ```
 
 #### Exemplo de requisição:
 
 ```js
-GET https://{empresa}.titan.ceoslab.app/api/operations-attachments
+GET https://{empresa}.titan.ceoslab.app/api/operation-attachments
 ```
 
 ```bash showLineNumbers
@@ -389,16 +389,16 @@ Este procedimento refere-se ao momento em que a fase de assinatura do contrato d
 
 #### Parâmetros de envio
 
-| Atributo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
-| Arquivo | ```file``` | Sim | Binary | - |
-| [Identificador da categoria do arquivo](#categoria-do-arquivo-attachmenttypeid) | ```attachmentTypeID``` | Sim | Number | - |
-| Data de vencimento | ```dueDate``` | Não | Date | - |
-| [Identificador do assinante](#assinante-subscriberid) | ```subscriberID``` | Não | Number | - |
+| Atributo                                                                        | Correspondência    | Obrigatoriedade | Tipo de dado | Valor padrão |
+| ------------------------------------------------------------------------------- | ------------------ | --------------- | ------------ | ------------ |
+| Arquivo                                                                         | `file`             | Sim             | Binary       | -            |
+| [Identificador da categoria do arquivo](#categoria-do-arquivo-attachmenttypeid) | `attachmentTypeID` | Sim             | Number       | -            |
+| Data de vencimento                                                              | `dueDate`          | Não             | Date         | -            |
+| [Identificador do assinante](#assinante-subscriberid)                           | `subscriberID`     | Não             | Number       | -            |
 
-:::info ```subscriberID``` é opcional, entenda:
+:::info `subscriberID` é opcional, entenda:
 
-Se o ```subscriberID``` não for fornecido na requisição, o documento contratual assinado fica vinculado à operação em si, sem uma ligação direta a um assinante.
+Se o `subscriberID` não for fornecido na requisição, o documento contratual assinado fica vinculado à operação em si, sem uma ligação direta a um assinante.
 
 :::
 
@@ -416,7 +416,7 @@ POST https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments/u
 
 #### Exemplo de requisição:
 
-##### ```Header```:
+##### `Header`:
 
 ```bash showLineNumbers
 {
@@ -425,7 +425,7 @@ POST https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments/u
 }
 ```
 
-##### ```Body```:
+##### `Body`:
 
 ```bash showLineNumbers
 {
@@ -460,7 +460,7 @@ POST https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments/u
 
 :::tip Listagem dos documentos contratuais
 
-Após o envio dos documentos contratuais, você pode listar os anexos referente aquela operação. Veja como utilizar a API de ```operations-signatures-attachments```.
+Após o envio dos documentos contratuais, você pode listar os anexos referente aquela operação. Veja como utilizar a API de `operations-signatures-attachments`.
 
 #### Padrão de API:
 
@@ -529,6 +529,7 @@ GET https://{empresa}.titan.ceoslab.app/api/operations-signatures-attachments?fi
 ## Lastro
 
 O lastro da operação corresponde a toda documentação das entidades envolvidas na operação. Entre os documentos que podem estar incluídos dentro do lastro, estão:
+
 - Documentação completa vinculada ao cliente;
 - Documentação completa vinculada ao(s) avalista(s);
 - Documentação completa vinculada a(s) garantia(s);
@@ -542,9 +543,9 @@ O lastro da operação corresponde a toda documentação das entidades envolvida
 
 #### Parâmetros de envio
 
-| Atributo | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
-| ----- | ----- | ----- | ----- | ----- |
-| [Identificador da operação](#operação-operationid) | ```operationID``` | Sim | Number | - |
+| Atributo                                           | Correspondência | Obrigatoriedade | Tipo de dado | Valor padrão |
+| -------------------------------------------------- | --------------- | --------------- | ------------ | ------------ |
+| [Identificador da operação](#operação-operationid) | `operationID`   | Sim             | Number       | -            |
 
 #### Padrão de API:
 
@@ -570,7 +571,7 @@ GET https://{empresa}.titan.ceoslab.app/api/operations/1002/ballast
 
 O processo de mapeamento de atributos é essencial para compreender a relação entre os identificadores (IDs) utilizados nesta API e os atributos específicos que cada ID representa. Nesta seção, apresentamos uma tabela abrangente que associa cada ID a uma descrição do respectivo atributo correspondente. Essa abordagem visa simplificar a compreensão, fornecendo informações claras e significativas sobre a função de cada identificador no contexto da inclusão de documentos em uma operação dentro do Titan.
 
-#### Categoria do arquivo (```attachmentTypeID```):
+#### Categoria do arquivo (`attachmentTypeID`):
 
 Padrão de API:
 
@@ -607,9 +608,9 @@ Exemplo de resposta:
 ]
 ```
 
-#### Pessoa (```personID```):
+#### Pessoa (`personID`):
 
-No processo de [criação de operação via API](criacao.md), na resposta da requisição você tem acesso ao ```personID```.
+No processo de [criação de operação via API](criacao.md), na resposta da requisição você tem acesso ao `personID`.
 
 <!-- Peça ao seu parceiro de negócios que compartilhe o identificador da pessoa no painel dentro do Titan, a fim de incluir em sua solicitação.
 
@@ -617,9 +618,9 @@ No processo de [criação de operação via API](criacao.md), na resposta da req
 
 ![Pessoa](./../assets/personid.png) -->
 
-#### Empresa (```companyID```):
+#### Empresa (`companyID`):
 
-No processo de [criação de operação via API](criacao.md), na resposta da requisição você tem acesso ao ```companyID```.
+No processo de [criação de operação via API](criacao.md), na resposta da requisição você tem acesso ao `companyID`.
 
 <!-- Peça ao seu parceiro de negócios que compartilhe o identificador da empresa no painel dentro do Titan, a fim de incluir em sua solicitação.
 
@@ -627,9 +628,9 @@ No processo de [criação de operação via API](criacao.md), na resposta da req
 
 ![Empresa](./../assets/companyid.png) -->
 
-#### Operação (```operationID```):
+#### Operação (`operationID`):
 
-No processo de [criação de operação via API](criacao.md), na resposta da requisição você tem acesso ao ```operationID```.
+No processo de [criação de operação via API](criacao.md), na resposta da requisição você tem acesso ao `operationID`.
 
 <!-- Peça ao seu parceiro de negócios que compartilhe o identificador da operação no painel dentro do Titan, a fim de incluir em sua solicitação.
 
@@ -637,7 +638,7 @@ No processo de [criação de operação via API](criacao.md), na resposta da req
 
 ![Operações](./../assets/operationid.png) -->
 
-#### Garantia (```collateralID```):
+#### Garantia (`collateralID`):
 
 Para obter o identificador da garantia, é necessário listar as garantias associadas à operação em questão. Para isso, inicialmente, é necessário ter o [**identificador da operação**](#operação-operationid), citado no tópico anterior. Com o identificador da operação em que sua garantia desejada está associada, faça a seguinte requisição:
 
@@ -688,11 +689,11 @@ Exemplo de resposta:
             "financed": false
         },
         ...
-    ] 
+    ]
 }
 ```
 
-#### Assinante (```subscriberID```):
+#### Assinante (`subscriberID`):
 
 Para obter o identificador do assinante, é necessário listar os assinantes associadas à operação em questão, definindo o processo de assinatura para **envio externo ao Titan**. Para isso, inicialmente, é necessário ter o [**identificador da operação**](#operação-operationid), citado nos tópicos anteriores. Com o identificador da operação em que seu assinante desejado está associado, siga os passos a seguir:
 
